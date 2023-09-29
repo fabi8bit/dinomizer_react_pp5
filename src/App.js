@@ -1,9 +1,10 @@
-import './App.css';
+import "./App.css";
+import SideBar from "./components/Sidebar";
 
 function App() {
   return (
     <div className="App">
-      <h1>Ciao</h1>
+      <SideBar />
     </div>
   );
 }

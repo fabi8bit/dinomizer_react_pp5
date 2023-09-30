@@ -6,32 +6,34 @@ import styles from "../../styles/SignInUpForm.module.css"
 
 const SignUpForm = () => {
   return (
-    <Row>
-      <Col sm={12}>
+    <Row className={`${styles.Row} d-flex align-items-center`} >
+      <Col lg={6} sm={12}>
         <Container>
+        <h1 className={styles.Header}>sign up</h1>
           <Form>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Label>Email address</Form.Label>
+            <Form.Group controlId="username">
+              <Form.Label className="d-none">Email address</Form.Label>
               <Form.Control
-                type="email"
-                placeholder="Enter email"
+                type="text"
+                placeholder="Username"
+                name="username"
               />
-              <Form.Text className="text-muted">
-                We'll never share your email with anyone else.
-              </Form.Text>
             </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Password</Form.Label>
+            <Form.Group controlId="password1">
+              <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Password"
+                name="password1"
               />
             </Form.Group>
-            <Form.Group controlId="formBasicCheckbox">
-              <Form.Check
-                type="checkbox"
-                label="Check me out"
+            <Form.Group controlId="password2">
+              <Form.Label className="d-none">Confirm password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Confirm Password"
+                name="password2"
               />
             </Form.Group>
             <Button

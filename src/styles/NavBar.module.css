@@ -1,0 +1,24 @@
+.NavBar {
+    background-color: #0E3C4E;
+}
+
+.NavLink {
+    color: #b1b0b0 !important;
+  }
+
+.NavLink:hover {
+color: #ffffff !important;
+transition: color ease-in-out 0.3s;
+}
+
+.Active {
+  color: #ffffff !important;
+}
+
+.Icon {
+  margin-right: 7px;
+  margin-left: 7px;
+}
+
+
+

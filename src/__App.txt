@@ -9,6 +9,15 @@ body {
   font-family: Lato, sans-serif;
 }
 
+.custNavbar {
+  background-color: #0E3C4E;
+  color: white;
+}
+
+a .nav-link {
+  color: white;
+}
+
 .Sidebar {
   height: 100%;
   width: 20%;

@@ -1,22 +1,24 @@
 import React from "react";
-import "../App.css";
+import styles from "../styles/Sidebar.module.css"
+
 import { SidebarData } from "./SidebarData";
 
 const SideBar = () => {
   return (
-    <div className="Sidebar">
-      <ul className="SidebarList">
+    <div className={styles.Sidebar}>
+      
+      <ul className={styles.SidebarList}>
         {SidebarData.map((val, key) => {
           return (
             <li
               key={key}
-              className="row"
-              id={window.location.pathname == val.link ? "active" : ""}
+              className={styles.row}
+              id={window.location.pathname === val.link ? "active" : ""}
               onClick={() => {
                 window.location.pathname = val.link;
               }}
             >
-              <div id="icon">{val.icon}</div> <div id="title">{val.title}</div>
+              <div id={styles.icon}>{val.icon}</div> <div id={styles.title}>{val.title}</div>
             </li>
           );
         })}

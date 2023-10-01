@@ -9,7 +9,7 @@ const SignUpForm = () => {
     <Row className={`${styles.Row} d-flex align-items-center`} >
       <Col lg={6} sm={12}>
         <Container>
-        <h1 className={styles.Header}>sign up</h1>
+        <h1 className={styles.Header}>Sign up</h1>
           <Form>
             <Form.Group controlId="username">
               <Form.Label className="d-none">Email address</Form.Label>
@@ -37,7 +37,7 @@ const SignUpForm = () => {
               />
             </Form.Group>
             <Button
-              variant="primary"
+              variant="outline-warning"
               type="submit"
             >
               Submit

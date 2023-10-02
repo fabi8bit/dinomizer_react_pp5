@@ -4,6 +4,10 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../assets/dm-logo-navbar.svg";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import LoginIcon from "@mui/icons-material/Login";
+import ViewTimelineIcon from '@mui/icons-material/ViewTimeline';
+import WebAssetIcon from '@mui/icons-material/WebAsset';
+import ExtensionIcon from '@mui/icons-material/Extension';
+import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { NavLink } from "react-router-dom/cjs/react-router-dom";
 import { useCurrentUser } from "../context/CurrentUserContext";
 
@@ -37,32 +41,40 @@ const NavBar = () => {
     <>
       <NavLink
         exact
-        to="/signin"
+        to="/"
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
-        <LoginIcon className={styles.Icon} />
+        <ViewTimelineIcon className={styles.Icon} />
         Timeline
       </NavLink>
       <NavLink
         exact
-        to="/signup"
+        to="/projects"
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
-        <PersonAddIcon className={styles.Icon} />
+        <WebAssetIcon className={styles.Icon} />
         projects
       </NavLink>
       <NavLink
         exact
-        to="/signup"
+        to="/contributes"
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
-        <PersonAddIcon className={styles.Icon} />
+        <ExtensionIcon className={styles.Icon} />
         Contribute
       </NavLink>
-      {currentUser?.username}
+      <NavLink
+        exact
+        to="/profile"
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+      >
+        <AccountBoxIcon className={styles.Icon} />
+        Profile (Logged in as <strong>{currentUser?.username}</strong>)
+      </NavLink>
     </>
   );
   return (

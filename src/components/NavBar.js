@@ -1,14 +1,14 @@
-import React, { useContext } from "react";
+import React from "react";
 import styles from "../styles/NavBar.module.css";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../assets/dm-logo-navbar.svg";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import LoginIcon from "@mui/icons-material/Login";
 import { NavLink } from "react-router-dom/cjs/react-router-dom";
-import { CurrentUserContext } from "../App";
+import { useCurrentUser } from "../context/CurrentUserContext";
 
 const NavBar = () => {
-  const currentUser = useContext(CurrentUserContext);
+  const currentUser = useCurrentUser();
 
   const loggedOutIcons = (
     <>

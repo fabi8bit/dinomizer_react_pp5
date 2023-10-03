@@ -5,6 +5,8 @@ import { Route, Switch } from "react-router-dom";
 import "./api/axios.Defaults";
 import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
+import ProfilePage from "./pages/profiles/ProfilePage";
+
 
 
 
@@ -19,9 +21,9 @@ function App() {
           <Route exact path="/" render={() => <h1>Timeline</h1>}/>
           <Route exact path="/signin" render={() => <SignInForm/>}/>
           <Route exact path="/signup" render={() => <SignUpForm/>}/>
+          <Route exact path="/profiles/:id" render={() => <ProfilePage />}/>
           <Route render={() => <p>Oh Oh! This page doesn't exists</p>}/>
-          </Switch>
-        
+        </Switch>
       </Container>
     </div>
       

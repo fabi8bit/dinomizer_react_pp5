@@ -7,9 +7,9 @@ import LoginIcon from "@mui/icons-material/Login";
 import ViewTimelineIcon from '@mui/icons-material/ViewTimeline';
 import WebAssetIcon from '@mui/icons-material/WebAsset';
 import ExtensionIcon from '@mui/icons-material/Extension';
-import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import { NavLink } from "react-router-dom/cjs/react-router-dom";
 import { useCurrentUser } from "../context/CurrentUserContext";
+import Avatar from "./Avatar";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -68,11 +68,11 @@ const NavBar = () => {
       </NavLink>
       <NavLink
         exact
-        to="/profile"
+        to={`/profiles/${currentUser?.profile_id}`}
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
-        <AccountBoxIcon className={styles.Icon} />
+        <Avatar src={currentUser?.profile_image} height={40} />
         Profile (Logged in as <strong>{currentUser?.username}</strong>)
       </NavLink>
     </>

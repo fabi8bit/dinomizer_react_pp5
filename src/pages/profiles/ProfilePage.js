@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { useCurrentUser } from '../../context/CurrentUserContext';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useParams } from 'react-router-dom/cjs/react-router-dom';
 import { axiosReq } from '../../api/axios.Defaults';
 import Profile from './Profile';
 
 const ProfilePage = () => {
-  const currentUser = useCurrentUser();
 
   const {id} = useParams();
   const [profile, setProfile] = useState( {results: []});

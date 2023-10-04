@@ -1,3 +1,7 @@
+#reset-this-root {
+  all: unset;
+}
+
 .FillerImage {
     object-fit: cover;
     height: 80%;
@@ -28,8 +32,9 @@ h1, h5 {
   color: #FFBB1F;
 }
 
-p {
+.Paragraphs {
   font-size: 1.5rem;
+  text-align: left;
 }
 
 hr {

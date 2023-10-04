@@ -1,0 +1,27 @@
+.FillerImage {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    padding: 40px;
+  }
+
+.Input {
+  background: white;
+  border-radius: 3px;
+  color: black;
+  text-align: left;
+  padding: 10px;
+}
+
+.Header {
+  
+  font-weight: bold;
+  margin-bottom: 30px;
+  text-align: left;
+  color: #FFBB1F;
+}
+
+.Row {
+  height: 50vh;
+}
+

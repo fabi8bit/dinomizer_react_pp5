@@ -80,6 +80,8 @@ const NavBar = () => {
       </NavLink>
     </>
   );
+
+  
   return (
     <Navbar
       expanded={expanded}

@@ -1,7 +1,11 @@
 import React from "react";
 import styles from "../../styles/Profile.module.css";
-import { useCurrentUser } from "../../context/CurrentUserContext";
+import {
+  useCurrentUser,
+  useSetCurrentUser,
+} from "../../context/CurrentUserContext";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
+import axios from "axios";
 
 const Profile = (props) => {
   const {
@@ -17,6 +21,16 @@ const Profile = (props) => {
   } = props;
 
   const currentUser = useCurrentUser();
+  const setCurrentUser = useSetCurrentUser();
+
+  const handleSignOut = async () => {
+    try {
+      await axios.post("dj-rest-auth/logout/");
+      setCurrentUser(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <Row className={`${styles.Row} d-flex align-items-center`}>
@@ -29,24 +43,37 @@ const Profile = (props) => {
             />
           </Row>
           {is_owner && (
-            <Row>
-              <Col>
-                <Button
-                  variant="primary"
-                  block
-                >
-                  Edit
-                </Button>
-              </Col>
-              <Col>
-                <Button
-                  variant="danger"
-                  block
-                >
-                  Delete
-                </Button>
-              </Col>
-            </Row>
+            <>
+              <Row>
+                <Col>
+                  <Button
+                    variant="primary"
+                    block
+                  >
+                    Edit
+                  </Button>
+                </Col>
+                <Col>
+                  <Button
+                    variant="danger"
+                    block
+                  >
+                    Delete
+                  </Button>
+                </Col>
+              </Row>
+              <Row>
+                <Col className={styles.SignOutButton}>
+                  <Button
+                    variant="warning"
+                    onClick={handleSignOut}
+                    block
+                  >
+                    Sign out
+                  </Button>
+                </Col>
+              </Row>
+            </>
           )}
         </Container>
       </Col>

@@ -40,3 +40,8 @@ hr {
   height: 50vh;
 }
 
+.SignOutButton {
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+

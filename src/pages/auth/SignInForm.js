@@ -80,8 +80,9 @@ const SignInForm = () => {
             ))}
 
             <Button
-              variant="outline-warning"
+              variant="warning"
               type="submit"
+              block
             >
               Sign in
             </Button>

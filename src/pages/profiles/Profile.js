@@ -6,6 +6,7 @@ import {
 } from "../../context/CurrentUserContext";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import axios from "axios";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 const Profile = (props) => {
   const {
@@ -27,10 +28,13 @@ const Profile = (props) => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
+      history.push("/"); 
     } catch (err) {
       console.log(err);
     }
   };
+
+  const history = useHistory();
 
   
 

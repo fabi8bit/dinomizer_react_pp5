@@ -1,8 +1,10 @@
 .FillerImage {
     object-fit: cover;
-    height: 100%;
-    width: 100%;
+    height: 80%;
+    width: 80%;
     padding: 40px;
+    border-radius: 25%;
+    margin: auto;
   }
 
 .Input {
@@ -20,7 +22,18 @@
   /* line-height: 19px; */
   margin-bottom: 30px;
   text-align: left;
+}
+
+h1, h5 {
   color: #FFBB1F;
+}
+
+p {
+  font-size: 1.5rem;
+}
+
+hr {
+  border: 0.1px solid white;
 }
 
 .Row {

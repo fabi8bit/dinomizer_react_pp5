@@ -1,8 +1,7 @@
 import React from "react";
 import styles from "../../styles/Profile.module.css";
 import { useCurrentUser } from "../../context/CurrentUserContext";
-import { Col, Container, Image, Row } from "react-bootstrap";
-import Avatar from "../../components/Avatar";
+import { Button, Col, Container, Image, Row } from "react-bootstrap";
 
 const Profile = (props) => {
   const {
@@ -21,21 +20,66 @@ const Profile = (props) => {
 
   return (
     <Row className={`${styles.Row} d-flex align-items-center`}>
+      <Col>
+        <Container>
+          <Row>
+            <Image
+              className={styles.FillerImage}
+              src={image}
+            />
+          </Row>
+          {is_owner && (
+            <Row>
+              <Col>
+                <Button
+                  variant="primary"
+                  block
+                >
+                  Edit
+                </Button>
+              </Col>
+              <Col>
+                <Button
+                  variant="danger"
+                  block
+                >
+                  Delete
+                </Button>
+              </Col>
+            </Row>
+          )}
+        </Container>
+      </Col>
       <Col
         lg={6}
         sm={12}
       >
         <Container>
-            <div>User: {owner}</div>
-            <div>Name: {name}</div>
-            <p>Bio: {content}</p>
-            <div>Registration date: {created_at}</div>
-            <div>Last profile update: {updated_at}</div>
-        </Container>
-      </Col>
-      <Col>
-        <Container>
-          <Avatar src={image} height={imageSize}/>
+          <Row>
+            <Col>
+              <h1 className={styles.Header}>Profile of {owner}</h1>
+              <hr></hr>
+              <h5>Real name:</h5>
+              <p>
+                <strong>{name}</strong>
+              </p>
+              <hr></hr>
+              <h5>Bio:</h5>
+              <p>{content}</p>
+            </Col>
+          </Row>
+          <Row>
+            <Col>
+              <hr></hr>
+              <h5>Registration date:</h5>
+              <p>{created_at}</p>
+            </Col>
+            <Col>
+              <hr></hr>
+              <h5>Last profile update:</h5>
+              <p>{updated_at}</p>
+            </Col>
+          </Row>
         </Container>
       </Col>
     </Row>

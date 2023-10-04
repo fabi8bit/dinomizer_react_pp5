@@ -10,9 +10,12 @@ import ExtensionIcon from '@mui/icons-material/Extension';
 import { NavLink } from "react-router-dom/cjs/react-router-dom";
 import { useCurrentUser } from "../context/CurrentUserContext";
 import Avatar from "./Avatar";
+import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
+
+  const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
   const loggedOutIcons = (
     <>
@@ -79,6 +82,7 @@ const NavBar = () => {
   );
   return (
     <Navbar
+      expanded={expanded}
       className={styles.NavBar}
       expand="md"
       fixed="top"
@@ -91,7 +95,11 @@ const NavBar = () => {
             height="35"
           />
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Toggle
+          ref={ref}
+          onClick={() => setExpanded(!expanded)}
+          aria-controls="basic-navbar-nav"
+        />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
             {currentUser ? loggedInIcons : loggedOutIcons}

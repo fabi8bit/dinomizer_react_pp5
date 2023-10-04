@@ -32,6 +32,8 @@ const Profile = (props) => {
     }
   };
 
+  
+
   return (
     <Row className={`${styles.Row} d-flex align-items-center`}>
       <Col>

@@ -11,6 +11,7 @@ import LoggedOutPage from "../auth/LoggedOutPage";
 
 const Profile = (props) => {
   const {
+    id,
     owner,
     created_at,
     updated_at,
@@ -41,8 +42,10 @@ const Profile = (props) => {
         <Container>
           <Row>
             <Image
-              className={styles.FillerImage}
+              className={styles.ProfImage}
               src={image}
+              height="280"
+              width="280"
             />
           </Row>
           {is_owner && (
@@ -50,6 +53,8 @@ const Profile = (props) => {
               <Row>
                 <Col>
                   <Button
+                    onClick={() => history.push(`/profiles/${id}/edit`)}
+                    aria-label="edit-profile"
                     variant="primary"
                     block
                   >

@@ -11,13 +11,6 @@
     margin: auto;
   }
 
-.ProfImage {
-  object-fit: cover;
-  padding: 20px;
-  border-radius: 25%;
-  margin: auto;
-  }
-
 .Input {
   background: white;
   border-radius: 3px;
@@ -54,6 +47,10 @@ hr {
 
 .SignOutButton {
   margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+input {
   margin-bottom: 10px;
 }
 

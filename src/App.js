@@ -7,6 +7,8 @@ import SignUpForm from "./pages/auth/SignUpForm";
 import SignInForm from "./pages/auth/SignInForm";
 import ProfilePage from "./pages/profiles/ProfilePage";
 import LoggedOutPage from "./pages/auth/LoggedOutPage";
+import ProfileEditForm from "./pages/profiles/ProfileEditForm";
+import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 
 
 
@@ -27,6 +29,8 @@ function App() {
           <Route exact path="/signup" render={() => <SignUpForm/>}/>
           <Route exact path="/loggedout" render={() => <LoggedOutPage/>}/>
           <Route exact path="/profiles/:id" render={() => <ProfilePage />}/>
+          <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />}/>
+          <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />}/>
           <Route render={() => <h1>Oh Oh! This page doesn't exists</h1>}/>
         </Switch>
       </Container>

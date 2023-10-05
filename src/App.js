@@ -27,7 +27,7 @@ function App() {
           <Route exact path="/signup" render={() => <SignUpForm/>}/>
           <Route exact path="/loggedout" render={() => <LoggedOutPage/>}/>
           <Route exact path="/profiles/:id" render={() => <ProfilePage />}/>
-          <Route render={() => <p>Oh Oh! This page doesn't exists</p>}/>
+          <Route render={() => <h1>Oh Oh! This page doesn't exists</h1>}/>
         </Switch>
       </Container>
     </div>

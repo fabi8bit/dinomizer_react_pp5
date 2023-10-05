@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import styles from "../../styles/LoggedOutPage.module.css";
-import logo from "../../assets/dm-logo-orig-white-txt.png";
+import logo from "../../project-assets/dm-logo-orig-white-txt.png";
 import { Link } from "react-router-dom/cjs/react-router-dom";
 
 const LoggedOutPage = () => {

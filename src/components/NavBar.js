@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../styles/NavBar.module.css";
 import { Navbar, Container, Nav } from "react-bootstrap";
-import logo from "../assets/dm-logo-navbar.svg";
+import logo from "../project-assets/dm-logo-navbar.svg";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import LoginIcon from "@mui/icons-material/Login";
 import ViewTimelineIcon from '@mui/icons-material/ViewTimeline';

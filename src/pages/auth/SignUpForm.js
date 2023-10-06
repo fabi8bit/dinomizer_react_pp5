@@ -15,12 +15,12 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 const SignUpForm = () => {
   const [signUpData, setSignUpData] = useState({
-    username: "",
     password1: "",
+    username: "",
     password2: "",
   });
 
-  const { username, password1, password2 } = signUpData;
+  const { password1, username, password2 } = signUpData;
 
   const [errors, setErrors] = useState({});
 

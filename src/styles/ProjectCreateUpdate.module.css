@@ -4,10 +4,7 @@
   
   .FillerImage {
       object-fit: cover;
-      height: 80%;
-      width: 80%;
-      padding: 40px;
-      border-radius: 25%;
+      padding: 5px;
       margin: auto;
     }
   

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -6,10 +6,12 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import styles from "../../styles/ProjectCreateUpdate.module.css";
-import btnStyles from "../../styles/Button.module.css"
+import btnStyles from "../../styles/Button.module.css";
 import { Alert, Image } from "react-bootstrap";
 import Placeholder from "../../components/Placeholder";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { axiosReq } from "../../api/axios.Defaults"
 
 function ProjectCreateForm() {
   const [errors, setErrors] = useState({});
@@ -31,6 +33,19 @@ function ProjectCreateForm() {
     status,
   } = projectData;
 
+  const imageInput = useRef(null);
+  const history = useHistory();
+
+  console.log(start_date)
+  console.log(expected_end_date)
+
+  const handleChangeDate = (oldDate) => {
+    console.log(oldDate)
+    const newDate = new Date(oldDate)
+    console.log(newDate.toISOString())
+    return newDate.toISOString()
+  }
+
   const handleChange = (event) => {
     setProjectData({
       ...projectData,
@@ -50,6 +65,38 @@ function ProjectCreateForm() {
       });
     }
   };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const formData = new FormData();
+
+    let startDate = handleChangeDate(start_date)
+    let endDate = handleChangeDate(expected_end_date)
+
+    console.log(startDate)
+
+
+    formData.append("project_name", project_name);
+    formData.append("content", content);
+    formData.append("image", imageInput.current.files[0]);
+    formData.append("start_date", startDate);
+    formData.append("expected_end_date", endDate);
+    formData.append("status", status);
+    console.log(formData);
+
+    
+    try {
+      const { data } = await axiosReq.post("/projects/", formData);
+      history.push(`/projects/${data.id}`)
+      console.log(data.start_date)
+    } catch(err) {
+      console.log(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+        
+      }
+    }
+  }
 
   const textFields = (
     <>
@@ -143,7 +190,7 @@ function ProjectCreateForm() {
         </Col>
         <Col>
           <Button
-            onClick={() => {}}
+            onClick={() => history.goBack()}
             variant="secondary"
             block
           >
@@ -156,60 +203,69 @@ function ProjectCreateForm() {
 
   return (
     <Container>
-    <Form>
-      <Row>
-        <Col
-          className="py-2 p-0 p-md-2"
-          sm={12}
-          lg={6}
-        >
-          
-            <Form.Group className={`${styles.Boxbackground}`}>
-              {image ? (
-                <>
-                  <figure>
-                    <Image
-                      className={styles.FillerImage}
-                      src={image}
-                      rounded
+      <Form onSubmit={handleSubmit}>
+        <Row>
+          <Col
+            sm={12}
+            lg={6}
+          >
+            <Container>
+              <Form.Group className={`${styles.Boxbackground}`}>
+                {image ? (
+                  <>
+                    <figure>
+                      <Image
+                        className={styles.FillerImage}
+                        src={image}
+                        fluid
+                      />
+                    </figure>
+                    {errors?.image?.map((message, idx) => (
+                      <Alert
+                        variant="warning"
+                        key={idx}
+                      >
+                        {message}
+                      </Alert>
+                    ))}
+                    <div>
+                      <Col>
+                      <Form.Label
+                        className={`${btnStyles.Button} ${btnStyles.Yellow} btn`}
+                        htmlFor="image-upload"
+                      >
+                        Change project image
+                      </Form.Label></Col>
+                    </div>
+                  </>
+                ) : (
+                  <Form.Label
+                    className="d-flex justify-content-center"
+                    htmlFor="image-upload"
+                  >
+                    <Placeholder
+                      src={<UploadFileIcon />}
+                      message="Click or tap to upload a cover Image"
                     />
-                  </figure>
-                  <div>
-                    <Form.Label
-                      className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
-                      htmlFor="image-upload"
-                    >Change project image
-                    </Form.Label>
-                  </div>
-                </>
-              ) : (
-                <Form.Label
-                  className="d-flex justify-content-center"
-                  htmlFor="image-upload"
-                >
-                  <Placeholder
-                    src={<UploadFileIcon />}
-                    message="Click or tap to upload a cover Image"
-                  />
-                </Form.Label>
-              )}
-              <Form.File
-                className={styles.FormControl}
-                id="image-upload"
-                accept="image/*"
-                onChange={handleChangeImage}
-                display="none"
-              />
-            </Form.Group>
-
-            <div className="d-md-none">{textFields}</div>
-         
-        </Col>
-        <Col className="d-none d-md-block p-0 p-md-2">
-          <Container>{textFields}</Container>
-        </Col>
-      </Row>
-    </Form>
+                  </Form.Label>
+                )}
+                <Form.File
+                  className={styles.FormControl}
+                  id="image-upload"
+                  accept="image/*"
+                  onChange={handleChangeImage}
+                  display="none"
+                  ref={imageInput}
+                />
+              </Form.Group>
+              <div className="d-md-none">{textFields}</div>
+            </Container>
+          </Col>
+          <Col className="d-none d-md-block p-0 p-md-2">
+            <Container>{textFields}</Container>
+          </Col>
+        </Row>
+      </Form>
     </Container>
   );
 }

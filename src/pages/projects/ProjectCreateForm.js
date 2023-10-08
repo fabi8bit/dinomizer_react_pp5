@@ -69,7 +69,11 @@ function ProjectCreateForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-
+    
+    //the date picker format is not compatible with Django rf API
+    //the format accepted by DRF is not compatible with the date picker used here
+    //For that reason we have to convert in the format accepted by DRF
+    //  right before to submit using handleChangeDate
     let startDate = handleChangeDate(start_date)
     let endDate = handleChangeDate(expected_end_date)
 

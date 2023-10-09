@@ -11,7 +11,7 @@ import { Alert, Image } from "react-bootstrap";
 import Placeholder from "../../components/Placeholder";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { axiosReq } from "../../api/axios.Defaults"
+import { axiosReq } from "../../api/axios.Defaults";
 
 function ProjectCreateForm() {
   const [errors, setErrors] = useState({});
@@ -36,15 +36,20 @@ function ProjectCreateForm() {
   const imageInput = useRef(null);
   const history = useHistory();
 
-  console.log(start_date)
-  console.log(expected_end_date)
+  console.log(start_date);
+  console.log(expected_end_date);
 
   const handleChangeDate = (oldDate) => {
-    console.log(oldDate)
-    const newDate = new Date(oldDate)
-    console.log(newDate.toISOString())
-    return newDate.toISOString()
-  }
+    try {
+      // console.log(oldDate);
+      const newDate = new Date(oldDate);
+      // console.log(newDate.toISOString());
+      return newDate.toISOString();
+    } catch(err) {
+      setErrors(err.response?.data);
+    }
+    
+  };
 
   const handleChange = (event) => {
     setProjectData({
@@ -69,16 +74,15 @@ function ProjectCreateForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-    
+
     //the date picker format is not compatible with Django rf API
     //the format accepted by DRF is not compatible with the date picker used here
     //For that reason we have to convert in the format accepted by DRF
     //  right before to submit using handleChangeDate
-    let startDate = handleChangeDate(start_date)
-    let endDate = handleChangeDate(expected_end_date)
+    let startDate = handleChangeDate(start_date);
+    let endDate = handleChangeDate(expected_end_date);
 
-    console.log(startDate)
-
+    console.log(startDate);
 
     formData.append("project_name", project_name);
     formData.append("content", content);
@@ -88,19 +92,17 @@ function ProjectCreateForm() {
     formData.append("status", status);
     console.log(formData);
 
-    
     try {
       const { data } = await axiosReq.post("/projects/", formData);
-      history.push(`/projects/${data.id}`)
-      console.log(data.start_date)
-    } catch(err) {
+      history.push(`/projects/${data.id}`);
+      console.log(data.start_date);
+    } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
-        
       }
     }
-  }
+  };
 
   const textFields = (
     <>
@@ -117,7 +119,7 @@ function ProjectCreateForm() {
       </Form.Group>
       {errors?.project_name?.map((message, idx) => (
         <Alert
-          variant="warning"
+          variant="danger"
           key={idx}
         >
           {message}
@@ -135,6 +137,14 @@ function ProjectCreateForm() {
           rows={3}
         />
       </Form.Group>
+      {errors?.content?.map((message, idx) => (
+        <Alert
+          variant="danger"
+          key={idx}
+        >
+          {message}
+        </Alert>
+      ))}
       <Form.Group>
         <Form.Label>
           <h5>Start date</h5>
@@ -146,6 +156,14 @@ function ProjectCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.start_date?.map((message, idx) => (
+        <Alert
+          variant="danger"
+          key={idx}
+        >
+          {message}
+        </Alert>
+      ))}
       <Form.Group>
         <Form.Label>
           <h5>Expected end date</h5>
@@ -157,6 +175,14 @@ function ProjectCreateForm() {
           onChange={handleChange}
         />
       </Form.Group>
+      {errors?.expected_end_date?.map((message, idx) => (
+        <Alert
+          variant="danger"
+          key={idx}
+        >
+          {message}
+        </Alert>
+      ))}
       <Form.Group>
         <Form.Label>
           <h5>Status</h5>
@@ -173,9 +199,9 @@ function ProjectCreateForm() {
           <option>Completed</option>
         </Form.Control>
       </Form.Group>
-      {errors.level?.map((message, idx) => (
+      {errors?.status?.map((message, idx) => (
         <Alert
-          variant="warning"
+          variant="danger"
           key={idx}
         >
           {message}
@@ -224,22 +250,15 @@ function ProjectCreateForm() {
                         fluid
                       />
                     </figure>
-                    {errors?.image?.map((message, idx) => (
-                      <Alert
-                        variant="warning"
-                        key={idx}
-                      >
-                        {message}
-                      </Alert>
-                    ))}
                     <div>
                       <Col>
-                      <Form.Label
-                        className={`${btnStyles.Button} ${btnStyles.Yellow} btn`}
-                        htmlFor="image-upload"
-                      >
-                        Change project image
-                      </Form.Label></Col>
+                        <Form.Label
+                          className={`${btnStyles.Button} ${btnStyles.Yellow} btn`}
+                          htmlFor="image-upload"
+                        >
+                          Change project image
+                        </Form.Label>
+                      </Col>
                     </div>
                   </>
                 ) : (
@@ -262,6 +281,14 @@ function ProjectCreateForm() {
                   ref={imageInput}
                 />
               </Form.Group>
+              {errors?.image?.map((message, idx) => (
+                <Alert
+                  variant="danger"
+                  key={idx}
+                >
+                  {message}
+                </Alert>
+              ))}
               <div className="d-md-none">{textFields}</div>
             </Container>
           </Col>

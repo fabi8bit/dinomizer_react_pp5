@@ -16,7 +16,6 @@ const ProfilePage = () => {
           axiosReq.get(`/profiles/${id}`),
         ])
         setProfile({results: [profile]})
-        console.log(profile)
       } catch(err) {}
     }
 

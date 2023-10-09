@@ -40,6 +40,9 @@ function ProjectCreateForm() {
   console.log(expected_end_date);
 
   const handleChangeDate = (oldDate) => {
+    //leaving the date field empty is trowing an error
+    //because of .toISOString method.
+    //So a try-catch block is necessary
     try {
       // console.log(oldDate);
       const newDate = new Date(oldDate);

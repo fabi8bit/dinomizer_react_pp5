@@ -4,9 +4,9 @@ import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../project-assets/dm-logo-navbar.svg";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import LoginIcon from "@mui/icons-material/Login";
-import ViewTimelineIcon from '@mui/icons-material/ViewTimeline';
-import WebAssetIcon from '@mui/icons-material/WebAsset';
-import ExtensionIcon from '@mui/icons-material/Extension';
+import ViewTimelineIcon from "@mui/icons-material/ViewTimeline";
+import WebAssetIcon from "@mui/icons-material/WebAsset";
+import ExtensionIcon from "@mui/icons-material/Extension";
 import { NavLink } from "react-router-dom/cjs/react-router-dom";
 import { useCurrentUser } from "../context/CurrentUserContext";
 import Avatar from "./Avatar";
@@ -75,13 +75,15 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
-        <Avatar src={currentUser?.profile_image} height={30} />
+        <Avatar
+          src={currentUser?.profile_image}
+          height={30}
+        />
         <strong>{currentUser?.username}</strong>
       </NavLink>
     </>
   );
 
-  
   return (
     <Navbar
       expanded={expanded}

@@ -1,0 +1,33 @@
+.FillerImage {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    margin: auto;
+  }
+
+.ProjectAssetTit {
+  font-size: 2rem;
+  color: #FFBB1F;
+  margin-top: 30px;
+}
+
+
+
+.Paragraphs {
+font-size: 1rem;
+text-align: left;
+}
+
+.Section1 {
+  background-color: #363636;
+  height: 100vh;
+  border-right: 1px solid #333333;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+hr {
+  border: 0.1rm solid #ffffff;
+}
+

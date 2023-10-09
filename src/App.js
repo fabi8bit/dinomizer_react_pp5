@@ -10,6 +10,7 @@ import LoggedOutPage from "./pages/auth/LoggedOutPage";
 import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProjectCreateForm from "./pages/projects/ProjectCreateForm";
+import ProjectPage from "./pages/projects/ProjectPage";
 
 
 
@@ -32,7 +33,8 @@ function App() {
           <Route exact path="/profiles/:id" render={() => <ProfilePage />}/>
           <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />}/>
           <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />}/>
-          <Route exact path="/projects/create" render={() => <ProjectCreateForm/>}/>
+          <Route exact path="/projects/create" render={() => <ProjectCreateForm />}/>
+          <Route exact path="/projects/:id" render={() => <ProjectPage />}/>
           <Route render={() => <h1>Oh Oh! This page doesn't exists</h1>}/>
         </Switch>
       </Container>

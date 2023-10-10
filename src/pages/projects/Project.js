@@ -6,6 +6,7 @@ import styles from "../../styles/ProjectAsset.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axios.Defaults";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
 const Project = (props) => {
   const {
@@ -49,6 +50,22 @@ const Project = (props) => {
     }
   };
 
+  const handleCancelPart = async () => {
+    try {
+      await axiosRes.delete(`/participants/${participant_id}/`);
+      setProjects((prevProjects) => ({
+        ...prevProjects,
+        results: prevProjects.results.map((project) => {
+          return project.id === id
+            ? { ...project, participants: project.participants - 1, participant_id: null }
+            : project;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const loggedInProjectPage = (
     <Container>
       <Row>
@@ -60,7 +77,19 @@ const Project = (props) => {
               </p>
             </Col>
             {participant_id ? (
-              <Col>UnContribute</Col>
+              <Col>
+                <p className={`${styles.ProjectAssetTit}`}>
+                <Button
+                onClick={handleCancelPart}
+                aria-label="edit-profile"
+                variant="primary"
+                block
+              >
+                <RemoveCircleOutlineIcon/> Cancel contrib.
+              </Button>
+                  
+                </p>
+              </Col>
             ) : (
               <Col>
                 <p className={`${styles.ProjectAssetTit}`}>

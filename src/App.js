@@ -11,35 +11,79 @@ import ProfileEditForm from "./pages/profiles/ProfileEditForm";
 import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProjectCreateForm from "./pages/projects/ProjectCreateForm";
 import ProjectPage from "./pages/projects/ProjectPage";
-
-
-
-
+import ProjectsPage from "./pages/projects/ProjectsPage";
+import { useCurrentUser } from "./context/CurrentUserContext";
 
 function App() {
 
-
+  const currentUser = useCurrentUser();
+  const profile_id = currentUser?.profile_id || "";
 
   return (
     <div className={styles.App}>
       <NavBar />
-      
+
       <Container className={styles.Main}>
         <Switch>
-          <Route exact path="/" render={() => <h1>Timeline</h1>}/>
-          <Route exact path="/signin" render={() => <SignInForm/>}/>
-          <Route exact path="/signup" render={() => <SignUpForm/>}/>
-          <Route exact path="/loggedout" render={() => <LoggedOutPage/>}/>
-          <Route exact path="/profiles/:id" render={() => <ProfilePage />}/>
-          <Route exact path="/profiles/:id/edit" render={() => <ProfileEditForm />}/>
-          <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />}/>
-          <Route exact path="/projects/create" render={() => <ProjectCreateForm />}/>
-          <Route exact path="/projects/:id" render={() => <ProjectPage />}/>
-          <Route render={() => <h1>Oh Oh! This page doesn't exists</h1>}/>
+          <Route
+            exact
+            path="/"
+            render={() => <ProjectsPage/>}
+          />
+          <Route
+            exact
+            path="/projects"
+            render={() => (
+            <ProjectsPage
+            message="No results found. Adjust the keyworld or contribute to a project"
+            myProjects
+            />)}
+          />
+          <Route
+            exact
+            path="/signin"
+            render={() => <SignInForm />}
+          />
+          <Route
+            exact
+            path="/signup"
+            render={() => <SignUpForm />}
+          />
+          <Route
+            exact
+            path="/loggedout"
+            render={() => <LoggedOutPage />}
+          />
+          <Route
+            exact
+            path="/profiles/:id"
+            render={() => <ProfilePage />}
+          />
+          <Route
+            exact
+            path="/profiles/:id/edit"
+            render={() => <ProfileEditForm />}
+          />
+          <Route
+            exact
+            path="/profiles/:id/edit/password"
+            render={() => <UserPasswordForm />}
+          />
+          <Route
+            exact
+            path="/projects/create"
+            render={() => <ProjectCreateForm />}
+          />
+          <Route
+            exact
+            path="/projects/:id"
+            render={() => <ProjectPage />}
+          />
+          
+          <Route render={() => <h1>Oh Oh! This page doesn't exists</h1>} />
         </Switch>
       </Container>
     </div>
-      
   );
 }
 

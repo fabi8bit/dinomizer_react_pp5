@@ -23,6 +23,23 @@ text-align: left;
   background-color: #272626;
   height: 100vh;
   border-right: 1px solid #333333;
+  border-left: 1px solid #333333;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.Section2 {
+  background-color: #222121;
+  height: 100vh;
+  border-right: 1px solid #333333;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.Section3 {
+  background-color: #272626;
+  height: 100vh;
+  border-right: 1px solid #333333;
   padding-left: 0;
   padding-right: 0;
 }

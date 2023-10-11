@@ -28,7 +28,7 @@ const Profile = (props) => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
-      history.push("/");
+      history.push("/loggedout");
     } catch (err) {
       console.log(err);
     }

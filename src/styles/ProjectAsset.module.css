@@ -9,7 +9,8 @@
 .ProjectAssetTit {
   font-size: 2rem;
   color: #FFBB1F;
-  margin-top: 30px;
+  margin-top: 5px;
+  text-align: left;
 }
 
 
@@ -45,6 +46,10 @@ text-align: left;
 }
 
 hr {
-  border: 0.1rm solid #ffffff;
+  border: 1px solid #4b4b4b;
+}
+
+.FinalRuler {
+  border: 2px solid #ffffff;
 }
 

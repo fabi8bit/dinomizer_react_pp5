@@ -1,12 +1,22 @@
 import React from "react";
 import LoggedOutPage from "../auth/LoggedOutPage";
-import { Button, Col, Container, Image, Row } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Container,
+  Dropdown,
+  DropdownButton,
+  Image,
+  Row,
+} from "react-bootstrap";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 import styles from "../../styles/ProjectAsset.module.css";
+import appStyles from "../../App.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axios.Defaults";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
+import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
 
 const Project = (props) => {
   const {
@@ -26,13 +36,19 @@ const Project = (props) => {
     participants,
     projectPage,
     setProjects,
+    smImg,
+    lgImg,
   } = props;
 
   const currentUser = useCurrentUser();
 
+  const history = useHistory();
+
   const handleParticipate = async () => {
     try {
-      const { data } = await axiosRes.post("/participants/", { project_id: id });
+      const { data } = await axiosRes.post("/participants/", {
+        project_id: id,
+      });
       setProjects((prevProjects) => ({
         ...prevProjects,
         results: prevProjects.results.map((project) => {
@@ -57,7 +73,11 @@ const Project = (props) => {
         ...prevProjects,
         results: prevProjects.results.map((project) => {
           return project.id === id
-            ? { ...project, participants: project.participants - 1, participant_id: null }
+            ? {
+                ...project,
+                participants: project.participants - 1,
+                participant_id: null,
+              }
             : project;
         }),
       }));
@@ -70,52 +90,90 @@ const Project = (props) => {
     <Container>
       <Row>
         <Col>
+        <hr/>
           <Row>
-            <Col>
-              <p className={styles.ProjectAssetTit}>
-                Project: <strong>{project_name}</strong>
-              </p>
-            </Col>
-            {participant_id ? (
+            {smImg && (
               <Col>
-                <p className={`${styles.ProjectAssetTit}`}>
-                <Button
-                onClick={handleCancelPart}
-                aria-label="edit-profile"
-                variant="primary"
-                block
+                <Image
+                  className={styles.FillerImage}
+                  src={image}
+                />
+              </Col>
+            )}
+            <Link
+              className={appStyles.Links}
+              to={`/projects/${id}`}
+            >
+              <Col>
+                <p className={styles.ProjectAssetTit}>
+                  Project: <br />
+                  <strong>{project_name}</strong>
+                </p>
+              </Col>
+            </Link>
+            {participant_id ? (
+              <Col
+                lg={3}
+                sm={12}
               >
-                <RemoveCircleOutlineIcon/> Cancel contrib.
-              </Button>
-                  
+                <p className={`${styles.ProjectAssetTit}`}>
+                  <Button
+                    onClick={handleCancelPart}
+                    aria-label="edit-profile"
+                    variant="secondary"
+                    block
+                  >
+                    <RemoveCircleOutlineIcon /> Unprovide
+                  </Button>
                 </p>
               </Col>
             ) : (
-              <Col>
-                <p className={`${styles.ProjectAssetTit}`}>
-                <Button
-                onClick={handleParticipate}
-                aria-label="edit-profile"
-                variant="primary"
-                block
+              <Col
+                lg={3}
+                sm={12}
               >
-                <AddCircleOutlineIcon/> Contribute
-              </Button>
-                  
+                <p className={`${styles.ProjectAssetTit}`}>
+                  <Button
+                    onClick={handleParticipate}
+                    aria-label="edit-profile"
+                    variant="success"
+                    block
+                  >
+                    <AddCircleOutlineIcon /> Provide
+                  </Button>
                 </p>
               </Col>
             )}
           </Row>
+          {is_owner && (
+              <Row>
+                <Col>
+                  <DropdownButton
+                    id="dropdown-basic-button"
+                    title="Edit"
+                    size="sm"
+                  >
+                    <Dropdown.Item
+                      href="#"
+                      onClick={() => history.push(`/projects/${id}/edit`)}
+                    >
+                      Edit
+                    </Dropdown.Item>
+                    <Dropdown.Item href="#">Delete</Dropdown.Item>
+                  </DropdownButton>
+                </Col>
+              </Row>
+            )}
           <hr />
 
           <Row>
             <Col>
               <p className={styles.Paragraphs}>Owner:</p>
               <Avatar
-                src={currentUser?.profile_image}
+                src={profile_image}
                 height={30}
               />
-              <strong>{currentUser?.username}</strong>
+              <strong>{owner}</strong>
             </Col>
             <Col>
               <p className={styles.Paragraphs}>Last update:</p>
@@ -128,13 +186,15 @@ const Project = (props) => {
           </Row>
         </Col>
       </Row>
+      {lgImg && (
+        <Row>
+          <Image
+            className={styles.FillerImage}
+            src={image}
+          />
+        </Row>
+      )}
 
-      <Row>
-        <Image
-          className={styles.FillerImage}
-          src={image}
-        />
-      </Row>
       {projectPage && (
         <>
           <Row>
@@ -148,36 +208,13 @@ const Project = (props) => {
               <p className={styles.Paragraphs}>
                 Contributors ({participants}):
               </p>
-              <p className={styles.Paragraphs}>{content}</p>
+              <p className={styles.Paragraphs}>{participants}</p>
             </Col>
           </Row>
         </>
       )}
-      {is_owner && (
-        <>
-          <Row>
-            <Col>
-              <Button
-                onClick={() => {}}
-                aria-label="edit-profile"
-                variant="primary"
-                block
-              >
-                Edit
-              </Button>
-            </Col>
-            <Col>
-              <Button
-                variant="danger"
-                block
-              >
-                Delete
-              </Button>
-            </Col>
-          </Row>
-        </>
-      )}
-      <hr />
+
+      <hr className={styles.FinalRuler} />
     </Container>
   );
 

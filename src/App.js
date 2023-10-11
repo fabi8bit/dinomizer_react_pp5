@@ -13,6 +13,7 @@ import ProjectCreateForm from "./pages/projects/ProjectCreateForm";
 import ProjectPage from "./pages/projects/ProjectPage";
 import ProjectsPage from "./pages/projects/ProjectsPage";
 import { useCurrentUser } from "./context/CurrentUserContext";
+import ProjectEditForm from "./pages/projects/ProjectEditForm";
 
 function App() {
 
@@ -28,7 +29,7 @@ function App() {
           <Route
             exact
             path="/"
-            render={() => <ProjectsPage/>}
+            render={() => <ProjectsPage timelinePage/>}
           />
           <Route
             exact
@@ -37,6 +38,7 @@ function App() {
             <ProjectsPage
             message="No results found. Adjust the keyworld or contribute to a project"
             myProjects
+            smImg
             />)}
           />
           <Route
@@ -77,7 +79,12 @@ function App() {
           <Route
             exact
             path="/projects/:id"
-            render={() => <ProjectPage />}
+            render={() => <ProjectPage/>}
+          />
+          <Route
+            exact
+            path="/projects/:id/edit"
+            render={() => <ProjectEditForm/>}
           />
           
           <Route render={() => <h1>Oh Oh! This page doesn't exists</h1>} />

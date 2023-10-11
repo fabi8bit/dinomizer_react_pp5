@@ -41,7 +41,7 @@ const ProjectPage = () => {
         be used inside the project list and project detail. Thanks to
         projectPage attribute we can hide some parts in the list (es: content,
         or other infos not relevant for the list view) */}
-        <Project {...project.results[0]} projectPage setProjects={setProject}/>
+        <Project {...project.results[0]} projectPage setProjects={setProject} lgImg/>
       </Col>
       <Col>Assets Column</Col>
     </Row>

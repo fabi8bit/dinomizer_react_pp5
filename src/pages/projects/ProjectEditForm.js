@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -12,8 +12,9 @@ import Placeholder from "../../components/Placeholder";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axios.Defaults";
+import { useParams } from "react-router-dom/cjs/react-router-dom";
 
-function ProjectCreateForm() {
+function ProjectEditForm() {
   const [errors, setErrors] = useState({});
 
   const [projectData, setProjectData] = useState({
@@ -35,6 +36,39 @@ function ProjectCreateForm() {
 
   const imageInput = useRef(null);
   const history = useHistory();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        const { data } = await axiosReq.get(`/projects/${id}/`);
+        const {
+          project_name,
+          content,
+          image,
+          start_date,
+          expected_end_date,
+          status,
+          is_owner,
+        } = data;
+
+        is_owner
+          ? setProjectData({
+              project_name,
+              content,
+              image,
+              start_date,
+              expected_end_date,
+              status,
+            })
+          : history.push("/");
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    handleMount();
+  }, [history, id]);
 
   const handleChangeDate = (oldDate) => {
     //leaving the date field empty is trowing an error
@@ -45,10 +79,9 @@ function ProjectCreateForm() {
       const newDate = new Date(oldDate);
       // console.log(newDate.toISOString());
       return newDate.toISOString();
-    } catch(err) {
+    } catch (err) {
       setErrors(err.response?.data);
     }
-    
   };
 
   const handleChange = (event) => {
@@ -92,10 +125,13 @@ function ProjectCreateForm() {
     formData.append("status", status);
     console.log(formData);
 
+    if (imageInput?.current?.files[0]) {
+        formData.append("image", imageInput.current.files[0]);
+      }
+
     try {
-      const { data } = await axiosReq.post("/projects/", formData);
-      history.push(`/projects/${data.id}`);
-      console.log(data.start_date);
+      await axiosReq.put(`/projects/${id}/`, formData);
+      history.push(`/projects/${id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -301,4 +337,4 @@ function ProjectCreateForm() {
   );
 }
 
-export default ProjectCreateForm;
+export default ProjectEditForm;

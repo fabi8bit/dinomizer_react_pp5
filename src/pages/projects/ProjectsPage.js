@@ -45,6 +45,7 @@ function ProjectsPage({ message, myProjects }) {
                       key={project.id}
                       {...project}
                       setProjects={setProjects}
+                      smImg
                     />
                   ))
               ) : (
@@ -53,6 +54,7 @@ function ProjectsPage({ message, myProjects }) {
                     key={project.id}
                     {...project}
                     setProjects={setProjects}
+                    
                   />
                 ))
               )
@@ -70,49 +72,9 @@ function ProjectsPage({ message, myProjects }) {
             <Placeholder spinner />
           </Container>
         )}
-        {/* {hasLoaded ? (
-            {myProjects} ? (
-              <>
-              <h1>my proj</h1>
-              </>
-            ) : (
-              <>
-            {projects.results.length ? (
-                projects.results.map((project) => (
-                  <Project key={project.id} {...project} setProjects={setProjects} />
-                  ))
-            ):(
-                <Container>
-                <Placeholder src={""} message={message} />
-              </Container>
-            )}
-            </>
-            )
-            
-        ) : (
-            <Container>
-            <Placeholder spinner />
-          </Container>
-        )} */}
       </Col>
 
-      {/* Planned section */}
-      <Col
-        className={styles.Section2}
-        lg={3}
-        sm={12}
-      >
-        Planned
-      </Col>
-
-      {/* Overdue section */}
-      <Col
-        className={styles.Section3}
-        lg={3}
-        sm={12}
-      >
-        Overdue
-      </Col>
+      {myProjects && <Col>Assets</Col>}
     </Row>
   );
 }

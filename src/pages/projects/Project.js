@@ -90,8 +90,8 @@ const Project = (props) => {
     <Container>
       <Row>
         <Col>
-        <hr/>
-          <Row>
+          <hr />
+          <Row className={styles.ProjectHeader}>
             {smImg && (
               <Col>
                 <Image
@@ -146,34 +146,39 @@ const Project = (props) => {
             )}
           </Row>
           {is_owner && (
-              <Row>
-                <Col>
-                  <DropdownButton
-                    id="dropdown-basic-button"
-                    title="Edit"
-                    size="sm"
+            <Row>
+              <Col>
+                <DropdownButton
+                  id="dropdown-basic-button"
+                  title="Edit"
+                  size="sm"
+                >
+                  <Dropdown.Item
+                    href="#"
+                    onClick={() => history.push(`/projects/${id}/edit`)}
                   >
-                    <Dropdown.Item
-                      href="#"
-                      onClick={() => history.push(`/projects/${id}/edit`)}
-                    >
-                      Edit
-                    </Dropdown.Item>
-                    <Dropdown.Item href="#">Delete</Dropdown.Item>
-                  </DropdownButton>
-                </Col>
-              </Row>
-            )}
+                    Edit
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#">Delete</Dropdown.Item>
+                </DropdownButton>
+              </Col>
+            </Row>
+          )}
           <hr />
 
           <Row>
             <Col>
               <p className={styles.Paragraphs}>Owner:</p>
-              <Avatar
-                src={profile_image}
-                height={30}
-              />
-              <strong>{owner}</strong>
+              <Link
+                className={appStyles.Links}
+                to={`/profiles/${profile_id}`}
+              >
+                <Avatar
+                  src={profile_image}
+                  height={30}
+                />
+                <strong>{owner}</strong>
+              </Link>
             </Col>
             <Col>
               <p className={styles.Paragraphs}>Last update:</p>

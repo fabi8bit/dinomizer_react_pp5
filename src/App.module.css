@@ -20,3 +20,7 @@
 .Links:hover {
   text-decoration: none;
 }
+
+.Links {
+  color: white;
+}

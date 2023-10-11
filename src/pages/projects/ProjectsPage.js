@@ -5,6 +5,8 @@ import { useLocation } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq } from "../../api/axios.Defaults";
 import Placeholder from "../../components/Placeholder";
 import Project from "./Project";
+import InfiniteScroll from "react-infinite-scroll-component";
+import { fetchMoreData } from "../../utility/utility";
 
 function ProjectsPage({ message, myProjects }) {
   const [projects, setProjects] = useState({ results: [] });
@@ -54,27 +56,38 @@ function ProjectsPage({ message, myProjects }) {
         {hasLoaded ? (
           <>
             {projects.results.length ? (
-              myProjects ? (
-                projects.results
-                  .filter((project) => project.participant_id)
-                  .map((project) => (
-                    <Project
-                      key={project.id}
-                      {...project}
-                      setProjects={setProjects}
-                      smImg
-                    />
-                  ))
-              ) : (
-                projects.results.map((project) => (
-                  <Project
-                    key={project.id}
-                    {...project}
-                    setProjects={setProjects}
-                  />
-                ))
-              )
+
+              <InfiniteScroll
+                children={
+                  myProjects ? (
+                    projects.results
+                      .filter((project) => project.participant_id)
+                      .map((project) => (
+                        <Project
+                          key={project.id}
+                          {...project}
+                          setProjects={setProjects}
+                          smImg
+                        />
+                      ))
+                  ) : (
+                    projects.results.map((project) => (
+                      <Project
+                        key={project.id}
+                        {...project}
+                        setProjects={setProjects}
+                      />
+                    ))
+                  )
+                }
+                dataLength={projects.results.length}
+                loader={<Placeholder spinner/>}
+                hasMore={!!projects.next}
+                next={() => fetchMoreData(projects,setProjects)}
+              />
+              
             ) : (
+
               <Container>
                 <Placeholder
                   src={""}
@@ -83,7 +96,9 @@ function ProjectsPage({ message, myProjects }) {
               </Container>
             )}
           </>
+
         ) : (
+
           <Container>
             <Placeholder spinner />
           </Container>

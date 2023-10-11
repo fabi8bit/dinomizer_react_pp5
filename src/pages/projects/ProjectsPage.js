@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Form, FormControl, Row } from "react-bootstrap";
 import styles from "../../styles/ProjectAsset.module.css";
 import { useLocation } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq } from "../../api/axios.Defaults";
@@ -10,11 +10,12 @@ function ProjectsPage({ message, myProjects }) {
   const [projects, setProjects] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const { data } = await axiosReq.get(`/projects/`);
+        const { data } = await axiosReq.get(`/projects/?search=${query}`);
         setProjects(data);
         setHasLoaded(true);
       } catch (err) {
@@ -24,16 +25,32 @@ function ProjectsPage({ message, myProjects }) {
 
     setHasLoaded(false);
     fetchProjects();
-  }, [pathname]);
+  }, [pathname, query]);
 
   return (
     <Row>
-      {/* In progress section */}
       <Col
         className={styles.Section1}
         lg={6}
         sm={12}
       >
+        <Container>
+          <Row>
+            <Col>
+              <Form
+                className={styles.SearchBar}
+                onSubmit={(event) => event.preventDefault()}
+              >
+                <FormControl
+                  value={query}
+                  onChange={(event) => setQuery(event.target.value)}
+                  type="text"
+                  placeholder="Search projects"
+                />
+              </Form>
+            </Col>
+          </Row>
+        </Container>
         {hasLoaded ? (
           <>
             {projects.results.length ? (
@@ -54,7 +71,6 @@ function ProjectsPage({ message, myProjects }) {
                     key={project.id}
                     {...project}
                     setProjects={setProjects}
-                    
                   />
                 ))
               )

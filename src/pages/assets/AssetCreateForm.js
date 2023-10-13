@@ -7,86 +7,60 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import styles from "../../styles/ProjectCreateUpdate.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { Alert, Image } from "react-bootstrap";
+import { Alert, FormGroup, Image } from "react-bootstrap";
 import Placeholder from "../../components/Placeholder";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axios.Defaults";
-import { useParams } from "react-router-dom/cjs/react-router-dom";
 
-function ProjectEditForm() {
+function AssetCreateForm() {
+
   const [errors, setErrors] = useState({});
-
-  const [projectData, setProjectData] = useState({
-    project_name: "",
-    content: "",
-    image: "",
-    start_date: "",
-    expected_end_date: "",
-    status: "",
-  });
-  const {
-    project_name,
-    content,
-    image,
-    start_date,
-    expected_end_date,
-    status,
-  } = projectData;
-
-  const imageInput = useRef(null);
   const history = useHistory();
-  const { id } = useParams();
+  const location = useLocation(); // used to pass the project_id from
+  // the button "Add Asset" in Project.js
+  const [projectId, setProjectId] = useState('')
 
   useEffect(() => {
-    const handleMount = async () => {
+    function DefineProjectId(){
       try {
-        const { data } = await axiosReq.get(`/projects/${id}/`);
-        const {
-          project_name,
-          content,
-          image,
-          start_date,
-          expected_end_date,
-          status,
-          is_owner,
-        } = data;
-
-        is_owner
-          ? setProjectData({
-              project_name,
-              content,
-              image,
-              start_date,
-              expected_end_date,
-              status,
-            })
-          : history.push("/");
-      } catch (err) {
+        if (location.state.id){
+          setProjectId(location.state.id)
+          console.log(projectId);
+        } 
+      } catch(err){
         console.log(err);
+        history.goBack();
       }
-    };
-
-    handleMount();
-  }, [history, id]);
-
-  const handleChangeDate = (oldDate) => {
-    //leaving the date field empty is trowing an error
-    //because of .toISOString method.
-    //So a try-catch block is necessary
-    try {
-      // console.log(oldDate);
-      const newDate = new Date(oldDate);
-      // console.log(newDate.toISOString());
-      return newDate.toISOString();
-    } catch (err) {
-      setErrors(err.response?.data);
+      
     }
-  };
+    DefineProjectId();
+  }, [history, projectId, location])
+
+  
+  
+  
+  const [assetData, setAssetData] = useState({
+    asset_name: "",
+    category: "",
+    description: "",
+    image: "",
+    assetfile: "",
+    project_id: projectId, 
+  });
+  const { asset_name, category, description, image, assetfile, project_id } = assetData;
+
+  
+
+  
+  const imageInput = useRef(null);
+  const fileInput = useRef(null);
+  
+
 
   const handleChange = (event) => {
-    setProjectData({
-      ...projectData,
+    setAssetData({
+      ...assetData,
       // computed name property - creates key - value pair
       // between brackets sets the key - [event.target.name]
       // after the colon sets the value - : event.target.value
@@ -97,8 +71,18 @@ function ProjectEditForm() {
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
-      setProjectData({
-        ...projectData,
+      setAssetData({
+        ...assetData,
+        image: URL.createObjectURL(event.target.files[0]),
+      });
+    }
+  };
+
+  const handleChangeFile = (event) => {
+    if (event.target.files.length) {
+      URL.revokeObjectURL(assetfile);
+      setAssetData({
+        ...assetData,
         image: URL.createObjectURL(event.target.files[0]),
       });
     }
@@ -108,30 +92,16 @@ function ProjectEditForm() {
     event.preventDefault();
     const formData = new FormData();
 
-    //the date picker format is not compatible with Django rf API
-    //the format accepted by DRF is not compatible with the date picker used here
-    //For that reason we have to convert in the format accepted by DRF
-    //  right before to submit using handleChangeDate
-    let startDate = handleChangeDate(start_date);
-    let endDate = handleChangeDate(expected_end_date);
-
-    console.log(startDate);
-
-    formData.append("project_name", project_name);
-    formData.append("content", content);
+    formData.append("project_id", project_id);
+    formData.append("asset_name", asset_name);
+    formData.append("category", category);
+    formData.append("description", description);
     formData.append("image", imageInput.current.files[0]);
-    formData.append("start_date", startDate);
-    formData.append("expected_end_date", endDate);
-    formData.append("status", status);
-    console.log(formData);
-
-    if (imageInput?.current?.files[0]) {
-        formData.append("image", imageInput.current.files[0]);
-      }
+    formData.append("assetfile", fileInput.current.files[0]);
 
     try {
-      await axiosReq.put(`/projects/${id}/`, formData);
-      history.push(`/projects/${id}`);
+      const { data } = await axiosReq.post("/assets/", formData);
+      history.push(`/assets/${data.id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -140,20 +110,23 @@ function ProjectEditForm() {
     }
   };
 
+  
+
   const textFields = (
     <>
+    {/* {console.log(location.state.id)} */}
       <Form.Group>
         <Form.Label>
-          <h5>Project name:</h5>
+          <h5>Asset name:</h5>
         </Form.Label>
         <Form.Control
           as="input"
-          name="project_name"
-          value={project_name}
+          name="asset_name"
+          value={asset_name}
           onChange={handleChange}
         />
       </Form.Group>
-      {errors?.project_name?.map((message, idx) => (
+      {errors?.asset_name?.map((message, idx) => (
         <Alert
           variant="danger"
           key={idx}
@@ -163,15 +136,21 @@ function ProjectEditForm() {
       ))}
       <Form.Group>
         <Form.Label>
-          <h5>Content:</h5>
+          <h5>Category:</h5>
         </Form.Label>
         <Form.Control
-          as="textarea"
-          name="content"
-          value={content}
+          id="category"
+          as="select"
+          name="category"
+          value={category}
           onChange={handleChange}
-          rows={3}
-        />
+        >
+          <option>Graphic</option>
+          <option>Video</option>
+          <option>Audio</option>
+          <option>Copywriting</option>
+          <option>Other</option>
+        </Form.Control>
       </Form.Group>
       {errors?.content?.map((message, idx) => (
         <Alert
@@ -183,13 +162,14 @@ function ProjectEditForm() {
       ))}
       <Form.Group>
         <Form.Label>
-          <h5>Start date</h5>
+          <h5>Description</h5>
         </Form.Label>
         <Form.Control
-          type="date"
-          name="start_date"
-          value={start_date}
+          type="textarea"
+          name="description"
+          value={description}
           onChange={handleChange}
+          rows={3}
         />
       </Form.Group>
       {errors?.start_date?.map((message, idx) => (
@@ -200,50 +180,18 @@ function ProjectEditForm() {
           {message}
         </Alert>
       ))}
-      <Form.Group>
-        <Form.Label>
-          <h5>Expected end date</h5>
+      <FormGroup>
+      <Form.Label>
+          <h5>Upload Asset</h5>
         </Form.Label>
-        <Form.Control
-          type="date"
-          name="expected_end_date"
-          value={expected_end_date}
-          onChange={handleChange}
-        />
-      </Form.Group>
-      {errors?.expected_end_date?.map((message, idx) => (
-        <Alert
-          variant="danger"
-          key={idx}
-        >
-          {message}
-        </Alert>
-      ))}
-      <Form.Group>
-        <Form.Label>
-          <h5>Status</h5>
-        </Form.Label>
-        <Form.Control
-          id="status"
-          as="select"
-          name="status"
-          value={status}
-          onChange={handleChange}
-        >
-          <option>Planned</option>
-          <option>InProgress</option>
-          <option>Completed</option>
-        </Form.Control>
-      </Form.Group>
-      {errors?.status?.map((message, idx) => (
-        <Alert
-          variant="danger"
-          key={idx}
-        >
-          {message}
-        </Alert>
-      ))}
-
+      <Form.File
+                id="file-upload"
+                accept=".txt,audio/*,video/*,image/*"
+                onChange={handleChangeFile}
+                ref={fileInput}
+              />
+      </FormGroup>
+      
       <Row>
         <Col>
           <Button
@@ -304,7 +252,7 @@ function ProjectEditForm() {
                   >
                     <Placeholder
                       src={<UploadFileIcon />}
-                      message="Click or tap to upload a cover Image"
+                      message="Click or tap to upload a Cover Image"
                     />
                   </Form.Label>
                 )}
@@ -337,4 +285,4 @@ function ProjectEditForm() {
   );
 }
 
-export default ProjectEditForm;
+export default AssetCreateForm;

@@ -125,6 +125,19 @@ const Project = (props) => {
                   >
                     <RemoveCircleOutlineIcon /> Unprovide
                   </Button>
+                  <Button
+                    onClick={() => history.push({
+                      pathname:'/assets/create',
+                      state:{id},
+                    })}
+                    aria-label="edit-profile"
+                    variant="success"
+                    block
+                    
+                    
+                  >
+                    <AddCircleOutlineIcon /> <br/>Add Asset
+                  </Button>
                 </p>
               </Col>
             ) : (

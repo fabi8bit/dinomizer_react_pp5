@@ -14,6 +14,9 @@ import ProjectPage from "./pages/projects/ProjectPage";
 import ProjectsPage from "./pages/projects/ProjectsPage";
 import { useCurrentUser } from "./context/CurrentUserContext";
 import ProjectEditForm from "./pages/projects/ProjectEditForm";
+import ControllerFixed from "./components/ControllerFixed";
+import SideBar from "./components/Sidebar";
+import AssetCreateForm from "./pages/assets/AssetCreateForm";
 
 function App() {
 
@@ -85,6 +88,11 @@ function App() {
             exact
             path="/projects/:id/edit"
             render={() => <ProjectEditForm/>}
+          />
+          <Route
+            exact
+            path="/assets/create"
+            render={() => <AssetCreateForm />}
           />
           
           <Route render={() => <h1>Oh Oh! This page doesn't exists</h1>} />

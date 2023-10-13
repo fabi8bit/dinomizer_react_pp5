@@ -7,6 +7,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import ViewTimelineIcon from "@mui/icons-material/ViewTimeline";
 import WebAssetIcon from "@mui/icons-material/WebAsset";
 import ExtensionIcon from "@mui/icons-material/Extension";
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
 import { NavLink } from "react-router-dom/cjs/react-router-dom";
 import { useCurrentUser } from "../context/CurrentUserContext";
 import Avatar from "./Avatar";
@@ -39,6 +40,8 @@ const NavBar = () => {
       </NavLink>
     </>
   );
+
+  
 
   const loggedInIcons = (
     <>
@@ -84,6 +87,20 @@ const NavBar = () => {
     </>
   );
 
+  const addProjectIcon = (
+    <>
+      <NavLink
+        exact
+        to="/projects/create"
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+      >
+        <PlaylistAddIcon className={styles.Icon} />
+        New Project
+      </NavLink>
+    </>
+  );
+
   return (
     <Navbar
       expanded={expanded}
@@ -106,6 +123,7 @@ const NavBar = () => {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto text-left">
+            {currentUser && addProjectIcon}
             {currentUser ? loggedInIcons : loggedOutIcons}
           </Nav>
         </Navbar.Collapse>

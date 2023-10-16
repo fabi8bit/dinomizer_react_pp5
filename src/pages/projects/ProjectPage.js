@@ -3,13 +3,13 @@ import React, { useEffect, useState } from "react";
 // import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axios.Defaults";
-import { useCurrentUser } from "../../context/CurrentUserContext";
+// import { useCurrentUser } from "../../context/CurrentUserContext";
 import { Col, Row } from "react-bootstrap";
 import Project from "./Project";
 import styles from "../../styles/ProjectAsset.module.css";
 
 const ProjectPage = () => {
-  const currentUser = useCurrentUser();
+  // const currentUser = useCurrentUser();
   const { id } = useParams();
   const [project, setProject] = useState({ results: [] });
 

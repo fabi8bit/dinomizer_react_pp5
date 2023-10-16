@@ -82,20 +82,16 @@ function ProjectCreateForm() {
     let startDate = handleChangeDate(start_date);
     let endDate = handleChangeDate(expected_end_date);
 
-    console.log(startDate);
-
     formData.append("project_name", project_name);
     formData.append("content", content);
     formData.append("image", imageInput.current.files[0]);
     formData.append("start_date", startDate);
     formData.append("expected_end_date", endDate);
     formData.append("status", status);
-    console.log(formData);
 
     try {
       const { data } = await axiosReq.post("/projects/", formData);
       history.push(`/projects/${data.id}`);
-      console.log(data.start_date);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {

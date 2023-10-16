@@ -12,16 +12,16 @@ import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProjectCreateForm from "./pages/projects/ProjectCreateForm";
 import ProjectPage from "./pages/projects/ProjectPage";
 import ProjectsPage from "./pages/projects/ProjectsPage";
-import { useCurrentUser } from "./context/CurrentUserContext";
+// import { useCurrentUser } from "./context/CurrentUserContext";
 import ProjectEditForm from "./pages/projects/ProjectEditForm";
-import ControllerFixed from "./components/ControllerFixed";
-import SideBar from "./components/Sidebar";
+// import ControllerFixed from "./components/ControllerFixed";
+// import SideBar from "./components/Sidebar";
 import AssetCreateForm from "./pages/assets/AssetCreateForm";
 
 function App() {
 
-  const currentUser = useCurrentUser();
-  const profile_id = currentUser?.profile_id || "";
+  // const currentUser = useCurrentUser();
+  // const profile_id = currentUser?.profile_id || "";
 
   return (
     <div className={styles.App}>

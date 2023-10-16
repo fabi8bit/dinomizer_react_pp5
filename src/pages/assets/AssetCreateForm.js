@@ -10,53 +10,47 @@ import btnStyles from "../../styles/Button.module.css";
 import { Alert, FormGroup, Image } from "react-bootstrap";
 import Placeholder from "../../components/Placeholder";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
-import { useHistory, useLocation } from "react-router-dom/cjs/react-router-dom.min";
+import {
+  useHistory,
+  useLocation,
+} from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axios.Defaults";
 
 function AssetCreateForm() {
-
   const [errors, setErrors] = useState({});
   const history = useHistory();
   const location = useLocation(); // used to pass the project_id from
   // the button "Add Asset" in Project.js
-  const [projectId, setProjectId] = useState('')
 
-  useEffect(() => {
-    function DefineProjectId(){
-      try {
-        if (location.state.id){
-          setProjectId(location.state.id)
-          console.log(projectId);
-        } 
-      } catch(err){
-        console.log(err);
-        history.goBack();
-      }
-      
-    }
-    DefineProjectId();
-  }, [history, projectId, location])
+  const id = location.state.id;
 
-  
-  
-  
   const [assetData, setAssetData] = useState({
     asset_name: "",
     category: "",
     description: "",
     image: "",
     assetfile: "",
-    project_id: projectId, 
+    project_id: "",
   });
-  const { asset_name, category, description, image, assetfile, project_id } = assetData;
+  const { asset_name, category, description, image, assetfile, project_id } =
+    assetData;
 
-  
+  useEffect(() => {
+    const handleMount = async () => {
+      try {
+        if (id) {
+          setAssetData((prevState) => ({ ...prevState, project_id: id }));
+        }
+      } catch (err) {
+        console.log(err);
+        history.goBack();
+      }
+    }
+    handleMount();
+  }, [id, history]);
 
-  
   const imageInput = useRef(null);
-  const fileInput = useRef(null);
-  
-
+  const assetfileinput = useRef(assetfile || null);
 
   const handleChange = (event) => {
     setAssetData({
@@ -79,42 +73,42 @@ function AssetCreateForm() {
   };
 
   const handleChangeFile = (event) => {
-    if (event.target.files.length) {
+    if (event.target.files.length){
       URL.revokeObjectURL(assetfile);
       setAssetData({
         ...assetData,
-        image: URL.createObjectURL(event.target.files[0]),
-      });
+        assetfile: URL.createObjectURL(event.target.files[0]),
+       });
     }
+    
+     console.log(assetfileinput.current.files[0])
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-
     formData.append("project_id", project_id);
     formData.append("asset_name", asset_name);
     formData.append("category", category);
     formData.append("description", description);
     formData.append("image", imageInput.current.files[0]);
-    formData.append("assetfile", fileInput.current.files[0]);
+    formData.append("assetfile", assetfileinput.current.files[0]);
 
     try {
+      console.log(assetfileinput.current.files[0])
       const { data } = await axiosReq.post("/assets/", formData);
       history.push(`/assets/${data.id}`);
     } catch (err) {
       console.log(err);
+
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
     }
   };
 
-  
-
   const textFields = (
     <>
-    {/* {console.log(location.state.id)} */}
       <Form.Group>
         <Form.Label>
           <h5>Asset name:</h5>
@@ -181,17 +175,17 @@ function AssetCreateForm() {
         </Alert>
       ))}
       <FormGroup>
-      <Form.Label>
+        <Form.Label>
           <h5>Upload Asset</h5>
         </Form.Label>
-      <Form.File
-                id="file-upload"
-                accept=".txt,audio/*,video/*,image/*"
-                onChange={handleChangeFile}
-                ref={fileInput}
-              />
+        <Form.File
+          id="file-upload"
+          accept=".txt,audio/*,video/*,image/*"
+          onChange={handleChangeFile}
+          ref={assetfileinput}
+        />
       </FormGroup>
-      
+
       <Row>
         <Col>
           <Button

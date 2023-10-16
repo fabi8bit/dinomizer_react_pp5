@@ -12,17 +12,18 @@ import UserPasswordForm from "./pages/profiles/UserPasswordForm";
 import ProjectCreateForm from "./pages/projects/ProjectCreateForm";
 import ProjectPage from "./pages/projects/ProjectPage";
 import ProjectsPage from "./pages/projects/ProjectsPage";
-// import { useCurrentUser } from "./context/CurrentUserContext";
+import { useCurrentUser } from "./context/CurrentUserContext";
 import ProjectEditForm from "./pages/projects/ProjectEditForm";
 // import ControllerFixed from "./components/ControllerFixed";
 // import SideBar from "./components/Sidebar";
 import AssetCreateForm from "./pages/assets/AssetCreateForm";
 import AssetPage from "./pages/assets/AssetPage";
+import AssetsPage from "./pages/assets/AssetsPage";
 
 function App() {
 
-  // const currentUser = useCurrentUser();
-  // const profile_id = currentUser?.profile_id || "";
+  const currentUser = useCurrentUser();
+  const profile_id = currentUser?.profile_id || "";
 
   return (
     <div className={styles.App}>
@@ -100,7 +101,11 @@ function App() {
             path="/assets/:id"
             render={() => <AssetPage />}
           />
-          
+          <Route
+            exact
+            path="/assets/"
+            render={() => <AssetsPage myContribute/>}
+          />
           <Route render={() => <h1>Oh Oh! This page doesn't exists</h1>} />
         </Switch>
       </Container>

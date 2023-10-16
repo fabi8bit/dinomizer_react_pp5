@@ -65,7 +65,7 @@ const NavBar = () => {
       </NavLink>
       <NavLink
         exact
-        to="/contributes"
+        to="/assets"
         className={styles.NavLink}
         activeClassName={styles.Active}
       >

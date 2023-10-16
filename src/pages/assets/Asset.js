@@ -13,9 +13,9 @@ import { useCurrentUser } from "../../context/CurrentUserContext";
 import styles from "../../styles/ProjectAsset.module.css";
 import appStyles from "../../App.module.css";
 import Avatar from "../../components/Avatar";
-import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-// import { axiosRes } from "../../api/axios.Defaults";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import { axiosRes } from "../../api/axios.Defaults";
 // import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 // import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
@@ -31,7 +31,7 @@ const Asset = (props) => {
     description,
     image,
     assetfile,
-    created_at,
+    // created_at,
     updated_at,
     project_id,
     project_owner,
@@ -40,33 +40,52 @@ const Asset = (props) => {
     smImg,
     lgImg,
     assetPage,
+    setAssets,
   } = props;
 
   const currentUser = useCurrentUser();
 
   const history = useHistory();
 
-  //   const handleParticipate = async () => {
-  //     try {
-  //       const { data } = await axiosRes.post("/participants/", {
-  //         project_id: id,
-  //       });
-  //       setProjects((prevProjects) => ({
-  //         ...prevProjects,
-  //         results: prevProjects.results.map((project) => {
-  //           return project.id === id
-  //             ? {
-  //                 ...project,
-  //                 participants: project.participants + 1,
-  //                 participant_id: data.id,
-  //               }
-  //             : project;
-  //         }),
-  //       }));
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
+  const handleCheck = async () => {
+    try {
+      const { data } = await axiosRes.post("/checks/", {
+        asset_id: id,
+      });
+      setAssets((prevAsset) => ({
+        ...prevAsset,
+        results: prevAsset.results.map((asset) => {
+          return asset.id === id
+            ? {
+                ...asset,
+                check_id: data.id,
+              }
+            : asset;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUncheck = async () => {
+    try {
+      await axiosRes.delete(`/checks/${check_id}/`);
+      setAssets((prevAsset) => ({
+        ...prevAsset,
+        results: prevAsset.results.map((asset) => {
+          return asset.id === id
+            ? {
+                ...asset,
+                check_id: null,
+              }
+            : asset;
+        }),
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   //   const handleCancelPart = async () => {
   //     try {
@@ -140,32 +159,29 @@ const Asset = (props) => {
               </Col>
               {project_owner && (
                 <>
-                {check_id ? (
-                <Col lg={4}>
-                  <Button
-                    size="sm"
-                    variant="secondary"
-                  >
-                    <RadioButtonUncheckedIcon/>
-                  </Button>
-                </Col>
-              ) : (
-                <Col>
-                  <Button
-                    size="sm"
-                    variant="success"
-                  >
-                    <CheckCircleIcon/>
-                  </Button>
-                </Col>
-              )}
+                  {check_id ? (
+                    <Col lg={4} className={styles.Button}>
+                      <Button
+                        size="sm"
+                        variant="secondary"
+                        onClick={handleUncheck}
+                      >
+                        <RadioButtonUncheckedIcon />
+                      </Button>
+                    </Col>
+                  ) : (
+                    <Col lg={4} className={styles.Button}>
+                      <Button
+                        size="sm"
+                        variant="success"
+                        onClick={handleCheck}
+                      >
+                        <CheckCircleIcon />
+                      </Button>
+                    </Col>
+                  )}
                 </>
               )}
-            </Row>
-          )}
-          {project_owner && (
-            <Row>
-              
             </Row>
           )}
 
@@ -225,6 +241,7 @@ const Asset = (props) => {
                 className={appStyles.Links}
                 href={`https://res.cloudinary.com/dhsjcm3v3/${assetfile}`}
                 target="_blank"
+                rel="noreferrer"
               >
                 <p className={styles.Paragraphs}>
                   Click here for the original file

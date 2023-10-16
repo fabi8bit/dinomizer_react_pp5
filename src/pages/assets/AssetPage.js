@@ -36,7 +36,7 @@ const AssetPage = () => {
         lg={6}
         sm={12}
       >
-        <Asset {...asset.results[0]} lgImg assetPage/>
+        <Asset {...asset.results[0]} lgImg assetPage setAssets={setAsset}/>
       </Col>
       <Col>Related Project Column</Col>
     </Row>

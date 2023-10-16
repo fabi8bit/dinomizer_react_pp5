@@ -97,6 +97,7 @@ const Project = (props) => {
                 <Image
                   className={styles.FillerImage}
                   src={image}
+                  alt={project_name}
                 />
               </Col>
             )}
@@ -209,6 +210,7 @@ const Project = (props) => {
           <Image
             className={styles.FillerImage}
             src={image}
+            alt={project_name}
           />
         </Row>
       )}

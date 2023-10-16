@@ -139,11 +139,11 @@ function AssetCreateForm() {
           value={category}
           onChange={handleChange}
         >
-          <option>Graphic</option>
-          <option>Video</option>
-          <option>Audio</option>
-          <option>Copywriting</option>
-          <option>Other</option>
+          <option>graphic</option>
+          <option>video</option>
+          <option>audio</option>
+          <option>copywriting</option>
+          <option>other</option>
         </Form.Control>
       </Form.Group>
       {errors?.content?.map((message, idx) => (

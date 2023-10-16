@@ -17,6 +17,7 @@ import ProjectEditForm from "./pages/projects/ProjectEditForm";
 // import ControllerFixed from "./components/ControllerFixed";
 // import SideBar from "./components/Sidebar";
 import AssetCreateForm from "./pages/assets/AssetCreateForm";
+import AssetPage from "./pages/assets/AssetPage";
 
 function App() {
 
@@ -93,6 +94,11 @@ function App() {
             exact
             path="/assets/create"
             render={() => <AssetCreateForm />}
+          />
+          <Route
+            exact
+            path="/assets/:id"
+            render={() => <AssetPage />}
           />
           
           <Route render={() => <h1>Oh Oh! This page doesn't exists</h1>} />

@@ -23,7 +23,7 @@ export const CurrentUserProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
+useEffect(() => {
     handleMount();
   }, []);
 

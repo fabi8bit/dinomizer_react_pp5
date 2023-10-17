@@ -7,9 +7,12 @@ import Placeholder from "../../components/Placeholder";
 import Project from "./Project";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utility/utility";
+import Asset from "../assets/Asset";
+import AssetsPage from "../assets/AssetsPage";
 
 function ProjectsPage({ message, myProjects }) {
   const [projects, setProjects] = useState({ results: [] });
+  // const [assets, setAssets] = useState({ results: []});
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
@@ -24,12 +27,34 @@ function ProjectsPage({ message, myProjects }) {
         console.log(err);
       }
     };
+    
 
     setHasLoaded(false);
     fetchProjects();
   }, [pathname, query]);
 
+  // useEffect(() => {
+  //   const fetchProjects = async () => {
+  //     try {
+  //       const [{ data: projects }, {data: assets}] = await Promise.all([
+  //         axiosReq.get(`/projects/?search=${query}`),
+  //         // axiosReq.get(`/assets/?search=${query}`)
+  //       ]);
+  //       setProjects({data: [projects]});
+  //       // setAssets({results: [assets]});
+  //       setHasLoaded(true);
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+
+  //   setHasLoaded(false);
+  //   fetchProjects();
+    
+  // }, [pathname, query]);
+
   return (
+    <>
     <Row>
       <Col
         className={styles.Section1}
@@ -56,7 +81,7 @@ function ProjectsPage({ message, myProjects }) {
         {hasLoaded ? (
           <>
             {projects.results.length ? (
-
+             
               <InfiniteScroll
                 children={
                   myProjects ? (
@@ -104,9 +129,11 @@ function ProjectsPage({ message, myProjects }) {
           </Container>
         )}
       </Col>
-
-      {myProjects && <Col>Assets</Col>}
+      <Col className={styles.Section2}><AssetsPage/></Col>
     </Row>
+    
+    </>
+
   );
 }
 

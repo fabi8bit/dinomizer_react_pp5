@@ -13,8 +13,8 @@ const LoggedOutPage = () => {
         lg={6}
         sm={12}
       >
-        <Container>
-          <p>You are currently logged out!!!</p>
+        <Container >
+          <p className={styles.Para}>You are currently logged out!!!</p>
           <Link
             exact
             to="/signin"

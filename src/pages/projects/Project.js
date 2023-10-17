@@ -1,12 +1,15 @@
 import React from "react";
 import LoggedOutPage from "../auth/LoggedOutPage";
 import {
+  Accordion,
   Button,
+  Card,
   Col,
   Container,
   Dropdown,
   DropdownButton,
   Image,
+  ListGroup,
   Row,
 } from "react-bootstrap";
 import { useCurrentUser } from "../../context/CurrentUserContext";
@@ -16,7 +19,11 @@ import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axios.Defaults";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
+import Contributors from "../participants/ContributorsBanner";
+import ContributorsBanner from "../participants/ContributorsBanner";
 
 const Project = (props) => {
   const {
@@ -88,151 +95,121 @@ const Project = (props) => {
 
   const loggedInProjectPage = (
     <Container>
-      <Row>
-        <Col>
-          <hr />
-          <Row className={styles.ProjectHeader}>
-            {smImg && (
-              <Col>
-                <Image
-                  className={styles.FillerImage}
-                  src={image}
-                  alt={project_name}
-                />
-              </Col>
-            )}
-            <Link
+      <Card
+        bg="dark"
+        style={{ width: "100%" }}
+      >
+        
+        <Card.Body>
+        <Link
               className={appStyles.Links}
               to={`/projects/${id}`}
             >
-              <Col>
-                <p className={styles.ProjectAssetTit}>
-                  Project: <br />
-                  <strong>{project_name}</strong>
-                </p>
-              </Col>
-            </Link>
-            {participant_id ? (
-              <Col
-                lg={3}
-                sm={12}
-              >
-                <p className={`${styles.ProjectAssetTit}`}>
-                  <Button
-                    onClick={handleCancelPart}
-                    aria-label="edit-profile"
-                    variant="secondary"
-                    block
-                  >
-                    <RemoveCircleOutlineIcon /> Unprovide
-                  </Button>
-                  <Button
-                    onClick={() => history.push({
-                      pathname:'/assets/create',
-                      state:{id},
-                    })}
-                    aria-label="edit-profile"
-                    variant="success"
-                    block
-                    
-                    
-                  >
-                    <AddCircleOutlineIcon /> <br/>Add Asset
-                  </Button>
-                </p>
-              </Col>
-            ) : (
-              <Col
-                lg={3}
-                sm={12}
-              >
-                <p className={`${styles.ProjectAssetTit}`}>
-                  <Button
-                    onClick={handleParticipate}
-                    aria-label="edit-profile"
-                    variant="success"
-                    block
-                  >
-                    <AddCircleOutlineIcon /> Provide
-                  </Button>
-                </p>
-              </Col>
-            )}
-          </Row>
-          {is_owner && (
-            <Row>
-              <Col>
-                <DropdownButton
-                  id="dropdown-basic-button"
-                  title="Edit"
-                  size="sm"
-                >
-                  <Dropdown.Item
-                    href="#"
-                    onClick={() => history.push(`/projects/${id}/edit`)}
-                  >
-                    Edit
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#">Delete</Dropdown.Item>
-                </DropdownButton>
-              </Col>
-            </Row>
+              <div className={styles.ImageBox}>
+          <Card.Img
+            className={styles.FillerImage}
+            src={image}
+            alt={project_name}
+          />
+        </div>
+          <Card.Header>
+            <Card.Subtitle>Project name:</Card.Subtitle>
+            <Card.Title className={styles.ProjectAssetTit}>
+              {project_name}
+            </Card.Title>
+          </Card.Header></Link>
+          {projectPage && (
+            <>
+              <br />
+              <Card.Subtitle>Content:</Card.Subtitle>
+              <Card.Text>{content}</Card.Text>
+            </>
           )}
-          <hr />
-
-          <Row>
-            <Col>
-              <p className={styles.Paragraphs}>Owner:</p>
-              <Link
+          <ListGroup horizontal>
+            <ListGroup.Item className={styles.ListGroupCust}>
+              <Card.Link
                 className={appStyles.Links}
-                to={`/profiles/${profile_id}`}
+                href={`/profiles/${profile_id}`}
               >
                 <Avatar
                   src={profile_image}
                   height={30}
                 />
                 <strong>{owner}</strong>
-              </Link>
-            </Col>
-            <Col>
-              <p className={styles.Paragraphs}>Last update:</p>
-              <p className={styles.Paragraphs}>{updated_at}</p>
-            </Col>
-            <Col>
-              <p className={styles.Paragraphs}>Status:</p>
-              <p className={styles.Paragraphs}>{status}</p>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-      {lgImg && (
-        <Row>
-          <Image
-            className={styles.FillerImage}
-            src={image}
-            alt={project_name}
-          />
-        </Row>
-      )}
-
-      {projectPage && (
-        <>
-          <Row>
-            <Col>
-              <p className={styles.Paragraphs}>Content:</p>
-              <p className={styles.Paragraphs}>{content}</p>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <p className={styles.Paragraphs}>
-                Contributors ({participants}):
-              </p>
-              <p className={styles.Paragraphs}>{participants}</p>
-            </Col>
-          </Row>
-        </>
-      )}
+              </Card.Link>
+            </ListGroup.Item>
+            <ListGroup.Item className={styles.ListGroupCust}>
+              updated: {updated_at}
+            </ListGroup.Item>
+            <ListGroup.Item className={styles.ListGroupCust}>
+              status: {status}
+            </ListGroup.Item>
+          </ListGroup>
+          {projectPage && <ContributorsBanner project_id={id} />}
+          <br />
+          <ListGroup horizontal>
+            <ListGroup.Item className={styles.ListGroupCust}>
+              {participant_id ? (
+                <>
+                  <Button
+                    onClick={handleCancelPart}
+                    aria-label="leave-project"
+                    variant="secondary"
+                    block
+                  >
+                    <RemoveCircleOutlineIcon /> Leave
+                  </Button>
+                  <Button
+                    onClick={() =>
+                      history.push({
+                        pathname: "/assets/create",
+                        state: { id },
+                      })
+                    }
+                    aria-label="create-asset"
+                    variant="success"
+                    block
+                  >
+                    <AddCircleOutlineIcon /> <br />
+                    Add Asset
+                  </Button>
+                </>
+              ) : (
+                <Button
+                  onClick={handleParticipate}
+                  aria-label="edit-profile"
+                  variant="success"
+                  block
+                >
+                  <AddCircleOutlineIcon /> Join
+                </Button>
+              )}
+            </ListGroup.Item>
+            {is_owner && (
+              <>
+                <ListGroup.Item className={styles.ListGroupCust}>
+                  <Button
+                    onClick={() => history.push(`/projects/${id}/edit`)}
+                    aria-label="edit-project"
+                    variant="primary"
+                    block
+                  >
+                    <EditIcon /> Edit Project
+                  </Button>
+                  <Button
+                    onClick={() => {}}
+                    aria-label="cancel-project"
+                    variant="danger"
+                    block
+                  >
+                    <DeleteIcon /> Delete Project
+                  </Button>
+                </ListGroup.Item>
+              </>
+            )}
+          </ListGroup>
+        </Card.Body>
+      </Card>
 
       <hr className={styles.FinalRuler} />
     </Container>

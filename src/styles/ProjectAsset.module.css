@@ -2,9 +2,14 @@
     object-fit: cover;
     height: 100%;
     width: 100%;
-    padding: 10px;
+    /* padding: 10px; */
     margin: auto;
   }
+
+.ImageBox {
+  width: 100%;
+  height: 80px;
+}
 
 .ProjectAssetTit {
   font-size: 2rem;
@@ -17,6 +22,12 @@
   background-color: #051F27;
   padding: 10px;
   margin-bottom: 1rem;
+}
+
+.ListGroupCust {
+  background-color: #051F27 ;
+  border-color: #4b4b4b;
+  margin-bottom: 20px;
 }
 
 
@@ -41,6 +52,7 @@ text-align: left;
   border-right: 1px solid #333333;
   padding-left: 0;
   padding-right: 0;
+  margin-right: auto;
 }
 
 .Section3 {

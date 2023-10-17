@@ -20,6 +20,7 @@ import AssetCreateForm from "./pages/assets/AssetCreateForm";
 import AssetPage from "./pages/assets/AssetPage";
 import AssetsPage from "./pages/assets/AssetsPage";
 
+
 function App() {
 
   const currentUser = useCurrentUser();
@@ -28,7 +29,6 @@ function App() {
   return (
     <div className={styles.App}>
       <NavBar />
-
       <Container className={styles.Main}>
         <Switch>
           <Route
@@ -41,7 +41,6 @@ function App() {
             path="/projects"
             render={() => (
             <ProjectsPage
-            message="No results found. Adjust the keyworld or contribute to a project"
             myProjects
             smImg
             />)}

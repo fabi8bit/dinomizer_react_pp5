@@ -1,7 +1,7 @@
 .ControllerFixed {
     position: fixed; /* Fixed positioning */
-    top: 0; /* You can adjust this to position the sidebar */
-    left: 0; /* You can adjust this to position the sidebar */
+    top: 80; /* You can adjust this to position the sidebar */
+    right: 0; /* You can adjust this to position the sidebar */
     width: 200px; /* Adjust the width as needed */
     height: 100%; /* Adjust the height as needed */
     background-color: #fff; /* Add your desired background color */

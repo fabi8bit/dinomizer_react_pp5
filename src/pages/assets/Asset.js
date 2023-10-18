@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LoggedOutPage from "../auth/LoggedOutPage";
 import {
   Button,
+  Card,
   Col,
   Container,
   Dropdown,
@@ -15,7 +16,7 @@ import appStyles from "../../App.module.css";
 import Avatar from "../../components/Avatar";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
-import { axiosRes } from "../../api/axios.Defaults";
+import { axiosReq, axiosRes } from "../../api/axios.Defaults";
 // import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 // import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
@@ -43,9 +44,40 @@ const Asset = (props) => {
     setAssets,
   } = props;
 
+  const [project, setProject] = useState({});
   const currentUser = useCurrentUser();
 
   const history = useHistory();
+
+  useEffect(() => {
+    const getProject = async () => {
+      try {
+        console.log(project_id);
+        const { data } = await axiosReq.get(`/projects/${project_id}`);
+        setProject(data);
+        console.log(project);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    getProject();
+  },[props.project_id])
+  
+
+  // useEffect(() => {
+  //   const handleMount = async () => {
+  //     try {
+  //       console.log(project_id)
+  //       const { data } = await axiosReq.get(`/projects/${project_id}`);
+  //       setProject(data)
+  //       console.log(project.results.project_name)
+  //     } catch(err) {
+  //       console.log(err)
+  //     }
+  //   };
+
+  //   handleMount();
+  // }, [project_id])
 
   const handleCheck = async () => {
     try {
@@ -87,172 +119,53 @@ const Asset = (props) => {
     }
   };
 
-  //   const handleCancelPart = async () => {
-  //     try {
-  //       await axiosRes.delete(`/participants/${participant_id}/`);
-  //       setProjects((prevProjects) => ({
-  //         ...prevProjects,
-  //         results: prevProjects.results.map((project) => {
-  //           return project.id === id
-  //             ? {
-  //                 ...project,
-  //                 participants: project.participants - 1,
-  //                 participant_id: null,
-  //               }
-  //             : project;
-  //         }),
-  //       }));
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-
   const loggedInAssetPage = (
     <Container>
-      <Row>
-        <Col>
-          <hr />
-          <Row className={styles.ProjectHeader}>
-            {smImg && (
-              <Col>
-                <Image
-                  className={styles.FillerImage}
-                  src={image}
-                  alt={asset_name}
-                />
-              </Col>
-            )}
-            <Link
-              className={appStyles.Links}
-              to={`/assets/${id}`}
-            >
-              <Col>
-                <p className={styles.ProjectAssetTit}>
-                  Asset name: <br />
-                  <strong>{asset_name}</strong>
-                </p>
-              </Col>
-            </Link>
-          </Row>
-          <Row>
-            <Col>
-              <p className={styles.Paragraphs}>Category: {category}</p>
-            </Col>
-          </Row>
-          {is_owner && (
-            <Row>
-              <Col>
-                <DropdownButton
-                  id="dropdown-basic-button"
-                  title="Edit"
-                  size="sm"
-                  lg={4}
-                >
-                  <Dropdown.Item
-                    href="#"
-                    onClick={() => history.push(`/assets/${id}/edit`)}
-                  >
-                    Edit
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#">Delete</Dropdown.Item>
-                </DropdownButton>
-              </Col>
-              {project_owner && (
-                <>
-                  {check_id ? (
-                    <Col lg={4} className={styles.Button}>
-                      <Button
-                        size="sm"
-                        variant="secondary"
-                        onClick={handleUncheck}
-                      >
-                        <RadioButtonUncheckedIcon />
-                      </Button>
-                    </Col>
-                  ) : (
-                    <Col lg={4} className={styles.Button}>
-                      <Button
-                        size="sm"
-                        variant="success"
-                        onClick={handleCheck}
-                      >
-                        <CheckCircleIcon />
-                      </Button>
-                    </Col>
-                  )}
-                </>
-              )}
-            </Row>
-          )}
-
-          <hr />
-
-          <Row>
-            <Col>
-              <p className={styles.Paragraphs}>Owner:</p>
-              <Link
-                className={appStyles.Links}
-                to={`/profiles/${profile_id}`}
-              >
-                <Avatar
-                  src={profile_image}
-                  height={30}
-                />
-                <strong>{owner}</strong>
-              </Link>
-            </Col>
-            <Col>
-              <Link
-                className={appStyles.Links}
-                to={`/projects/${project_id}`}
-              >
-                <p className={styles.Paragraphs}>Project:</p>
-                <p className={styles.Paragraphs}>{project_id}</p>
-              </Link>
-            </Col>
-            <Col>
-              <p className={styles.Paragraphs}>Last update:</p>
-              <p className={styles.Paragraphs}>{updated_at}</p>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-      {lgImg && (
-        <Row>
-          <Image
-            className={styles.FillerImage}
+      <Card
+        bg="dark"
+        style={{ width: "50%", maxHeight: "50vh" }}
+      >
+        <Link
+          className={appStyles.Links}
+          to={`/assets/${id}`}
+        >
+          <Card.Img
+            variant="top"
             src={image}
             alt={asset_name}
           />
-        </Row>
-      )}
+        </Link>
+        <Card.Body>
+          <Card.Title className={styles.ProjectAssetTit}>
+            {asset_name}
+          </Card.Title>
+          {assetPage && (
+            <>
+              <br />
+              <Card.Subtitle>Category:</Card.Subtitle>
+              <Card.Text>
+                <strong>{category}</strong>
+              </Card.Text>
+              <br />
+              <Card.Subtitle>Last update:</Card.Subtitle>
+              <Card.Text>
+                <strong>{updated_at}</strong>
+              </Card.Text>
+              <br />
+              <Card.Subtitle>Content:</Card.Subtitle>
+              <Card.Text>{description}</Card.Text>
+              <br />
+              <Card.Subtitle>Related to project:</Card.Subtitle>
+              <Card.Text>
+                <strong>{project.project_name}</strong>
+              </Card.Text>
+              <br />
+            </>
+          )}
 
-      {assetPage && (
-        <>
-          <Row>
-            <Col>
-              <p className={styles.Paragraphs}>Description:</p>
-              <p className={styles.Paragraphs}>{description}</p>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <a
-                className={appStyles.Links}
-                href={`https://res.cloudinary.com/dhsjcm3v3/${assetfile}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                <p className={styles.Paragraphs}>
-                  Click here for the original file
-                </p>
-              </a>
-            </Col>
-          </Row>
-        </>
-      )}
-
-      <hr className={styles.FinalRuler} />
+          <Button variant="primary">Options</Button>
+        </Card.Body>
+      </Card>
     </Container>
   );
 

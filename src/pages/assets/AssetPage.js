@@ -20,7 +20,6 @@ const AssetPage = () => {
           axiosReq.get(`/assets/${id}`),
         ]);
         setAsset({ results: [asset] });
-        console.log(asset);
       } catch (err) {
         console.log(err);
       }
@@ -38,7 +37,6 @@ const AssetPage = () => {
       >
         <Asset {...asset.results[0]} lgImg assetPage setAssets={setAsset}/>
       </Col>
-      <Col>Related Project Column</Col>
     </Row>
   );
 };

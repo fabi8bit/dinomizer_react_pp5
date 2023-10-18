@@ -54,7 +54,7 @@ const ProjectPage = () => {
           lgImg
         />
       </Col>
-      {/* <Col><Asset smImg assetPage setAssets={setAsset}/></Col> */}
+      
     </Row>
   );
 };

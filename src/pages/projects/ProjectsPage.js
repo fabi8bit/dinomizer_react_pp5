@@ -7,12 +7,10 @@ import Placeholder from "../../components/Placeholder";
 import Project from "./Project";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utility/utility";
-import Asset from "../assets/Asset";
-import AssetsPage from "../assets/AssetsPage";
+
 
 function ProjectsPage({ message, myProjects }) {
   const [projects, setProjects] = useState({ results: [] });
-  // const [assets, setAssets] = useState({ results: []});
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
   const [query, setQuery] = useState("");
@@ -58,7 +56,7 @@ function ProjectsPage({ message, myProjects }) {
     <Row>
       <Col
         className={styles.Section1}
-        lg={6}
+        
         sm={12}
       >
         <Container>
@@ -92,7 +90,7 @@ function ProjectsPage({ message, myProjects }) {
                           key={project.id}
                           {...project}
                           setProjects={setProjects}
-                          smImg
+                          fromProjects
                         />
                       ))
                   ) : (
@@ -101,6 +99,7 @@ function ProjectsPage({ message, myProjects }) {
                         key={project.id}
                         {...project}
                         setProjects={setProjects}
+                        fromTimeline
                       />
                     ))
                   )
@@ -129,7 +128,6 @@ function ProjectsPage({ message, myProjects }) {
           </Container>
         )}
       </Col>
-      <Col className={styles.Section2}><AssetsPage/></Col>
     </Row>
     
     </>

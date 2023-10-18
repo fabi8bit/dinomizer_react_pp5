@@ -51,7 +51,7 @@ function ContributorsBanner({ project_id }) {
           </ListGroup>
         </>
       ) : (
-        "merda"
+        "Be the first to contribute to this project"
       )}
     </>
   );

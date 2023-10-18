@@ -39,7 +39,7 @@ text-align: left;
 
 .Section1 {
   background-color: #272626;
-  height: 100vh;
+  height: 90vh;
   border-right: 1px solid #333333;
   border-left: 1px solid #333333;
   padding-left: 0;
@@ -77,5 +77,13 @@ hr {
 
 .Button {
   padding-top: 10px;
+}
+
+.MarginTop {
+  margin-top: 20px;
+}
+
+.MarginAuto {
+  margin: auto;
 }
 

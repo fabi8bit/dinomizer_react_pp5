@@ -83,7 +83,23 @@ hr {
   margin-top: 20px;
 }
 
+.MarginBotSmall {
+  margin-bottom: 5px;
+}
+
 .MarginAuto {
   margin: auto;
 }
+
+.OverlayIcon {
+  margin-left: auto;
+}
+
+.BackgroundDark {
+  background-color: #232323;
+}
+
+
+
+
 

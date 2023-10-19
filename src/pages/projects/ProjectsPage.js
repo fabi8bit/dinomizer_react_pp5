@@ -53,12 +53,7 @@ function ProjectsPage({ message, myProjects }) {
 
   return (
     <>
-    <Row>
-      <Col
-        className={styles.Section1}
-        
-        sm={12}
-      >
+    
         <Container>
           <Row>
             <Col>
@@ -127,8 +122,7 @@ function ProjectsPage({ message, myProjects }) {
             <Placeholder spinner />
           </Container>
         )}
-      </Col>
-    </Row>
+      
     
     </>
 

@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axios.Defaults";
 // import { useCurrentUser } from "../../context/CurrentUserContext";
-import { Col, Row } from "react-bootstrap";
-import styles from "../../styles/ProjectAsset.module.css";
+// import { Col, Row } from "react-bootstrap";
+// import styles from "../../styles/ProjectAsset.module.css";
 import Asset from "./Asset";
 
 const AssetPage = () => {
@@ -29,15 +29,9 @@ const AssetPage = () => {
   }, [id]);
 
   return (
-    <Row>
-      <Col
-      className={styles.Section1}
-        lg={6}
-        sm={12}
-      >
+    
         <Asset {...asset.results[0]} lgImg assetPage setAssets={setAsset}/>
-      </Col>
-    </Row>
+      
   );
 };
 

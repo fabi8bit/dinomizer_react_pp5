@@ -7,11 +7,11 @@ import Placeholder from "../../components/Placeholder";
 // import Project from "./Project";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utility/utility";
-// import { useCurrentUser } from "../../context/CurrentUserContext";
+import { useCurrentUser } from "../../context/CurrentUserContext";
 import Asset from "./Asset";
 
 function AssetsPage({ myContribute }) {
-  // const currentUser = useCurrentUser();
+  const currentUser = useCurrentUser();
   const [assets, setAssets] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
@@ -67,7 +67,7 @@ function AssetsPage({ myContribute }) {
                         key={asset.id}
                         {...asset}
                         setAssets={setAssets}
-                        myContribute
+                        smImg
                       />
                     ))
                 ) : (

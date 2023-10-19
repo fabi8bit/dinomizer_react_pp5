@@ -10,8 +10,6 @@ const LoggedOutPage = () => {
   return (
     <Row className={`${styles.Row} d-flex align-items-center`}>
       <Col
-        lg={6}
-        sm={12}
       >
         <Container >
           <p className={styles.Para}>You are currently logged out!!!</p>

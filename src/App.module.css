@@ -23,4 +23,9 @@
 
 .Links {
   color: white;
+  text-decoration: none;
+}
+
+.Links2 {
+  color: rgb(0, 0, 0);
 }

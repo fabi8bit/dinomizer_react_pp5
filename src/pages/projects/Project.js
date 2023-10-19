@@ -1,15 +1,10 @@
 import React, { useEffect, useState } from "react";
 import LoggedOutPage from "../auth/LoggedOutPage";
 import {
-  Accordion,
   Button,
   Card,
-  Carousel,
   Col,
   Container,
-  Dropdown,
-  DropdownButton,
-  Image,
   ListGroup,
   Row,
 } from "react-bootstrap";
@@ -23,9 +18,9 @@ import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
-import Contributors from "../participants/ContributorsBanner";
+// import Contributors from "../participants/ContributorsBanner";
 import ContributorsBanner from "../participants/ContributorsBanner";
-import Asset from "../assets/Asset";
+// import Asset from "../assets/Asset";
 import AssetCarousel from "../assets/AssetCarousel";
 
 const Project = (props) => {
@@ -43,11 +38,9 @@ const Project = (props) => {
     is_owner,
     status,
     participant_id,
-    participants,
+    // participants,
     projectPage,
     setProjects,
-    fromProjects,
-    fromTimeline,
   } = props;
 
   const [assets, setAssets] = useState({ results: [] });
@@ -65,6 +58,7 @@ const Project = (props) => {
       }
     };
     getAssets();
+    console.log(assets)
   }, [props.id]);
 
   const handleParticipate = async () => {
@@ -205,7 +199,7 @@ const Project = (props) => {
                 </ListGroup.Item>
                 {is_owner && (
                   <>
-                    <ListGroup.Item className={styles.ListGroupCust}>
+                    
                       <Button
                         onClick={() => history.push(`/projects/${id}/edit`)}
                         aria-label="edit-project"
@@ -222,7 +216,7 @@ const Project = (props) => {
                       >
                         <DeleteIcon /> Delete Project
                       </Button>
-                    </ListGroup.Item>
+                    
                   </>
                 )}
               </ListGroup>
@@ -231,28 +225,6 @@ const Project = (props) => {
         </Col>
         <Col>
         <AssetCarousel project_id={id}/>
-
-
-          {/* <Carousel>
-            {assets.results.length ? (
-              <>
-                {assets.results
-                  .filter((asset) => asset.project_id === 16)
-                  .map((asset) => (
-                    <Carousel.Item key={asset.id}>
-                      <Asset
-                          key={asset.id}
-                          {...asset}
-                          setAssets={setAssets}
-                          smImg
-                        />
-                    </Carousel.Item>
-                  ))}
-              </>
-            ) : (
-              "bib"
-            )}
-          </Carousel> */}
         </Col>
       </Row>
       <hr className={styles.FinalRuler} />

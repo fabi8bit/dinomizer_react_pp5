@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axios.Defaults";
-import { useParams } from "react-router-dom/cjs/react-router-dom";
+// import { useParams } from "react-router-dom/cjs/react-router-dom";
 import { Card, ListGroup } from "react-bootstrap";
-import Avatar from "../../components/Avatar";
+// import Avatar from "../../components/Avatar";
 import Contributor from "./Contributor";
 import appStyles from "../../App.module.css";
 
@@ -21,21 +21,21 @@ function ContributorsBanner({ project_id }) {
     };
 
     
-    console.log(project_id);
+    
     handleMount();
-  }, []);
+  }, [project_id]);
 
   return (
     <>
-      {participants.results.length ? (
+      {participants?.results?.length ? (
         <>
           <Card.Subtitle>Contributors</Card.Subtitle>
           <br />
           <ListGroup horizontal>
-            {participants.results
+            {participants?.results
               .filter((participant) => participant.project_id === project_id)
               .map((participant) => (
-                <ListGroup.Item>
+                <ListGroup.Item key={participant.participant_id}>
                   <Card.Link
                     className={appStyles.Links}
                     href={`/profiles/${participant.participant_id}`}

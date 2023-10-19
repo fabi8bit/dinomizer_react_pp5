@@ -4,9 +4,9 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axios.Defaults";
 // import { useCurrentUser } from "../../context/CurrentUserContext";
-import { Col, Row } from "react-bootstrap";
+// import { Col, Row } from "react-bootstrap";
 import Project from "./Project";
-import styles from "../../styles/ProjectAsset.module.css";
+// import styles from "../../styles/ProjectAsset.module.css";
 // import Asset from "../assets/Asset";
 
 const ProjectPage = () => {
@@ -25,8 +25,6 @@ const ProjectPage = () => {
         ]);
         setProject({ results: [project] });
         // setParticipants(participants);
-
-        
       } catch (err) {
         console.log(err);
       }
@@ -36,26 +34,19 @@ const ProjectPage = () => {
   }, [id]);
 
   return (
-    <Row>
-      <Col
-        className={styles.Section1}
-        lg={6}
-        sm={12}
-      >
-        {/* passing the projectPage attribute to Project, allows
+    <>
+      {/* passing the projectPage attribute to Project, allows
         to display selected contents. In this way <Project/> component will
         be used inside the project list and project detail. Thanks to
         projectPage attribute we can hide some parts in the list (es: content,
         or other infos not relevant for the list view) */}
-        <Project
-          {...project.results[0]}
-          projectPage
-          setProjects={setProject}
-          lgImg
-        />
-      </Col>
-      
-    </Row>
+      <Project
+        {...project.results[0]}
+        projectPage
+        setProjects={setProject}
+        lgImg
+      />
+    </>
   );
 };
 

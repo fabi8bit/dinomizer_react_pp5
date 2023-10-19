@@ -176,7 +176,10 @@ const Asset = (props) => {
                 />
 
                 <Card.ImgOverlay>
-                  <DropdownButton title="" variant="primary">
+                  <DropdownButton
+                    title=""
+                    variant="primary"
+                  >
                     {is_owner ? (
                       <>
                         <Dropdown.Item
@@ -206,15 +209,11 @@ const Asset = (props) => {
                     {project_owner && (
                       <>
                         {check_id ? (
-                          <Dropdown.Item
-                            onClick={handleUncheck}
-                          >
+                          <Dropdown.Item onClick={handleUncheck}>
                             Uncheck
                           </Dropdown.Item>
                         ) : (
-                          <Dropdown.Item
-                            onClick={handleCheck}
-                          >
+                          <Dropdown.Item onClick={handleCheck}>
                             Check
                           </Dropdown.Item>
                         )}
@@ -258,7 +257,12 @@ const Asset = (props) => {
                   <hr />
                   <Card.Subtitle>Related to project:</Card.Subtitle>
                   <Card.Text>
-                    <strong>{project.project_name}</strong>
+                    <strong>{project.project_name}</strong> |{" "}
+                    <Link to={`/projects/${project_id}`}>
+                      <FileOpenIcon
+                        className={`${styles.ProjectAssetTit} ${appStyles.Links}`}
+                      />
+                    </Link>
                   </Card.Text>
                   <hr />
                   <Card.Subtitle className={styles.MarginBotSmall}>
@@ -291,7 +295,10 @@ const Asset = (props) => {
                   alt={asset_name}
                 />
                 <Card.ImgOverlay>
-                  <DropdownButton title="" variant="primary">
+                  <DropdownButton
+                    title=""
+                    variant="primary"
+                  >
                     {is_owner ? (
                       <>
                         <Dropdown.Item
@@ -310,35 +317,29 @@ const Asset = (props) => {
                       </>
                     ) : (
                       <Dropdown.Item
-                          href={`https://res.cloudinary.com/dhsjcm3v3/${assetfile}`}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <FileDownloadIcon />
-                          Download
-                        </Dropdown.Item>
+                        href={`https://res.cloudinary.com/dhsjcm3v3/${assetfile}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <FileDownloadIcon />
+                        Download
+                      </Dropdown.Item>
                     )}
                     {project_owner && (
                       <>
                         {check_id ? (
-                          <Dropdown.Item
-                            onClick={handleUncheck}
-                          >
+                          <Dropdown.Item onClick={handleUncheck}>
                             Uncheck
                           </Dropdown.Item>
                         ) : (
-                          <Dropdown.Item
-                            onClick={handleCheck}
-                          >
+                          <Dropdown.Item onClick={handleCheck}>
                             Check
                           </Dropdown.Item>
                         )}
                       </>
                     )}
                     <Dropdown.Divider />
-                    {is_owner && (
-                      <Dropdown.Item>Delete</Dropdown.Item>
-                    )}
+                    {is_owner && <Dropdown.Item>Delete</Dropdown.Item>}
                   </DropdownButton>
                 </Card.ImgOverlay>
               </Col>
@@ -370,7 +371,12 @@ const Asset = (props) => {
                   <hr />
                   <Card.Subtitle>Related to project:</Card.Subtitle>
                   <Card.Text>
-                    <strong>{project.project_name}</strong>
+                    <strong>{project.project_name}</strong> |{" "}
+                    <Link to={`/projects/${project_id}`}>
+                      <FileOpenIcon
+                        className={`${styles.ProjectAssetTit} ${appStyles.Links}`}
+                      />
+                    </Link>
                   </Card.Text>
                   <hr />
                   <Card.Subtitle className={styles.MarginBotSmall}>

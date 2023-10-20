@@ -63,7 +63,10 @@ function AssetEditForm() {
           image,
           assetfile,
           is_owner,
+          project_id,
         } = data;
+
+        console.log(data)
 
         is_owner
           ? setAssetData({
@@ -72,6 +75,7 @@ function AssetEditForm() {
             description,
             image,
             assetfile,
+            project_id,
             })
           : history.push("/");
       } catch (err) {
@@ -136,10 +140,11 @@ function AssetEditForm() {
     
 
     try {
-      await axiosReq.put(`/assets/${id}`, formData);
+      await axiosReq.put(`/assets/${id}/`, formData);
       history.push(`/assets/${id}`);
     } catch (err) {
       console.log(err);
+      console.log(err.response)
 
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
@@ -177,7 +182,7 @@ function AssetEditForm() {
           as="select"
           name="category"
           value={category}
-          onChange={handleChange}
+          onChange={handleChange} 
         >
           <option>graphic</option>
           <option>video</option>

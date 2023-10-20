@@ -34,6 +34,8 @@ const Profile = (props) => {
     }
   };
 
+  
+
   const history = useHistory();
 
   const loggedInProfilePage = (

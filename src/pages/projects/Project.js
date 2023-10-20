@@ -6,7 +6,9 @@ import {
   Col,
   Container,
   ListGroup,
+  OverlayTrigger,
   Row,
+  Tooltip,
 } from "react-bootstrap";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 import styles from "../../styles/ProjectAsset.module.css";
@@ -14,9 +16,11 @@ import appStyles from "../../App.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosReq, axiosRes } from "../../api/axios.Defaults";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import AttachFileIcon from "@mui/icons-material/AttachFile";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import PostAddIcon from "@mui/icons-material/PostAdd";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
 // import Contributors from "../participants/ContributorsBanner";
 import ContributorsBanner from "../participants/ContributorsBanner";
@@ -31,7 +35,7 @@ const Project = (props) => {
     project_name,
     profile_image,
     // start_date,
-    // expected_end_date,
+    expected_end_date,
     updated_at,
     content,
     image,
@@ -58,7 +62,7 @@ const Project = (props) => {
       }
     };
     getAssets();
-    console.log(assets)
+    console.log(assets);
   }, [props.id]);
 
   const handleParticipate = async () => {
@@ -104,14 +108,20 @@ const Project = (props) => {
   };
 
   const loggedInProjectPage = (
-    <Container>
-      <Row>
-        <Col>
-          <Card
-            bg="dark"
-            style={{ width: "100%" }}
-          >
-            <Card.Body>
+    <>
+      <Row
+        xl={2}
+        lg={2}
+        md={1}
+        sm={1}
+        xs={1}
+      >
+        <Card
+          bg="dark"
+          style={{ minWidth: "50%" }}
+        >
+          <Card.Body>
+            <Col md={12}>
               <Link
                 className={appStyles.Links}
                 to={`/projects/${id}`}
@@ -123,112 +133,150 @@ const Project = (props) => {
                     alt={project_name}
                   />
                 </div>
-                <Card.Header>
+                <Card.Header className={styles.ProjectHeader}>
                   <Card.Subtitle>Project name:</Card.Subtitle>
                   <Card.Title className={styles.ProjectAssetTit}>
                     {project_name}
                   </Card.Title>
                 </Card.Header>
               </Link>
-              {projectPage && (
-                <>
-                  <br />
+            </Col>
+
+            {projectPage && (
+              <Row>
+                <Col>
+                  <hr />
                   <Card.Subtitle>Content:</Card.Subtitle>
                   <Card.Text>{content}</Card.Text>
+                </Col>
+              </Row>
+            )}
+            <hr />
+            <Row className={styles.MarginAuto}>
+              <Col className={styles.MarginAuto}>
+                <Card.Link
+                  className={appStyles.Links}
+                  href={`/profiles/${profile_id}`}
+                >
+                  <Avatar
+                    src={profile_image}
+                    height={30}
+                  />
+                  <strong>{owner}</strong>
+                </Card.Link>
+              </Col>
+
+              <Col>
+                <Card.Subtitle>Due to:</Card.Subtitle>
+                <Card.Text>{expected_end_date}</Card.Text>
+              </Col>
+              <Col>
+                <Card.Subtitle>Status:</Card.Subtitle>
+                <Card.Text>{status}</Card.Text>
+              </Col>
+            </Row>
+            {projectPage && (
+              <Row>
+                <Col className={styles.MarginAuto}>
+                  <hr />
+                  <ContributorsBanner project_id={id} />
+                </Col>
+              </Row>
+            )}
+            <hr />
+            <Row
+              lg={6}
+              sm={12}
+              md={12}
+              className={styles.MarginAuto}
+            >
+              {participant_id ? (
+                <>
+                  <Col>
+                    <span onClick={handleCancelPart}>
+                      <OverlayTrigger
+                        key={participant_id}
+                        placement="top"
+                        overlay={
+                          <Tooltip id={participant_id}>
+                            Leave project <strong>{project_name}</strong>
+                          </Tooltip>
+                        }
+                      >
+                        <RemoveCircleOutlineIcon />
+                      </OverlayTrigger>
+                    </span>
+                  </Col>
+                  <Col>
+                    <span
+                      onClick={() =>
+                        history.push({
+                          pathname: "/assets/create",
+                          state: { id },
+                        })
+                      }
+                    >
+                      <OverlayTrigger
+                        key={participant_id}
+                        placement="top"
+                        overlay={
+                          <Tooltip id={participant_id}>
+                            Add asset to <strong>{project_name}</strong>
+                          </Tooltip>
+                        }
+                      >
+                        <AttachFileIcon />
+                      </OverlayTrigger>
+                    </span>
+                  </Col>
+                </>
+              ) : (
+                <>
+                  <Col>
+                    <span onClick={handleParticipate}>
+                      <OverlayTrigger
+                        key={participant_id}
+                        placement="top"
+                        overlay={
+                          <Tooltip id={participant_id}>
+                            Join project <strong>{project_name}</strong>
+                          </Tooltip>
+                        }
+                      >
+                        <PostAddIcon />
+                      </OverlayTrigger>
+                    </span>
+                  </Col>
                 </>
               )}
-              <ListGroup horizontal>
-                <ListGroup.Item className={styles.ListGroupCust}>
-                  <Card.Link
-                    className={appStyles.Links}
-                    href={`/profiles/${profile_id}`}
-                  >
-                    <Avatar
-                      src={profile_image}
-                      height={30}
-                    />
-                    <strong>{owner}</strong>
-                  </Card.Link>
-                </ListGroup.Item>
-                <ListGroup.Item className={styles.ListGroupCust}>
-                  updated: {updated_at}
-                </ListGroup.Item>
-                <ListGroup.Item className={styles.ListGroupCust}>
-                  status: {status}
-                </ListGroup.Item>
-              </ListGroup>
-              {projectPage && <ContributorsBanner project_id={id} />}
-              <br />
-              <ListGroup horizontal>
-                <ListGroup.Item className={styles.ListGroupCust}>
-                  {participant_id ? (
-                    <>
-                      <Button
-                        onClick={handleCancelPart}
-                        aria-label="leave-project"
-                        variant="secondary"
-                        block
-                      >
-                        <RemoveCircleOutlineIcon /> Leave
-                      </Button>
-                      <Button
-                        onClick={() =>
-                          history.push({
-                            pathname: "/assets/create",
-                            state: { id },
-                          })
-                        }
-                        aria-label="create-asset"
-                        variant="success"
-                        block
-                      >
-                        <AddCircleOutlineIcon /> <br />
-                        Add Asset
-                      </Button>
-                    </>
-                  ) : (
-                    <Button
-                      onClick={handleParticipate}
-                      aria-label="edit-profile"
-                      variant="success"
-                      block
+
+              {is_owner && (
+                <Col>
+                  <span onClick={() => history.push(`/projects/${id}/edit`)}>
+                    <OverlayTrigger
+                      key={participant_id}
+                      placement="top"
+                      overlay={
+                        <Tooltip id={participant_id}>
+                          Edit project <strong>{project_name}</strong>
+                        </Tooltip>
+                      }
                     >
-                      <AddCircleOutlineIcon /> Join
-                    </Button>
-                  )}
-                </ListGroup.Item>
-                {is_owner && (
-                  <>
-                    
-                      <Button
-                        onClick={() => history.push(`/projects/${id}/edit`)}
-                        aria-label="edit-project"
-                        variant="primary"
-                        block
-                      >
-                        <EditIcon /> Edit Project
-                      </Button>
-                      <Button
-                        onClick={() => {}}
-                        aria-label="cancel-project"
-                        variant="danger"
-                        block
-                      >
-                        <DeleteIcon /> Delete Project
-                      </Button>
-                    
-                  </>
-                )}
-              </ListGroup>
-            </Card.Body>
-          </Card>
-        </Col>
+                      <EditIcon />
+                    </OverlayTrigger>
+                  </span>
+                </Col>
+              )}
+            </Row>
+          </Card.Body>
+        </Card>
+
         <Col>
-        <AssetCarousel project_id={id}/>
+          <AssetCarousel project_id={id} />
         </Col>
       </Row>
       <hr className={styles.FinalRuler} />
-    </Container>
+    </>
   );
 
   return <>{currentUser ? loggedInProjectPage : <LoggedOutPage />}</>;

@@ -63,17 +63,7 @@ const Profile = (props) => {
                     Edit
                   </Button>
                 </Col>
-                <Col>
-                  <Button
-                    variant="danger"
-                    block
-                  >
-                    Delete
-                  </Button>
-                </Col>
-              </Row>
-              <Row>
-                <Col className={styles.SignOutButton}>
+                <Col >
                   <Button
                     variant="warning"
                     onClick={handleSignOut}
@@ -83,6 +73,8 @@ const Profile = (props) => {
                   </Button>
                 </Col>
               </Row>
+              
+              
             </>
           )}
         </Container>

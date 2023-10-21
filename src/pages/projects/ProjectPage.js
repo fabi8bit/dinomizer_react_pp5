@@ -7,11 +7,15 @@ import { axiosReq } from "../../api/axios.Defaults";
 // import { Col, Row } from "react-bootstrap";
 import Project from "./Project";
 import { useRedirect } from "../../hooks/useRedirect";
+
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import { BackButton } from "../../components/BackButton";
 // import styles from "../../styles/ProjectAsset.module.css";
 // import Asset from "../assets/Asset";
 
 const ProjectPage = () => {
   useRedirect("loggedOut")
+  const history = useHistory();
   // const currentUser = useCurrentUser();
   const { id } = useParams();
   const [project, setProject] = useState({ results: [] });
@@ -48,6 +52,8 @@ const ProjectPage = () => {
         setProjects={setProject}
         lgImg
       />
+      <BackButton/>
+      
     </>
   );
 };

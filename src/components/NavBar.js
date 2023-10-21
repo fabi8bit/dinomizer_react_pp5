@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "../styles/NavBar.module.css";
+import appStyles from "../App.module.css";
 import { Navbar, Container, Nav } from "react-bootstrap";
 import logo from "../project-assets/dm-logo-navbar.svg";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
@@ -8,7 +9,7 @@ import ViewTimelineIcon from "@mui/icons-material/ViewTimeline";
 import WebAssetIcon from "@mui/icons-material/WebAsset";
 import ExtensionIcon from "@mui/icons-material/Extension";
 import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
-import { NavLink } from "react-router-dom/cjs/react-router-dom";
+import { Link, NavLink } from "react-router-dom/cjs/react-router-dom";
 import { useCurrentUser } from "../context/CurrentUserContext";
 import Avatar from "./Avatar";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
@@ -110,11 +111,16 @@ const NavBar = () => {
     >
       <Container>
         <Navbar.Brand>
+          <Link
+          className={appStyles.Links}
+          to={"/"}
+          >
           <img
             src={logo}
             alt="logo"
-            height="35"
+            height="45"
           />
+          </Link>
         </Navbar.Brand>
         <Navbar.Toggle
           ref={ref}

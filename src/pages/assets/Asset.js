@@ -401,18 +401,6 @@ const Asset = (props) => {
           )}
         </Row>
       </Card>
-
-      {assetPage && (
-        <Button
-          className={styles.MarginTop}
-          variant="warning"
-          onClick={() => {
-            history.goBack();
-          }}
-        >
-          Go Back
-        </Button>
-      )}
       <hr className={styles.FinalRuler} />
     </Container>
   );

@@ -8,10 +8,11 @@ import { axiosReq } from "../../api/axios.Defaults";
 // import styles from "../../styles/ProjectAsset.module.css";
 import Asset from "./Asset";
 import { useRedirect } from "../../hooks/useRedirect";
+import { BackButton } from "../../components/BackButton";
 
 const AssetPage = () => {
   // const currentUser = useCurrentUser();
-  useRedirect("loggedOut")
+  useRedirect("loggedOut");
   const { id } = useParams();
   const [asset, setAsset] = useState({ results: [] });
 
@@ -31,9 +32,15 @@ const AssetPage = () => {
   }, [id]);
 
   return (
-    
-        <Asset {...asset.results[0]} lgImg assetPage setAssets={setAsset}/>
-      
+    <>
+      <Asset
+        {...asset.results[0]}
+        lgImg
+        assetPage
+        setAssets={setAsset}
+      />
+      <BackButton />
+    </>
   );
 };
 

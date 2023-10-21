@@ -125,6 +125,15 @@ const Asset = (props) => {
     setShowModalDelete(!showModalDelete);
   }
 
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/assets/${id}/`);
+      history.goBack();
+    } catch (err) {
+      // console.log(err);
+    }
+  };
+
   const loggedInAssetPage = (
     <Container>
       <Card
@@ -419,6 +428,7 @@ const Asset = (props) => {
       {showModalDelete && (
         <DeleteModal
           change={handleShowModalDelete}
+          deleteitem={handleDelete}
           type={category}
           name={asset_name}
         />

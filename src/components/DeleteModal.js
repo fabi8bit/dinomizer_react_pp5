@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Col, Modal, Row } from "react-bootstrap";
 import styles from "../styles/ProjectAsset.module.css";
 
-function DeleteModal({ id, type, name, change }) {
+function DeleteModal({ id, type, name, change, deleteitem }) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -44,7 +44,7 @@ function DeleteModal({ id, type, name, change }) {
             variant="primary"
             onClick={(event) => {
               handleClose();
-              change();
+              deleteitem();
             }}
           >
             Delete

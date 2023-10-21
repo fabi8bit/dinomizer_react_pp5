@@ -24,6 +24,7 @@ import { axiosReq, axiosRes } from "../../api/axios.Defaults";
 // import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
 import Avatar from "../../components/Avatar";
+import DeleteModal from "../../components/DeleteModal";
 
 const Asset = (props) => {
   const {
@@ -118,6 +119,11 @@ const Asset = (props) => {
       console.log(err);
     }
   };
+
+  const [showModalDelete, setShowModalDelete] = useState(false);
+  function handleShowModalDelete() {
+    setShowModalDelete(!showModalDelete);
+  }
 
   const loggedInAssetPage = (
     <Container>
@@ -220,7 +226,11 @@ const Asset = (props) => {
                       </>
                     )}
                     <Dropdown.Divider />
-                    {is_owner && <Dropdown.Item>Delete</Dropdown.Item>}
+                    {is_owner && (
+                      <Dropdown.Item onClick={handleShowModalDelete}>
+                        Delete
+                      </Dropdown.Item>
+                    )}
                   </DropdownButton>
                 </Card.ImgOverlay>
               </Col>
@@ -339,7 +349,11 @@ const Asset = (props) => {
                       </>
                     )}
                     <Dropdown.Divider />
-                    {is_owner && <Dropdown.Item>Delete</Dropdown.Item>}
+                    {is_owner && (
+                      <Dropdown.Item onClick={handleShowModalDelete}>
+                        Delete
+                      </Dropdown.Item>
+                    )}
                   </DropdownButton>
                 </Card.ImgOverlay>
               </Col>
@@ -402,6 +416,13 @@ const Asset = (props) => {
         </Row>
       </Card>
       <hr className={styles.FinalRuler} />
+      {showModalDelete && (
+        <DeleteModal
+          change={handleShowModalDelete}
+          type={category}
+          name={asset_name}
+        />
+      )}
     </Container>
   );
 

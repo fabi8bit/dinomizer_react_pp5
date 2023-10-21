@@ -96,7 +96,13 @@ hr {
 }
 
 .BackgroundDark {
+  background-color: #0E3C4E;
+  color: white !important;
+}
+
+.modal-content > * {
   background-color: #232323;
+  
 }
 
 

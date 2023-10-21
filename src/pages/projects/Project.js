@@ -65,6 +65,15 @@ const Project = (props) => {
     console.log(assets);
   }, [props.id]);
 
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/projects/${id}/`);
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleParticipate = async () => {
     try {
       const { data } = await axiosRes.post("/participants/", {

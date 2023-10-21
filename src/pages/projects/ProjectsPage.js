@@ -7,9 +7,11 @@ import Placeholder from "../../components/Placeholder";
 import Project from "./Project";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utility/utility";
+import { useRedirect } from "../../hooks/useRedirect";
 
 
 function ProjectsPage({ message, myProjects }) {
+  useRedirect("loggedOut")
   const [projects, setProjects] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();

@@ -57,7 +57,7 @@ function App() {
             render={() => <SignUpForm />}
           />
           <Route
-            exact
+            
             path="/loggedout"
             render={() => <LoggedOutPage />}
           />

@@ -7,9 +7,11 @@ import { axiosReq } from "../../api/axios.Defaults";
 // import { Col, Row } from "react-bootstrap";
 // import styles from "../../styles/ProjectAsset.module.css";
 import Asset from "./Asset";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const AssetPage = () => {
   // const currentUser = useCurrentUser();
+  useRedirect("loggedOut")
   const { id } = useParams();
   const [asset, setAsset] = useState({ results: [] });
 

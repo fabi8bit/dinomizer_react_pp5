@@ -15,8 +15,10 @@ import {
 } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axios.Defaults";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function AssetEditForm() {
+  useRedirect("loggedOut")
   const [errors, setErrors] = useState({});
   const history = useHistory();
   // const location = useLocation(); // used to pass the project_id from

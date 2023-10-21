@@ -12,8 +12,10 @@ import logo from "../../project-assets/dm-logo-orig-white-txt.png";
 import styles from "../../styles/SignInUpForm.module.css";
 import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import { useRedirect } from "../../hooks/useRedirect";
 
 const SignUpForm = () => {
+  useRedirect("loggedIn")
   const [signUpData, setSignUpData] = useState({
     password1: "",
     username: "",

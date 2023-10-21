@@ -12,8 +12,10 @@ import Placeholder from "../../components/Placeholder";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axios.Defaults";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function ProjectCreateForm() {
+  useRedirect("loggedOut")
   const [errors, setErrors] = useState({});
 
   const [projectData, setProjectData] = useState({

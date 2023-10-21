@@ -6,10 +6,12 @@ import { axiosReq } from "../../api/axios.Defaults";
 // import { useCurrentUser } from "../../context/CurrentUserContext";
 // import { Col, Row } from "react-bootstrap";
 import Project from "./Project";
+import { useRedirect } from "../../hooks/useRedirect";
 // import styles from "../../styles/ProjectAsset.module.css";
 // import Asset from "../assets/Asset";
 
 const ProjectPage = () => {
+  useRedirect("loggedOut")
   // const currentUser = useCurrentUser();
   const { id } = useParams();
   const [project, setProject] = useState({ results: [] });

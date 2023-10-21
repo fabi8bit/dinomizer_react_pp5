@@ -15,6 +15,7 @@ import {
   useLocation,
 } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axios.Defaults";
+import { useRedirect } from "../../hooks/useRedirect";
 
 function AssetCreateForm() {
   const [errors, setErrors] = useState({});
@@ -22,7 +23,20 @@ function AssetCreateForm() {
   const location = useLocation(); // used to pass the project_id from
   // the button "Add Asset" in Project.js
 
-  const id = location.state.id;
+  const [id, setId] = useState();
+  // useEffect(() => {
+  //   if (location.state.id){
+  //     setId(location.state.id)
+  //   } else {
+  //     setId("1")
+  //   }
+  //   console.log(`peppe ${id}`);
+
+  // }, [])
+
+  useRedirect("loggedOut");
+
+  // const id = location.state.id;
 
   const [assetData, setAssetData] = useState({
     asset_name: "",
@@ -36,6 +50,19 @@ function AssetCreateForm() {
     assetData;
 
   useEffect(() => {
+    
+    //create_id function id here in case users try to access the form
+    // directly typing the url. In this case the id of the project (needed
+    // to create the asset) will be undefined so it will throw an ecception
+
+    const create_id = () => {
+      if (location?.state?.id.length) {
+        setId(location.state.id);
+      } else {
+        history.goBack();
+      }
+    };
+
     const handleMount = async () => {
       try {
         if (id) {
@@ -43,9 +70,11 @@ function AssetCreateForm() {
         }
       } catch (err) {
         console.log(err);
+        console.log("zio campo");
         history.goBack();
       }
-    }
+    };
+    create_id();
     handleMount();
   }, [id, history]);
 
@@ -73,15 +102,15 @@ function AssetCreateForm() {
   };
 
   const handleChangeFile = (event) => {
-    if (event.target.files.length){
+    if (event.target.files.length) {
       URL.revokeObjectURL(assetfile);
       setAssetData({
         ...assetData,
         assetfile: URL.createObjectURL(event.target.files[0]),
-       });
+      });
     }
-    
-     console.log(assetfileinput.current.files[0])
+
+    console.log(assetfileinput.current.files[0]);
   };
 
   const handleSubmit = async (event) => {
@@ -95,7 +124,7 @@ function AssetCreateForm() {
     formData.append("assetfile", assetfileinput.current.files[0]);
 
     try {
-      console.log(assetfileinput.current.files[0])
+      console.log(assetfileinput.current.files[0]);
       const { data } = await axiosReq.post("/assets/", formData);
       history.push(`/assets/${data.id}`);
     } catch (err) {

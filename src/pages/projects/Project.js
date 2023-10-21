@@ -26,6 +26,7 @@ import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
 import ContributorsBanner from "../participants/ContributorsBanner";
 // import Asset from "../assets/Asset";
 import AssetCarousel from "../assets/AssetCarousel";
+import DeleteModal from "../../components/DeleteModal";
 
 const Project = (props) => {
   const {
@@ -65,14 +66,7 @@ const Project = (props) => {
     console.log(assets);
   }, [props.id]);
 
-  const handleDelete = async () => {
-    try {
-      await axiosRes.delete(`/projects/${id}/`);
-      history.goBack();
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  
 
   const handleParticipate = async () => {
     try {
@@ -111,6 +105,20 @@ const Project = (props) => {
             : project;
         }),
       }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const [showModalDelete, setShowModalDelete] = useState(false);
+  function handleShowModalDelete() {
+    setShowModalDelete(!showModalDelete);
+  }
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/projects/${id}/`);
+      history.goBack();
     } catch (err) {
       console.log(err);
     }
@@ -260,6 +268,7 @@ const Project = (props) => {
               )}
 
               {is_owner && (
+                <>
                 <Col>
                   <span onClick={() => history.push(`/projects/${id}/edit`)}>
                     <OverlayTrigger
@@ -275,6 +284,22 @@ const Project = (props) => {
                     </OverlayTrigger>
                   </span>
                 </Col>
+                <Col>
+                <span onClick={handleShowModalDelete}>
+                  <OverlayTrigger
+                    key={participant_id}
+                    placement="top"
+                    overlay={
+                      <Tooltip id={participant_id}>
+                        Delete project <strong>{project_name}</strong>
+                      </Tooltip>
+                    }
+                  >
+                    <DeleteIcon />
+                  </OverlayTrigger>
+                </span>
+              </Col>
+              </>
               )}
             </Row>
           </Card.Body>
@@ -285,6 +310,14 @@ const Project = (props) => {
         </Col>
       </Row>
       <hr className={styles.FinalRuler} />
+      {showModalDelete && (
+        <DeleteModal
+          change={handleShowModalDelete}
+          deleteitem={handleDelete}
+          type="project"
+          name={project_name}
+        />
+      )}
     </>
   );
 

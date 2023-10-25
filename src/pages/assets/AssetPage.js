@@ -32,7 +32,7 @@ const AssetPage = () => {
     };
 
     handleMount();
-  }, [id]);
+  }, [id, history]);
 
   return (
     <>

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom";
 import { axiosReq } from "../../api/axios.Defaults";
-import styles from "../../styles/ProjectAsset.module.css";
 import Profile from "./Profile";
 import { BackButton } from "../../components/BackButton";
 
@@ -23,7 +21,7 @@ const ProfilePage = () => {
       }
     };
     handleMount();
-  }, [id]);
+  }, [id, history]);
 
   return (
     <>

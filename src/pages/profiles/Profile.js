@@ -1,21 +1,18 @@
 import React from "react";
 import styles from "../../styles/Profile.module.css";
 import {
-  useCurrentUser,
   useSetCurrentUser,
 } from "../../context/CurrentUserContext";
 import { Button, Col, Container, Image, Row } from "react-bootstrap";
 import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
-import LoggedOutPage from "../auth/LoggedOutPage";
 import { removeTokenTimestamp } from "../../utility/utility";
-import { BackButton } from "../../components/BackButton";
 
 const Profile = (props) => {
   const { id, owner, created_at, updated_at, name, is_owner, image, content } =
     props;
 
-  const currentUser = useCurrentUser();
+  
   const setCurrentUser = useSetCurrentUser();
 
   const handleSignOut = async () => {

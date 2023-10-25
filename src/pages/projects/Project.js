@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Card,
   Col,
@@ -9,7 +9,7 @@ import {
 import styles from "../../styles/ProjectAsset.module.css";
 import appStyles from "../../App.module.css";
 import Avatar from "../../components/Avatar";
-import { axiosReq, axiosRes } from "../../api/axios.Defaults";
+import { axiosRes } from "../../api/axios.Defaults";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import EditIcon from "@mui/icons-material/Edit";
@@ -37,7 +37,6 @@ const Project = (props) => {
     setProjects,
   } = props;
 
-  const [assets, setAssets] = useState({ results: [] });
 
   
   const history = useHistory();

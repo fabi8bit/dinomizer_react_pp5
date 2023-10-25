@@ -26,13 +26,11 @@ const ProjectPage = () => {
     const handleMount = async () => {
       try {
         const [{ data: project }] = await Promise.all([
-          axiosReq.get(`/projects/${id}`),
-          // axiosReq.get(`/participants/?project_id=${id}`),
+          axiosReq.get(`/projects/${id}`)
         ]);
         setProject({ results: [project] });
-        // setParticipants(participants);
       } catch (err) {
-        console.log(err);
+        history.push('/notfound/');
       }
     };
 

@@ -8,7 +8,7 @@ const Placeholder = ({ spinner, src, message }) => {
     <div className={`${styles.Placeholder} p-4`}>
       {spinner && <Spinner animation="grow" variant="warning" />}
       {src && <div>{src}</div>}
-      {message && <p className="mt-4">{message}</p>}
+      {message && <h3 className="mt-4">{message}</h3>}
     </div>
   );
 };

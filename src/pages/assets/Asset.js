@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-import LoggedOutPage from "../auth/LoggedOutPage";
 import {
   Badge,
-  Button,
   Card,
   Col,
   Container,
@@ -10,18 +8,11 @@ import {
   DropdownButton,
   Row,
 } from "react-bootstrap";
-import { useCurrentUser } from "../../context/CurrentUserContext";
 import styles from "../../styles/ProjectAsset.module.css";
 import appStyles from "../../App.module.css";
 import FileDownloadIcon from "@mui/icons-material/FileDownload";
 import FileOpenIcon from "@mui/icons-material/FileOpen";
-// import Avatar from "../../components/Avatar";
-// import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-// import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-// import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import { axiosReq, axiosRes } from "../../api/axios.Defaults";
-// import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-// import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
 import Avatar from "../../components/Avatar";
 import DeleteModal from "../../components/DeleteModal";
@@ -37,7 +28,6 @@ const Asset = (props) => {
     description,
     image,
     assetfile,
-    // created_at,
     updated_at,
     project_id,
     project_owner,
@@ -50,35 +40,21 @@ const Asset = (props) => {
   } = props;
 
   const [project, setProject] = useState({});
-  const currentUser = useCurrentUser();
 
   const history = useHistory();
+
   useEffect(() => {
     const getProject = async () => {
       try {
         const { data } = await axiosReq.get(`/projects/${project_id}`);
         setProject(data);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     getProject();
-  }, [props.project_id]);
+  }, [project_id]);
 
-  // useEffect(() => {
-  //   const handleMount = async () => {
-  //     try {
-  //       console.log(project_id)
-  //       const { data } = await axiosReq.get(`/projects/${project_id}`);
-  //       setProject(data)
-  //       console.log(project.results.project_name)
-  //     } catch(err) {
-  //       console.log(err)
-  //     }
-  //   };
-
-  //   handleMount();
-  // }, [project_id])
 
   const handleCheck = async () => {
     try {
@@ -97,7 +73,7 @@ const Asset = (props) => {
         }),
       }));
     } catch (err) {
-      console.log(err);
+      // console.log(err);
     }
   };
 
@@ -138,7 +114,6 @@ const Asset = (props) => {
     <Container>
       <Card
         bg="dark"
-        // style={{ width: "50%"}}
       >
         <Row>
           {carousel && (
@@ -436,7 +411,7 @@ const Asset = (props) => {
     </Container>
   );
 
-  return <>{currentUser ? loggedInAssetPage : <LoggedOutPage />}</>;
+  return loggedInAssetPage;
 };
 
 export default Asset;

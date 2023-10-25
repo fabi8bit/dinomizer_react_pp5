@@ -50,7 +50,9 @@ const Project = (props) => {
 
   const [assets, setAssets] = useState({ results: [] });
   const currentUser = useCurrentUser();
+  console.log(profile_id);
 
+  
   const history = useHistory();
 
   useEffect(() => {
@@ -65,6 +67,8 @@ const Project = (props) => {
     getAssets();
     console.log(assets);
   }, [props.id]);
+
+
 
   
 
@@ -174,6 +178,7 @@ const Project = (props) => {
                 <Card.Link
                   className={appStyles.Links}
                   href={`/profiles/${profile_id}`}
+                  
                 >
                   <Avatar
                     src={profile_image}
@@ -225,14 +230,12 @@ const Project = (props) => {
                     </span>
                   </Col>
                   <Col>
-                    <span
-                      onClick={() =>
-                        history.push({
-                          pathname: "/assets/create",
-                          state: { id },
-                        })
-                      }
-                    >
+                    <Link
+                    to={{ 
+                      pathname: "/assets/create", 
+                      state: {id} 
+                     }}>
+                    
                       <OverlayTrigger
                         key={participant_id}
                         placement="top"
@@ -244,7 +247,7 @@ const Project = (props) => {
                       >
                         <AttachFileIcon />
                       </OverlayTrigger>
-                    </span>
+                    </Link>
                   </Col>
                 </>
               ) : (
@@ -321,7 +324,7 @@ const Project = (props) => {
     </>
   );
 
-  return <>{currentUser ? loggedInProjectPage : <LoggedOutPage />}</>;
+  return loggedInProjectPage;
 };
 
 export default Project;

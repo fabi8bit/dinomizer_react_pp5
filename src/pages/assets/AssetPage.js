@@ -9,11 +9,13 @@ import { axiosReq } from "../../api/axios.Defaults";
 import Asset from "./Asset";
 import { useRedirect } from "../../hooks/useRedirect";
 import { BackButton } from "../../components/BackButton";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
 
 const AssetPage = () => {
   // const currentUser = useCurrentUser();
   useRedirect("loggedOut");
   const { id } = useParams();
+  const history = useHistory();
   const [asset, setAsset] = useState({ results: [] });
 
   useEffect(() => {
@@ -24,6 +26,7 @@ const AssetPage = () => {
         ]);
         setAsset({ results: [asset] });
       } catch (err) {
+        history.push('/notfound/');
         console.log(err);
       }
     };

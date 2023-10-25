@@ -17,24 +17,16 @@ import {
 import { axiosReq } from "../../api/axios.Defaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
-function AssetCreateForm() {
+function AssetCreateForm(props) {
   const [errors, setErrors] = useState({});
   const history = useHistory();
   const location = useLocation(); // used to pass the project_id from
   // the button "Add Asset" in Project.js
+  console.log(location)
 
   const [id, setId] = useState();
-  // useEffect(() => {
-  //   if (location.state.id){
-  //     setId(location.state.id)
-  //   } else {
-  //     setId("1")
-  //   }
-  //   console.log(`peppe ${id}`);
-
-  // }, [])
-
-  useRedirect("loggedOut");
+ 
+  // useRedirect("loggedOut");
 
   // const id = location.state.id;
 
@@ -51,7 +43,7 @@ function AssetCreateForm() {
 
   useEffect(() => {
     
-    //create_id function id here in case users try to access the form
+    //create_id function is here in case users tries to access the form
     // directly typing the url. In this case the id of the project (needed
     // to create the asset) will be undefined so it will throw an ecception
 
@@ -60,6 +52,7 @@ function AssetCreateForm() {
         setId(location.state.id);
       } else {
         history.goBack();
+        
       }
     };
 
@@ -69,8 +62,7 @@ function AssetCreateForm() {
           setAssetData((prevState) => ({ ...prevState, project_id: id }));
         }
       } catch (err) {
-        console.log(err);
-        console.log("zio campo");
+        // console.log(err);
         history.goBack();
       }
     };

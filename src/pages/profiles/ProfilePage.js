@@ -18,35 +18,19 @@ const ProfilePage = () => {
           axiosReq.get(`/profiles/${id}`),
         ]);
         setProfile({ results: [profile] });
-      } catch (err) {}
+      } catch (err) {
+        history.push('/notfound/');
+      }
     };
     handleMount();
   }, [id]);
 
   return (
     <>
-      <Row>
-        <Col>
-          <Container>
-            <Profile {...profile.results[0]} />
-          </Container>
-        </Col>
-      </Row>
+    <div className=".clearfix">
+      <Profile {...profile.results[0]} />
       <BackButton />
-
-      {/* <Row className="justify-content-md-center">
-      <Col md="auto">
-      <Button
-          
-          variant="warning"
-          onClick={() => {
-            history.goBack();
-          }}
-        >
-          Go Back
-        </Button>
-      </Col>
-    </Row> */}
+      </div>
     </>
   );
 };

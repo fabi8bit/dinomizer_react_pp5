@@ -20,6 +20,7 @@ import AssetCreateForm from "./pages/assets/AssetCreateForm";
 import AssetPage from "./pages/assets/AssetPage";
 import AssetsPage from "./pages/assets/AssetsPage";
 import AssetEditForm from "./pages/assets/AssetEditForm";
+import NotFound from "./components/NotFound";
 
 function App() {
   // const currentUser = useCurrentUser();
@@ -57,15 +58,16 @@ function App() {
             render={() => <SignUpForm />}
           />
           <Route
-            
-            path="/loggedout"
-            render={() => <LoggedOutPage />}
-          />
-          <Route
             exact
             path="/profiles/:id"
             render={() => <ProfilePage />}
           />
+          <Route
+            
+            path="/loggedout"
+            render={() => <LoggedOutPage />}
+          />
+          
           <Route
             exact
             path="/profiles/:id/edit"
@@ -77,8 +79,8 @@ function App() {
             render={() => <UserPasswordForm />}
           />
           <Route
-            exact
-            path="/projects/create"
+          exact
+            path="/projects/create/"
             render={() => <ProjectCreateForm />}
           />
           <Route
@@ -112,7 +114,7 @@ function App() {
             render={() => <AssetsPage myContribute />}
           />
 
-          <Route render={() => <h1>Oh Oh! This page doesn't exists</h1>} />
+          <Route render={() => <NotFound/>}/>
         </Switch>
       </Container>
     </div>

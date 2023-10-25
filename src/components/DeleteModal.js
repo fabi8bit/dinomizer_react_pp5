@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Modal, Row } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
 import styles from "../styles/ProjectAsset.module.css";
 
 function DeleteModal({ id, type, name, change, deleteitem }) {

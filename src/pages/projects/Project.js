@@ -27,14 +27,12 @@ const Project = (props) => {
     profile_id,
     project_name,
     profile_image,
-    // start_date,
     expected_end_date,
     content,
     image,
     is_owner,
     status,
     participant_id,
-    // participants,
     projectPage,
     setProjects,
   } = props;
@@ -56,7 +54,7 @@ const Project = (props) => {
     };
     getAssets();
     console.log(assets);
-  }, [props.id]);
+  },[id]);
 
 
 

@@ -1,30 +1,22 @@
 import React, { useEffect, useState } from "react";
-import LoggedOutPage from "../auth/LoggedOutPage";
 import {
-  Button,
   Card,
   Col,
-  Container,
-  ListGroup,
   OverlayTrigger,
   Row,
   Tooltip,
 } from "react-bootstrap";
-import { useCurrentUser } from "../../context/CurrentUserContext";
 import styles from "../../styles/ProjectAsset.module.css";
 import appStyles from "../../App.module.css";
 import Avatar from "../../components/Avatar";
 import { axiosReq, axiosRes } from "../../api/axios.Defaults";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import AttachFileIcon from "@mui/icons-material/AttachFile";
 import RemoveCircleOutlineIcon from "@mui/icons-material/RemoveCircleOutline";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PostAddIcon from "@mui/icons-material/PostAdd";
 import { Link, useHistory } from "react-router-dom/cjs/react-router-dom";
-// import Contributors from "../participants/ContributorsBanner";
 import ContributorsBanner from "../participants/ContributorsBanner";
-// import Asset from "../assets/Asset";
 import AssetCarousel from "../assets/AssetCarousel";
 import DeleteModal from "../../components/DeleteModal";
 
@@ -37,7 +29,6 @@ const Project = (props) => {
     profile_image,
     // start_date,
     expected_end_date,
-    updated_at,
     content,
     image,
     is_owner,
@@ -49,7 +40,6 @@ const Project = (props) => {
   } = props;
 
   const [assets, setAssets] = useState({ results: [] });
-  const currentUser = useCurrentUser();
   console.log(profile_id);
 
   

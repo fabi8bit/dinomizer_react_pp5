@@ -114,6 +114,11 @@ const Project = (props) => {
     }
   };
 
+  const handleOpenCreateAsset = () => {
+    const data = {thisId: id}
+    history.push({pathname: "/assets/create", state: data})
+  }
+
   const [showModalDelete, setShowModalDelete] = useState(false);
   function handleShowModalDelete() {
     setShowModalDelete(!showModalDelete);
@@ -230,11 +235,8 @@ const Project = (props) => {
                     </span>
                   </Col>
                   <Col>
-                    <Link
-                    to={{ 
-                      pathname: "/assets/create", 
-                      state: {id} 
-                     }}>
+                    <span
+                    onClick={handleOpenCreateAsset}>
                     
                       <OverlayTrigger
                         key={participant_id}
@@ -247,7 +249,7 @@ const Project = (props) => {
                       >
                         <AttachFileIcon />
                       </OverlayTrigger>
-                    </Link>
+                    </span>
                   </Col>
                 </>
               ) : (

@@ -17,14 +17,16 @@ import {
 import { axiosReq } from "../../api/axios.Defaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
-function AssetCreateForm(props) {
+const AssetCreateForm = () => {
   const [errors, setErrors] = useState({});
   const history = useHistory();
   const location = useLocation(); // used to pass the project_id from
   // the button "Add Asset" in Project.js
-  console.log(location)
+  console.log(`please print out something ... ${location.state.thisId}`)
 
   const [id, setId] = useState();
+  const data = location.state.thisId;
+  console.log(`I got this project id ${data}`)
  
   // useRedirect("loggedOut");
 
@@ -48,8 +50,8 @@ function AssetCreateForm(props) {
     // to create the asset) will be undefined so it will throw an ecception
 
     const create_id = () => {
-      if (location?.state?.id.length) {
-        setId(location.state.id);
+      if (data) {
+        setId(data);
       } else {
         history.goBack();
         

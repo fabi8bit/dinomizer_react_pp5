@@ -15,7 +15,7 @@ import {
   useLocation,
 } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axios.Defaults";
-import { useRedirect } from "../../hooks/useRedirect";
+
 
 const AssetCreateForm = () => {
   const [errors, setErrors] = useState({});
@@ -70,7 +70,7 @@ const AssetCreateForm = () => {
     };
     create_id();
     handleMount();
-  }, [id, history]);
+  }, [id, history, data]);
 
   const imageInput = useRef(null);
   const assetfileinput = useRef(assetfile || null);

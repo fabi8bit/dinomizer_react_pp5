@@ -41,23 +41,6 @@ const Project = (props) => {
   
   const history = useHistory();
 
-  // useEffect(() => {
-  //   const getAssets = async () => {
-  //     try {
-  //       const { data } = await axiosReq.get(`/assets/`);
-  //       setAssets({ results: data });
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   getAssets();
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // },[id]);
-
-
-
-  
-
   const handleParticipate = async () => {
     try {
       const { data } = await axiosRes.post("/participants/", {

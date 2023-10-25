@@ -35,7 +35,7 @@ const ProjectPage = () => {
     };
 
     handleMount();
-  }, [id]);
+  }, [id, history]);
 
   return (
     <>

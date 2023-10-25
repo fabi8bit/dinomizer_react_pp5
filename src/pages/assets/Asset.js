@@ -40,6 +40,7 @@ const Asset = (props) => {
   } = props;
 
   const [project, setProject] = useState({});
+  const [downloadEmpty, setDownloadEmpty] = useState(true);
 
   const history = useHistory();
 
@@ -52,9 +53,19 @@ const Asset = (props) => {
         // console.log(err);
       }
     };
-    getProject();
-  }, [project_id]);
 
+    const defineDownload = () => {
+      if (!assetfile) {
+        setDownloadEmpty(true);
+      } else {
+        setDownloadEmpty(false);
+      }
+    };
+
+    getProject();
+    defineDownload();
+
+  }, [project_id, downloadEmpty, assetfile]);
 
   const handleCheck = async () => {
     try {
@@ -112,9 +123,7 @@ const Asset = (props) => {
 
   const loggedInAssetPage = (
     <Container>
-      <Card
-        bg="dark"
-      >
+      <Card bg="dark">
         <Row>
           {carousel && (
             <>
@@ -177,15 +186,17 @@ const Asset = (props) => {
                         >
                           Edit
                         </Dropdown.Item>
-                        <Dropdown.Item
-                          className={appStyles.Links2}
-                          href={`https://res.cloudinary.com/dhsjcm3v3/${assetfile}`}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <FileDownloadIcon />
-                          Download
-                        </Dropdown.Item>
+                        {!downloadEmpty && (
+                          <Dropdown.Item
+                            className={appStyles.Links2}
+                            href={`https://res.cloudinary.com/dhsjcm3v3/${assetfile}`}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <FileDownloadIcon />
+                            Download
+                          </Dropdown.Item>
+                        )}
                       </>
                     ) : (
                       <Dropdown.Item

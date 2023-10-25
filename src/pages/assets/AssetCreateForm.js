@@ -115,7 +115,10 @@ const AssetCreateForm = () => {
     formData.append("category", category);
     formData.append("description", description);
     formData.append("image", imageInput.current.files[0]);
-    formData.append("assetfile", assetfileinput.current.files[0]);
+    // formData.append("assetfile", assetfileinput.current.files[0]);
+    if (assetfileinput?.current?.files[0]) {
+      formData.append("assetfile", assetfileinput.current.files[0]);
+    }
 
     try {
       const { data } = await axiosReq.post("/assets/", formData);

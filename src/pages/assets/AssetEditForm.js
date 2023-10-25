@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import styles from "../../styles/ProjectCreateUpdate.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import { Alert, FormGroup, Image } from "react-bootstrap";
+import { Alert, Image } from "react-bootstrap";
 import Placeholder from "../../components/Placeholder";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
@@ -30,7 +30,7 @@ function AssetEditForm() {
     assetfile: "",
     project_id: "",
   });
-  const { asset_name, category, description, image, assetfile, project_id } =
+  const { asset_name, category, description, image, project_id } =
     assetData;
 
   const { id } = useParams();
@@ -58,7 +58,6 @@ function AssetEditForm() {
           category,
           description,
           image,
-          assetfile,
           is_owner,
           project_id,
         } = data;
@@ -69,7 +68,6 @@ function AssetEditForm() {
               category,
               description,
               image,
-              assetfile,
               project_id,
             })
           : history.push("/");
@@ -82,7 +80,6 @@ function AssetEditForm() {
   }, [history, id]);
 
   const imageInput = useRef(null);
-  const assetfileinput = useRef(assetfile || null);
 
   const handleChange = (event) => {
     setAssetData({
@@ -104,17 +101,6 @@ function AssetEditForm() {
     }
   };
 
-  const handleChangeFile = (event) => {
-    if (event.target.files.length) {
-      URL.revokeObjectURL(assetfile);
-      setAssetData({
-        ...assetData,
-        assetfile: URL.createObjectURL(event.target.files[0]),
-      });
-    }
-
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -125,10 +111,6 @@ function AssetEditForm() {
 
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
-    }
-
-    if (assetfileinput?.current?.files[0]) {
-      formData.append("assetfile", assetfileinput.current.files[0]);
     }
 
     try {
@@ -210,17 +192,6 @@ function AssetEditForm() {
           {message}
         </Alert>
       ))}
-      <FormGroup>
-        <Form.Label>
-          <h5>Upload Asset</h5>
-        </Form.Label>
-        <Form.File
-          id="file-upload"
-          accept=".txt,audio/*,video/*,image/*"
-          onChange={handleChangeFile}
-          ref={assetfileinput}
-        />
-      </FormGroup>
 
       <Row>
         <Col>

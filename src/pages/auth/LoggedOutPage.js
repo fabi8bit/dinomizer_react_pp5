@@ -10,7 +10,7 @@ const LoggedOutPage = () => {
 
   return (
     <Row className={`${styles.Row} d-flex align-items-center`}>
-      <Col>
+      <Col lg={6} sm={12}>
         <Jumbotron className={styles.BackgroundBox} fluid>
           <Container>
             <h1>

@@ -14,9 +14,8 @@ function ContributorsBanner({ project_id }) {
       try {
         const { data } = await axiosReq.get(`/participants`);
         setParticipants(data);
-        // console.log(participants.results);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 

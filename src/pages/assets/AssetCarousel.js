@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axios.Defaults";
-// import { useParams } from "react-router-dom/cjs/react-router-dom";
 import { Card, Carousel } from "react-bootstrap";
-// import appStyles from "../../App.module.css";
 import styles from "../../styles/ProjectAsset.module.css";
 import Asset from "./Asset";
 
@@ -14,9 +12,8 @@ function AssetCarousel({ project_id }) {
       try {
         const { data } = await axiosReq.get(`/assets/`);
         setAssets(data);
-        // console.log(participants.results);
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
     handleMount();

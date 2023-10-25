@@ -77,9 +77,7 @@ function ProjectEditForm() {
     //because of .toISOString method.
     //So a try-catch block is necessary
     try {
-      // console.log(oldDate);
       const newDate = new Date(oldDate);
-      // console.log(newDate.toISOString());
       return newDate.toISOString();
     } catch (err) {
       setErrors(err.response?.data);
@@ -117,15 +115,12 @@ function ProjectEditForm() {
     let startDate = handleChangeDate(start_date);
     let endDate = handleChangeDate(expected_end_date);
 
-    console.log(startDate);
-
     formData.append("project_name", project_name);
     formData.append("content", content);
     formData.append("image", imageInput.current.files[0]);
     formData.append("start_date", startDate);
     formData.append("expected_end_date", endDate);
     formData.append("status", status);
-    console.log(formData);
 
     if (imageInput?.current?.files[0]) {
         formData.append("image", imageInput.current.files[0]);

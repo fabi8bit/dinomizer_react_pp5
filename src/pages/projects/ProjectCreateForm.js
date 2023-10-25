@@ -43,9 +43,7 @@ function ProjectCreateForm() {
     //because of .toISOString method.
     //So a try-catch block is necessary
     try {
-      // console.log(oldDate);
       const newDate = new Date(oldDate);
-      // console.log(newDate.toISOString());
       return newDate.toISOString();
     } catch(err) {
       setErrors(err.response?.data);

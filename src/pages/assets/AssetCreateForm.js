@@ -22,11 +22,11 @@ const AssetCreateForm = () => {
   const history = useHistory();
   const location = useLocation(); // used to pass the project_id from
   // the button "Add Asset" in Project.js
-  console.log(`please print out something ... ${location.state.thisId}`)
+  
 
   const [id, setId] = useState();
   const data = location.state.thisId;
-  console.log(`I got this project id ${data}`)
+  
  
   // useRedirect("loggedOut");
 
@@ -104,7 +104,7 @@ const AssetCreateForm = () => {
       });
     }
 
-    console.log(assetfileinput.current.files[0]);
+    
   };
 
   const handleSubmit = async (event) => {
@@ -118,11 +118,10 @@ const AssetCreateForm = () => {
     formData.append("assetfile", assetfileinput.current.files[0]);
 
     try {
-      console.log(assetfileinput.current.files[0]);
       const { data } = await axiosReq.post("/assets/", formData);
       history.push(`/assets/${data.id}`);
     } catch (err) {
-      console.log(err);
+      // console.log(err);
 
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);

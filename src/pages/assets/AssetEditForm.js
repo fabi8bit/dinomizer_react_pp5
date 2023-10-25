@@ -10,21 +10,17 @@ import btnStyles from "../../styles/Button.module.css";
 import { Alert, FormGroup, Image } from "react-bootstrap";
 import Placeholder from "../../components/Placeholder";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
-import {
-  useHistory,
-} from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { axiosReq } from "../../api/axios.Defaults";
 import { useParams } from "react-router-dom/cjs/react-router-dom";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function AssetEditForm() {
-  useRedirect("loggedOut")
+  useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
   const history = useHistory();
   // const location = useLocation(); // used to pass the project_id from
   // the button "Add Asset" in Project.js
-
-  
 
   const [assetData, setAssetData] = useState({
     asset_name: "",
@@ -36,9 +32,8 @@ function AssetEditForm() {
   });
   const { asset_name, category, description, image, assetfile, project_id } =
     assetData;
-    
-    const { id } = useParams();
-  
+
+  const { id } = useParams();
 
   // useEffect(() => {
   //   const handleMount = async () => {
@@ -68,29 +63,26 @@ function AssetEditForm() {
           project_id,
         } = data;
 
-        console.log(data)
-
         is_owner
           ? setAssetData({
-            asset_name,
-            category,
-            description,
-            image,
-            assetfile,
-            project_id,
+              asset_name,
+              category,
+              description,
+              image,
+              assetfile,
+              project_id,
             })
           : history.push("/");
       } catch (err) {
-        console.log(err);
+        // console.log(err);
       }
     };
 
     handleMount();
-  }, [history, id]); 
+  }, [history, id]);
 
   const imageInput = useRef(null);
   const assetfileinput = useRef(assetfile || null);
-
 
   const handleChange = (event) => {
     setAssetData({
@@ -113,15 +105,14 @@ function AssetEditForm() {
   };
 
   const handleChangeFile = (event) => {
-    if (event.target.files.length){
+    if (event.target.files.length) {
       URL.revokeObjectURL(assetfile);
       setAssetData({
         ...assetData,
         assetfile: URL.createObjectURL(event.target.files[0]),
-       });
+      });
     }
-    
-     console.log(assetfileinput.current.files[0])
+
   };
 
   const handleSubmit = async (event) => {
@@ -139,14 +130,12 @@ function AssetEditForm() {
     if (assetfileinput?.current?.files[0]) {
       formData.append("assetfile", assetfileinput.current.files[0]);
     }
-    
 
     try {
       await axiosReq.put(`/assets/${id}/`, formData);
       history.push(`/assets/${id}`);
     } catch (err) {
-      console.log(err);
-      console.log(err.response)
+      // console.log(err);
 
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
@@ -184,7 +173,7 @@ function AssetEditForm() {
           as="select"
           name="category"
           value={category}
-          onChange={handleChange} 
+          onChange={handleChange}
         >
           <option>graphic</option>
           <option>video</option>

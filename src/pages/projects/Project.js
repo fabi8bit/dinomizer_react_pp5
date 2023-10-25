@@ -38,24 +38,22 @@ const Project = (props) => {
   } = props;
 
   const [assets, setAssets] = useState({ results: [] });
-  console.log(profile_id);
 
   
   const history = useHistory();
 
-  useEffect(() => {
-    const getAssets = async () => {
-      try {
-        const { data } = await axiosReq.get(`/assets/`);
-        setAssets({ results: data });
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    getAssets();
-    console.log(assets);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[id]);
+  // useEffect(() => {
+  //   const getAssets = async () => {
+  //     try {
+  //       const { data } = await axiosReq.get(`/assets/`);
+  //       setAssets({ results: data });
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   };
+  //   getAssets();
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // },[id]);
 
 
 

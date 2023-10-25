@@ -12,7 +12,7 @@ function AssetCarousel({ project_id }) {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get(`/assets`);
+        const { data } = await axiosReq.get(`/assets/`);
         setAssets(data);
         // console.log(participants.results);
       } catch (err) {

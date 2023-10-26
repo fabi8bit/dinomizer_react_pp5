@@ -17,7 +17,7 @@ const ProfilePage = () => {
         ]);
         setProfile({ results: [profile] });
       } catch (err) {
-        history.push('/notfound/');
+        history.push("/notfound/");
       }
     };
     handleMount();
@@ -25,10 +25,8 @@ const ProfilePage = () => {
 
   return (
     <>
-    <div className=".clearfix">
       <Profile {...profile.results[0]} />
       <BackButton />
-      </div>
     </>
   );
 };

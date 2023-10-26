@@ -27,12 +27,25 @@
 }
 
 .Header {
-  
   font-weight: bold;
   /* font-size: 22px; */
   /* line-height: 19px; */
+  margin-top: 10px;
   margin-bottom: 30px;
   text-align: left;
+}
+
+@media screen and (max-width: 991px) {
+
+  .Header {
+  
+    font-weight: bold;
+    /* font-size: 22px; */
+    margin-top: 30px ;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
 }
 
 h1, h5 {
@@ -48,12 +61,12 @@ hr {
   border: 0.1px solid white;
 }
 
-.Row {
-  height: 50vh;
-}
+
 
 .SignOutButton {
   margin-top: 15px;
   margin-bottom: 10px;
 }
+
+
 

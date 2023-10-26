@@ -5,8 +5,8 @@ import { useHistory } from "react-router-dom/cjs/react-router-dom";
 export const BackButton = () => {
   const history = useHistory();
   return (
-    <Row className="justify-content-md-center">
-      <Col md="auto">
+    <Row className="justify-content-center mb-4">
+      <Col style={{display:'contents'}}>
         <Button
           variant="warning"
           onClick={() => {

@@ -62,7 +62,7 @@ const NavBar = () => {
         activeClassName={styles.Active}
       >
         <WebAssetIcon className={styles.Icon} />
-        projects
+        Projects
       </NavLink>
       <NavLink
         exact
@@ -96,8 +96,8 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
-        <PlaylistAddIcon className={styles.Icon} />
-        New Project
+        <PlaylistAddIcon className={`${styles.Icon}`} />
+        <p className="d-none d-sm-inline-block">New Project</p>
       </NavLink>
     </>
   );

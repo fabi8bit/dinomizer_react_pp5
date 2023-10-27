@@ -28,20 +28,18 @@ Here is the live version of the application: [Dinomizer](https://dinomizer-6ec16
     + [Data models](#data-models)
     + [Agile methodology](#agile-methodology)
   * [Design](#design)
-    + [Colours](#colours)
-    + [Fonts](#fonts)
   * [Features](#features)
-    + [Branded landing page](#branded-landing-page)
-    + [Sign-up form](#sign-up-form)
-    + [Sign-in form](#sign-in-form)
     + [Navigation Bar](#navigation-bar)
-        + [Logged out options](#logged-out-options)
-        + [Logged in options](#logged-in-options)
+        + [Logged out option](#logged-out-option)
+        + [Logged in option](#logged-in-option)
             + [New project](#new-project)
             + [Timeline](#timeline) (All the existing projects with Assets preview)
             + [Projects](#projects) (Projects a User joins)
             + [Contribute](#contribute) (Filtered Assets)
             + [Profile page](#profile-page)
+    + [Branded landing page](#branded-landing-page)
+    + [Sign-up form](#sign-up-form)
+    + [Sign-in form](#sign-in-form)
     + [Projects list](#project-list)
     + [Project details](#project-details)
     + [Project controls](#project-controls)
@@ -120,6 +118,70 @@ The user stories were developed after defining the [project goals](#project-goal
 
 
 ## Planning and Agile methodology
+### Mockups
+
+Based on the goals and user stories I draw some sketches that I used to design the wireframes for the complete web-application.
+
+<img src="readme_assets/sketches/sketches-wire.png" alt="drawing" width="200"/>
+
+After drawing the sketches I designed the complete wireframe application using [Adobe XD](https://www.adobe.com/products/xd/learn/get-started-xd-design.html). The public full interactive wireframe application (only Desktop version) can be found [here](https://xd.adobe.com/view/bc9e5f77-a435-416f-9f37-6dbc2d3b28dd-e9cd/?fullscreen&hints=off)
+
+Log In / Sign up / Profile page
+
+![Alt text](readme_assets/wireframes/overviews/loginupprofile-overview-wire.png)
+
+Project related pages
+
+![Alt text](readme_assets/wireframes/overviews/projects-overview-wire.png)
+
+Asset related pages
+
+![Alt text](readme_assets/wireframes/overviews/assets-overview-wire.png)
+
+The full size wireframes can be seen in [this](WIREFRAMES-FULL.md) document.
+
+The wireframes acted as guide throughout the development of the frontend. Of course many changes were made after facing the real world, but still they were absolutely essentials for keeping the focus on the scope of the application.
+***
+
+The Navbar
+In the wireframe it appears as a sidebar but on the final product it's a classic navbar fixed on top. The reasons behind this choice are purely technical. I tried to develope it,but I had bad feelings and I was not satisfied. So I prefered to focus on the MVP and skipped it. It will be present in the future versions because is something that really fits into this project and I love the concept.
+***
+
+Timeline / Projects
+
+It represents the project list of all the projects created. Initially I thought it was divided in three different columns: one for the projects "in progress", one for the planned projects and one for the overdue projects. In the real world the page appeared to cluttered and it would lead to a problem on the mobile screens. In thereal world I left a column for the project, and a column for the the assets connected to this project. The details are explained in the [feature section](#project-list)
+***
+
+Contribute / Assets
+
+This page is were all the assets created by the users are listed. It helps to have a complete overview of the job done by the user.
+***
+
+### Data models
+Data models were also sketched on paper alongside the wireframes.
+
+![InitialNotes](readme_assets/sketches/initialNotes-dinomizer.jpeg)
+
+![datamodels-sketc](readme_assets/sketches/datamodels-sketch.jpeg)
+
+The sketches were then designed on [drawSQL](https://drawsql.app/teams/fabi8steam/diagrams/dinomizer). The original drawing is visible at [this link](https://drawsql.app/teams/fabi8steam/diagrams/dinomizer).
+
+![Alt text](readme_assets/sketches/datamodels-prints.jpeg)
+
+The task model was not included in the MVP so it was not developed.
+The comment model, instead, was not used in the frontend because it was also not required for the MVP and left for future versions of Dinomizer.
+The details for the models and the development of the backend are documented in a separate repository that can be found [here](https://github.com/fabi8bit/dinomizer_drf_pp5), and [here](https://github.com/fabi8bit/dinomizer_drf_pp5/blob/main/README.md) is the direct link to the backend [README.md file](https://github.com/fabi8bit/dinomizer_drf_pp5/blob/main/README.md).
+
+
+
+
+
+
+
+
+
+
+
 ### Agile methodology
 The methodology used to develope Dinomizer is Agile. I use the "issues" feature, present on GitHub, to track down all the steps needed to deliver the MVP.
 As a first step I created a new project (board type) called Dinomizer ([Dinomizer GitHub project](https://github.com/users/fabi8bit/projects/6/views/1))and a new issue template that I used as bed for the user stories creation. I opened an issue for every user stories. I gave them a title and a description. I created custom labels and assigned them to the user stories.
@@ -142,43 +204,77 @@ As soon as the user stories were satisfied, I marked them as closed and in the p
 
 
 
+
+
 ## Design
 
 <img src="readme_assets/dinomizer-ss/dinomizer-logo-study.png" alt="drawing"/>
 
+The name Dinomizer was suggested by my colleague Alessandro Corinti at [Pomodoro Communication Agency](https://www.pomodoroproduzioni.it/) and it's a kind of an acronym and it stands for DIgital Nomads organIZER. Of course, the name suggested the idea of a dinosaur and it's where the logo comes from. I designed it on Illustrator and chosse the color pallette using Adobe Color.
+I choose high contrast colors to enhance the general readibility of the whole site.
+
+![Alt text](readme_assets/logos/dinomizer-color-pallette.png)
+
+For the background of the project and asset cards I choose a dark-gray (#343a40) that gives the right contrast without being too heavy to the eyes.
+The font choosed for the logo is Poppins, while I choosed Lato for the texts
+***
+
 ## Features
 
 ### Navigation Bar
+The navigation bar was initially thought to be a side bar but switched after some design test to a classic top Navbar. Using conditional rendering based on the status of a user, it features two options: Logged out and Logged in option.
 
 
-### Logged out options
+### Logged out option
 <img src="readme_assets/dinomizer-ss/navbar-signout.png" alt="drawing"/>
+When the user is logged out the only buttons available on the Navbar are: Sign in and Sign up.
 
-### Logged in options
+### Logged in option
 <img src="readme_assets/dinomizer-ss/navbar.png" alt="drawing"/>
+As soon as a user logs in, 5 options are available: New Project, Timeline, Projects, Contribute, Profile page.
 
 #### New project
+This button is linked to the [project create form](#project-create-form) and it's used to ceate new projects.
 #### Timeline
+When clicked all the projects created are listed in the page as explained in the chapter [Timeline](#project-list--timeline)
 #### Projects
+This is the button that permits to navigate towards the [projects page](#project-list--timeline), which is a filtered version of the Timeline.
 #### Contribute
+Clicking here the user will be redirected to the list of assets created by this user, and I called it Contribute page
 #### Profile page
+The profile page link has a dynamic text that chages to the name of the logged in user. Clicking here the user is redirected to the [profile page](#profile-page)
 
 ### Branded landing page
+Desktop | Mobile
+:-------------------------:|:-------------------------:
+<img src="readme_assets/dinomizer-ss/welcome-page.png" alt="drawing"/> | <img src="readme_assets/dinomizer-ss/welcome-page-mobile.png" alt="drawing"/>
 
-<img src="readme_assets/dinomizer-ss/welcome-page.png" alt="drawing"/>
+This is the home page of Dinomizer when a user is not logged in. It features a jumbotron element that briefly explains what Dinomizer is.
+At the bottom are present two buttons: Sign in and Sign up. Their function is self explanatory.
 
 ***
 
-<img src="readme_assets/dinomizer-ss/welcome-page-mobile.png" alt="drawing" width="200"/>
+
 
 
 ### Sign-up form
+Desktop | Mobile
+:-------------------------:|:-------------------------:
+![signupform](readme_assets/dinomizer-ss/signup-form.png) | ![signupform](readme_assets/dinomizer-ss/signup-form-mobile.png)
 
-<img src="readme_assets/dinomizer-ss/welcome-page.png" alt="drawing"/>
+The form presents as little as three input fields: Username, Password, Confirm Password. The password is checked by the Password management of Django and it must contain at least 8 characters. Upon signing up a profile is created alongside of a user. Proceding to the [Profile page](#profile-page), a user can give more infos about himself, like profile image, real name, and bio.
+After signing up the user is automatically redirected to the [Sign in form](#sign-in-form).
 
 ### Sign-in form
+Desktop | Mobile
+:-------------------------:|:-------------------------:
+![signupform](readme_assets/dinomizer-ss/signin-form.png) | ![signupform](readme_assets/dinomizer-ss/signin-form-mobile.png)
 
-### Project list
+Here the user is requested to input the Username and Password choosed during the [sign up](#sign-up-form) process. If the information inserted are correct the user will be redirected to the [timeline page](#project-list--timeline)
+
+
+
+### Project list / Timeline
 
 <img src="readme_assets/dinomizer-ss/home-dinomizer.png" alt="drawing"/>
 

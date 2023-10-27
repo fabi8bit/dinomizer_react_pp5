@@ -4,6 +4,8 @@
 
 Dinomizer is a web application designed to assist Creative Agencies with teams dispersed globally or working remotely. This application streamlines asset retrieval for projects by centralizing all assets in one location. This ensures that all project stakeholders can access the latest version of required assets, thus minimizing time loss.
 
+![dinomizer-responsive](readme_assets/dinomizer-responsive.png)
+
 Dinomizer is built using Django Rest Framework for the backend and React JS for the frontend. This project was created as my fifth portfolio project for my Diploma in Web Application Development at Code Institute.
 
 Here is the live version of the application: [Dinomizer](https://dinomizer-6ec16116a4cb.herokuapp.com/)
@@ -40,7 +42,7 @@ Here is the live version of the application: [Dinomizer](https://dinomizer-6ec16
     + [Branded landing page](#branded-landing-page)
     + [Sign-up form](#sign-up-form)
     + [Sign-in form](#sign-in-form)
-    + [Projects list](#project-list)
+    + [Timeline (project list)](#timeline-project-list)
     + [Project details](#project-details)
     + [Project controls](#project-controls)
     + [Project create form](#project-create-form)
@@ -66,16 +68,15 @@ Here is the live version of the application: [Dinomizer](https://dinomizer-6ec16
 
 
 ## The Idea
-My professional background lies in the video production and communication field. I owned my communication agency and worked with many of them as a freelancer. Sharing files and assets is crucial in such environments but sometimes the people involved in the same project are not updated on the last version of that logo or last version of the copywriting for a specific website.
+My professional background is rooted in the video production and communication field. I previously owned my own communication agency and also worked as a freelancer, collaborating with numerous clients. In such contexts, effective file and asset sharing is paramount. However, it's not uncommon for individuals working on the same project to be unaware of the latest version of a logo or the most recent copywriting updates for a particular website.
 
 <img src="readme_assets/idea-img/ci-sony-ss.png" alt="drawing" width="200"/><br/>
 
-To perform my job as video producer/maker at the best I often use a platform called [CI](https://cimediacloud.com/) (no pun intend... Code Institute!!!) from sony and it's from there that I took the inspiration. Though I'm pretty far from achieving Sony's results, I think Dinomizer come out as a nice CI wannabe.
+To excel in my role as a video producer and creator, I frequently utilize a platform called [CI](https://cimediacloud.com/) (no pun intended ... Code Institute!), developed by Sony. It was from this platform that I drew my inspiration. While I recognize that I have a long way to go before achieving the same results as Sony, I believe that Dinomizer has emerged as a worthy CI aspirant.
 
 
 ## User stories
-The user stories were developed after defining the [project goals](#project-goals). Firstly I identified which could be the epics under which the user stories were grouped and after that I assigned them to the ipothetic backlog(Iteration) (this part is discussed in the [Planning and Agile methodology](#planning-and-agile-methodology)). The following chart can be found as a spreadsheet [here](https://docs.google.com/spreadsheets/d/1dO9Zj2uhU90JMJT0_W85nkQjaKAbOLGk1Hr0KajRhKQ/edit#gid=1780070774).
-
+The user stories were developed following the definition of the [project goals](#project-goals). Initially, I identified the potential epics under which the user stories could be categorized. Afterward, I assigned them to the hypothetical backlog (Iteration), as discussed in the [Planning and Agile methodology](#planning-and-agile-methodology). You can access the corresponding chart in the form of a spreadsheet [here](https://docs.google.com/spreadsheets/d/1dO9Zj2uhU90JMJT0_W85nkQjaKAbOLGk1Hr0KajRhKQ/edit#gid=1780070774).
 ***
 
 
@@ -120,11 +121,11 @@ The user stories were developed after defining the [project goals](#project-goal
 ## Planning and Agile methodology
 ### Mockups
 
-Based on the goals and user stories I draw some sketches that I used to design the wireframes for the complete web-application.
+Based on the goals and user stories, I created sketches that I used as a foundation for designing the wireframes for the entire web application.
 
 <img src="readme_assets/sketches/sketches-wire.png" alt="drawing" width="200"/>
 
-After drawing the sketches I designed the complete wireframe application using [Adobe XD](https://www.adobe.com/products/xd/learn/get-started-xd-design.html). The public full interactive wireframe application (only Desktop version) can be found [here](https://xd.adobe.com/view/bc9e5f77-a435-416f-9f37-6dbc2d3b28dd-e9cd/?fullscreen&hints=off)
+After creating the initial sketches, I designed the complete wireframe application using [Adobe XD](https://www.adobe.com/products/xd/learn/get-started-xd-design.html). The fully interactive public wireframe application (for desktop only) can be accessed [here](https://xd.adobe.com/view/bc9e5f77-a435-416f-9f37-6dbc2d3b28dd-e9cd/?fullscreen&hints=off).
 
 Log In / Sign up / Profile page
 
@@ -138,23 +139,24 @@ Asset related pages
 
 ![Alt text](readme_assets/wireframes/overviews/assets-overview-wire.png)
 
-The full size wireframes can be seen in [this](WIREFRAMES-FULL.md) document.
+The full-size wireframes can be viewed in [this document](WIREFRAMES-FULL.md).
 
-The wireframes acted as guide throughout the development of the frontend. Of course many changes were made after facing the real world, but still they were absolutely essentials for keeping the focus on the scope of the application.
+The wireframes served as a guiding reference throughout the frontend development process. While numerous adjustments were necessary when confronted with real-world scenarios, they remained essential in maintaining focus on the application's scope.
 ***
 
-The Navbar
-In the wireframe it appears as a sidebar but on the final product it's a classic navbar fixed on top. The reasons behind this choice are purely technical. I tried to develope it,but I had bad feelings and I was not satisfied. So I prefered to focus on the MVP and skipped it. It will be present in the future versions because is something that really fits into this project and I love the concept.
+The Navbar:
+
+In the wireframe, it is depicted as a sidebar, but in the final product, it takes the form of a classic fixed navbar at the top. This design choice is primarily driven by technical considerations. I attempted to develop the sidebar version, but I encountered challenges and felt unsatisfied with the result. Consequently, I chose to prioritize the Minimum Viable Product (MVP) and omitted it from the initial release. However, it remains a part of my future development plans because it aligns well with the project's concept, and I'm passionate about its implementation.
 ***
 
 Timeline / Projects
 
-It represents the project list of all the projects created. Initially I thought it was divided in three different columns: one for the projects "in progress", one for the planned projects and one for the overdue projects. In the real world the page appeared to cluttered and it would lead to a problem on the mobile screens. In thereal world I left a column for the project, and a column for the the assets connected to this project. The details are explained in the [feature section](#project-list)
+It represents the project list containing all the projects created. Initially, I envisioned it divided into three different columns: one for projects 'in progress,' one for planned projects, and one for overdue projects. However, in practice, the page appeared cluttered and posed issues for mobile screens. In the final design, I simplified it to have one column for the project and a separate column for the assets connected to each project. More details about this can be found in the [feature section](#project-list).
 ***
 
 Contribute / Assets
 
-This page is were all the assets created by the users are listed. It helps to have a complete overview of the job done by the user.
+This page lists all the assets created by users, providing a comprehensive overview of the work completed by the users.
 ***
 
 ### Data models
@@ -164,129 +166,117 @@ Data models were also sketched on paper alongside the wireframes.
 
 ![datamodels-sketc](readme_assets/sketches/datamodels-sketch.jpeg)
 
-The sketches were then designed on [drawSQL](https://drawsql.app/teams/fabi8steam/diagrams/dinomizer). The original drawing is visible at [this link](https://drawsql.app/teams/fabi8steam/diagrams/dinomizer).
+The sketches were subsequently translated into designs using [drawSQL](https://drawsql.app/teams/fabi8steam/diagrams/dinomizer). You can view the original drawing at [this link](https://drawsql.app/teams/fabi8steam/diagrams/dinomizer).
 
 ![Alt text](readme_assets/sketches/datamodels-prints.jpeg)
 
-The task model was not included in the MVP so it was not developed.
-The comment model, instead, was not used in the frontend because it was also not required for the MVP and left for future versions of Dinomizer.
-The details for the models and the development of the backend are documented in a separate repository that can be found [here](https://github.com/fabi8bit/dinomizer_drf_pp5), and [here](https://github.com/fabi8bit/dinomizer_drf_pp5/blob/main/README.md) is the direct link to the backend [README.md file](https://github.com/fabi8bit/dinomizer_drf_pp5/blob/main/README.md).
-
-
-
-
-
-
-
-
-
+The task model was not included in the MVP and, therefore, was not developed.
+On the other hand, the comment model was developed in the backend but was not utilized in the frontend because it was not required for the MVP. It has been left for implementation in future versions of Dinomizer.
+You can find detailed information about the models and backend development in a separate repository, which is accessible [here](https://github.com/fabi8bit/dinomizer_drf_pp5). For direct access to the backend README.md file, you can follow [this link](https://github.com/fabi8bit/dinomizer_drf_pp5/blob/main/README.md).
 
 
 ### Agile methodology
-The methodology used to develope Dinomizer is Agile. I use the "issues" feature, present on GitHub, to track down all the steps needed to deliver the MVP.
-As a first step I created a new project (board type) called Dinomizer ([Dinomizer GitHub project](https://github.com/users/fabi8bit/projects/6/views/1))and a new issue template that I used as bed for the user stories creation. I opened an issue for every user stories. I gave them a title and a description. I created custom labels and assigned them to the user stories.
-The user stories created were assigned to the Dinomizer project and piled up in the todo column.
-In the issues I created the first Milestone, that I used as Iteration and assigned it 3 to 4 user stories.
+
+The development methodology employed for Dinomizer is Agile. I used the 'Issues' feature on GitHub to meticulously track all the steps necessary to deliver the Minimum Viable Product (MVP).
+
+To begin, I initiated a new project board, of type 'board,' aptly named 'Dinomizer' (accessible at [Dinomizer GitHub project](https://github.com/users/fabi8bit/projects/6/views/1)). Furthermore, I created a customized issue template that served as the foundation for crafting user stories. Each user story was given its title and description. To facilitate organization, I established custom labels and appropriately assigned them to the user stories.
+The user stories were subsequently assigned to the 'Dinomizer' project board and placed in the 'To-Do' column. Within the 'Issues' section, I established the Milestone, serving as an Iteration, and systematically assigned 3 to 4 user stories to it.
 
 ![Iterations list](readme_assets/github-ss/iterations-list.png)
 
-At the same time, in the project board, I moved the same user stories from the "todo" column to the "In Progress" column. 
+Simultaneously, within the project board, I moved the same user stories from the 'To-Do' column to the 'In Progress' column.
 
 ![kanbanborad](readme_assets/github-ss/kanbanboard.png)
 
-I assigned the first iteration a timebox of 3 days and tried to complete the tasks by the deadline. If some user stories were left, I moved them to the next iteration and so on.
+I allocated a timebox of 3 days for the first iteration and aimed to complete the tasks within that timeframe. If there were any remaining user stories, I transferred them to the next iteration, continuing this process as needed.
 
 ![Iteration example](readme_assets/github-ss/iteration-example.png)
 
-As soon as the user stories were satisfied, I marked them as closed and in the project they were automatically moved from the "In Progress" column to the "Done" column.
-
-
-
-
-
+As soon as the user stories were successfully completed, I marked them as 'closed.' In the project board, this action automatically shifted them from the 'In Progress' column to the 'Done' column.
 
 
 ## Design
 
 <img src="readme_assets/dinomizer-ss/dinomizer-logo-study.png" alt="drawing"/>
 
-The name Dinomizer was suggested by my colleague Alessandro Corinti at [Pomodoro Communication Agency](https://www.pomodoroproduzioni.it/) and it's a kind of an acronym and it stands for DIgital Nomads organIZER. Of course, the name suggested the idea of a dinosaur and it's where the logo comes from. I designed it on Illustrator and chosse the color pallette using Adobe Color.
-I choose high contrast colors to enhance the general readibility of the whole site.
+The name 'Dinomizer' was proposed by my colleague Alessandro Corinti at [Pomodoro Communication Agency](https://www.pomodoroproduzioni.it/). It's a sort of acronym, standing for 'DIgital Nomads organIZER.' Naturally, the name also inspired the idea of a dinosaur, which served as the basis for the logo design. I crafted the logo using Adobe Illustrator and selected the color palette using Adobe Color.
+I opted for high-contrast colors to enhance the overall readability of the entire website.
 
 ![Alt text](readme_assets/logos/dinomizer-color-pallette.png)
 
-For the background of the project and asset cards I choose a dark-gray (#343a40) that gives the right contrast without being too heavy to the eyes.
-The font choosed for the logo is Poppins, while I choosed Lato for the texts
+For the background of the project and asset cards, I selected a dark gray color (#343a40) to provide the appropriate contrast without being overly harsh on the eyes. The font chosen for the logo is 'Poppins,' while I opted for 'Lato' for the text.
 ***
 
 ## Features
 
 ### Navigation Bar
-The navigation bar was initially thought to be a side bar but switched after some design test to a classic top Navbar. Using conditional rendering based on the status of a user, it features two options: Logged out and Logged in option.
-
+The navigation bar was initially conceived as a sidebar but was later changed to a traditional top navbar after conducting some design tests. Utilizing conditional rendering based on the user's status, it offers two options: 'Logged Out' and 'Logged In.
 
 ### Logged out option
 <img src="readme_assets/dinomizer-ss/navbar-signout.png" alt="drawing"/>
-When the user is logged out the only buttons available on the Navbar are: Sign in and Sign up.
+When the user is logged out, the Navbar only displays two available buttons: 'Sign In' and 'Sign Up'.
 
 ### Logged in option
 <img src="readme_assets/dinomizer-ss/navbar.png" alt="drawing"/>
-As soon as a user logs in, 5 options are available: New Project, Timeline, Projects, Contribute, Profile page.
+Upon a user's login, the Navbar presents five available options: 'New Project,' 'Timeline,' 'Projects,' 'Contribute,' and 'Profile Page.
 
 #### New project
-This button is linked to the [project create form](#project-create-form) and it's used to ceate new projects.
+This button is linked to the [project create form](#project-create-form) and is used for creating new projects.
 #### Timeline
-When clicked all the projects created are listed in the page as explained in the chapter [Timeline](#project-list--timeline)
+When clicked, it displays a list of all the projects created on the page, as explained in the chapter [Timeline](#timeline-project-list).
 #### Projects
-This is the button that permits to navigate towards the [projects page](#project-list--timeline), which is a filtered version of the Timeline.
+This button allows users to navigate to the projects page, which is essentially a filtered version of the [projects page](#project-list--timeline).
 #### Contribute
-Clicking here the user will be redirected to the list of assets created by this user, and I called it Contribute page
+Clicking here will redirect the user to the list of assets created by the user, which I've named the 'Contribute' page.
 #### Profile page
-The profile page link has a dynamic text that chages to the name of the logged in user. Clicking here the user is redirected to the [profile page](#profile-page)
+The 'Profile Page' link features dynamic text that changes to the name of the logged-in user. Clicking on it redirects the user to the [profile page](#profile-page).
+***
 
 ### Branded landing page
 Desktop | Mobile
 :-------------------------:|:-------------------------:
 <img src="readme_assets/dinomizer-ss/welcome-page.png" alt="drawing"/> | <img src="readme_assets/dinomizer-ss/welcome-page-mobile.png" alt="drawing"/>
 
-This is the home page of Dinomizer when a user is not logged in. It features a jumbotron element that briefly explains what Dinomizer is.
-At the bottom are present two buttons: Sign in and Sign up. Their function is self explanatory.
-
+This is the home page of Dinomizer when a user is not logged in. It includes a jumbotron element that provides a brief explanation of what Dinomizer is. At the bottom, you'll find two buttons: 'Sign In' and 'Sign Up,' with their functions being self-explanatory.
 ***
-
-
-
 
 ### Sign-up form
 Desktop | Mobile
 :-------------------------:|:-------------------------:
 ![signupform](readme_assets/dinomizer-ss/signup-form.png) | ![signupform](readme_assets/dinomizer-ss/signup-form-mobile.png)
 
-The form presents as little as three input fields: Username, Password, Confirm Password. The password is checked by the Password management of Django and it must contain at least 8 characters. Upon signing up a profile is created alongside of a user. Proceding to the [Profile page](#profile-page), a user can give more infos about himself, like profile image, real name, and bio.
-After signing up the user is automatically redirected to the [Sign in form](#sign-in-form).
+The form includes only three input fields: Username, Password, and Confirm Password. Password validation is performed by Django's Password management, requiring a minimum of 8 characters. Upon signing up, a user profile is created alongside their account. When proceeding to the [Profile page](#profile-page), users have the opportunity to provide additional information, such as a profile image, real name, and bio.
+After successfully signing up, users are automatically redirected to the Sign-In form.
+***
 
 ### Sign-in form
 Desktop | Mobile
 :-------------------------:|:-------------------------:
 ![signupform](readme_assets/dinomizer-ss/signin-form.png) | ![signupform](readme_assets/dinomizer-ss/signin-form-mobile.png)
 
-Here the user is requested to input the Username and Password choosed during the [sign up](#sign-up-form) process. If the information inserted are correct the user will be redirected to the [timeline page](#project-list--timeline)
+On this page, the user is required to enter the username and password chosen during the [sign up](#sign-up-form) process. If the provided information is correct, the user will be redirected to the [timeline page](#timeline-project-list).
+***
 
-
-
-### Project list / Timeline
+### Timeline (project list)
 
 <img src="readme_assets/dinomizer-ss/home-dinomizer.png" alt="drawing"/>
 
+This page serves as the main hub of the application, listing all the projects created by every user along with their associated assets. The page is structured with two adjacent columns:
 
-### Project details
+Left Column: In this column, project cards are displayed, featuring essential information such as the project title, owner, due date, and current status. At the bottom, there's a control bar component. The controls within this component are dynamically rendered based on the user's status, and you can find detailed information about this in the [Project Controls](#project-controls) section. Clicking on the header section of a project card allows users to access the [project's detail view](#project-details).
 
-<img src="readme_assets/dinomizer-ss/project-detail.png" alt="drawing"/>
-
+Right Column: In this column, cards representing the assets linked to the selected project are displayed. Since a project can have multiple assets, I chose to utilize the carousel element from React Bootstrap to present these assets. Each asset card includes a preview picture, which was uploaded during the [creation process](#asset-create-form) of the asset, and a minimal amount of information, including the title and last update. On both the left and right sides of the card, there are arrow buttons for scrolling through the carousel. Clicking on the picture or the icon next to the title provides access to the [asset's details view](#asset-details).
 ***
 
-<img src="readme_assets/dinomizer-ss/project-detail-mobile.png" alt="drawing" width="200"/>
 
+### Project details
+Desktop | Mobile
+:-------------------------:|:-------------------------:
+<img src="readme_assets/dinomizer-ss/project-detail.png" alt="drawing"/> | <img src="readme_assets/dinomizer-ss/project-detail-mobile.png" alt="drawing" width="200"/>
+
+The structure of this page mirrors that of the [timeline (project list)](#timeline-project-list) discussed in the previuos chapter. When accessing the project details, more comprehensive information about the project becomes visible, including content and contributors, in addition to the details already available in the list view. As on the list view, it's also possible to access the control bar at the bottom.
+In the right column, the asset carousel provides the same functionality as in the [timeline (project list)](#timeline-project-list).
+***
 
 
 ### Project controls

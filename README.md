@@ -420,7 +420,10 @@ The two custom hooks present on this project are useRedirect and useClickOutside
 Context is a powerful feature provided by React JS. In this project, the CurrentUserContext is borrowed from the Code Institute's walkthrough project called Moments. It plays a crucial role in various parts of the application, allowing checks on user permissions to perform various tasks. For example, it ensures that users have the necessary permissions to change their profile password.
 
 ## Testing
-Testing was conducted throughout the development of the web application and followed the chronological order of the user stories outlined in the Iterations, as documented in the Agile methodology section. Details of both manual and automated tests conducted on Dinomizer are provided in this document. Alternatively, the test results can be accessed in spreadsheet format at this link.
+Testing was conducted throughout the development of the web application and followed the chronological order of the user stories outlined in the Iterations, as documented in the Agile methodology section. The details of manual tests conducted on Dinomizer are provided in [this document](TESTS.md). Alternatively, the test results can be accessed in spreadsheet format at this [link](https://docs.google.com/spreadsheets/d/1dO9Zj2uhU90JMJT0_W85nkQjaKAbOLGk1Hr0KajRhKQ/edit#gid=1323818088).
+
+Only one automated test was conducted, and it was on the NavBar:
+- renders link to the user profile for a logged in user - passed
 
 ## Deployment
 

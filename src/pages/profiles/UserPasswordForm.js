@@ -6,12 +6,14 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
+import { useRedirect } from "../../hooks/useRedirect"
 
 import { useHistory, useParams } from "react-router-dom";
 import { axiosRes } from "../../api/axios.Defaults";
 import { useCurrentUser } from "../../context/CurrentUserContext";
 
 const UserPasswordForm = () => {
+  useRedirect("loggedOut")
   const history = useHistory();
   const { id } = useParams();
   const currentUser = useCurrentUser();

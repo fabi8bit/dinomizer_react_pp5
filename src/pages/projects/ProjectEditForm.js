@@ -117,7 +117,7 @@ function ProjectEditForm() {
 
     formData.append("project_name", project_name);
     formData.append("content", content);
-    formData.append("image", imageInput.current.files[0]);
+    // formData.append("image", imageInput.current.files[0]);
     formData.append("start_date", startDate);
     formData.append("expected_end_date", endDate);
     formData.append("status", status);

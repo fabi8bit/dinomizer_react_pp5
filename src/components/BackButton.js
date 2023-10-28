@@ -19,21 +19,3 @@ export const BackButton = () => {
     </Row>
   );
 };
-
-// function FunctionButton({function}) {
-//   return (
-//     <Row className="justify-content-md-center">
-//       <Col md="auto">
-//       <Button
-
-//           variant="warning"
-//           onClick={function}
-//         >
-//           Go Back
-//         </Button>
-//       </Col>
-//     </Row>
-//   )
-// }
-
-// export default FunctionButton

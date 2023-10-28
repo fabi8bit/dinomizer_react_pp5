@@ -53,6 +53,7 @@ Here is the live version of the application: [Dinomizer](https://dinomizer-6ec16
     + [Asset create form](#asset-create-form)
     + [Asset edit form](#asset-edit-form)
     + [Profile detail page](#profile-detail-page)
+    + [Profile edit form](#profile-edit-form)
     + [Search bar](#search-bar)
     + [Modal box](#modal-box)
     + [Error messages](#error-messages)
@@ -76,44 +77,10 @@ To excel in my role as a video producer and creator, I frequently utilize a plat
 
 
 ## User stories
-The user stories were developed following the definition of the [project goals](#project-goals). Initially, I identified the potential epics under which the user stories could be categorized. Afterward, I assigned them to the hypothetical backlog (Iteration), as discussed in the [Planning and Agile methodology](#planning-and-agile-methodology). You can access the corresponding chart in the form of a spreadsheet [here](https://docs.google.com/spreadsheets/d/1dO9Zj2uhU90JMJT0_W85nkQjaKAbOLGk1Hr0KajRhKQ/edit#gid=1780070774).
+The user stories were developed following the definition of the [project goals](#project-goals). Initially, I identified the potential epics under which the user stories could be categorized. Afterward, I assigned them to the hypothetical backlog (Iteration), as discussed in the [Planning and Agile methodology](#planning-and-agile-methodology).
+
+The User Stories are listed in [this document](USERSTORIES.md). Instead you can access the corresponding chart in the form of a spreadsheet [here](https://docs.google.com/spreadsheets/d/1dO9Zj2uhU90JMJT0_W85nkQjaKAbOLGk1Hr0KajRhKQ/edit#gid=1780070774).
 ***
-
-
-| Iteration   | Epic                        | User story                                                                                                                                                                                                             | MVP | Note                                                                                       | Delivered |
-| ----------- | --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --- | ------------------------------------------------------------------------------------------ | --------- |
-| Iteration 1 | User and Profile management | Account registration<br>As a user I can sign upso that I can create projects and contribute to it                                                                                                                      | Yes |                                                                                            | Yes       |
-| Iteration 1 | User and Profile management | Sign In<br>As a User I can sign in so that I have access to all the feature of the application | Yes |                                                                                            | Yes       |
-| Iteration 1 | User and Profile management | Refreshing access tokens<br>As a logged in user I can stay logged in so that I don't have to sign in everytime                                                                                                         | Yes |                                                                                            | Yes       |
-| Iteration 1 | Workflow and Navigation     | See the Navbar<br>As a Signed in User I can navigate the site so that I can see the various pages of the site                                                                                                          | Yes |                                                                                            | Yes       |
-| Iteration 1 | Workflow and Navigation     | Display Sign In or Sign up if logged out<br>As a User I can see option for signing in or signing up so that I can register a new user or sign in with my credentials                                                   | Yes |                                                                                            | Yes       |
-| Iteration 2 | Workflow and Navigation     | Sign Out<br>As a logged in user I can sign out so that someone else can't have access to my profile                                                                                                                    | Yes |                                                                                            | Yes       |
-| Iteration 2 | User and Profile management | Profile page<br>As a logged-in user I can see other users' profiles so that I can see their details included on which project they are working on                                                                      | Yes | Partialy delivered because the projects on which the user is partecipating are not visible | Yes       |
-| Iteration 2 | User and Profile management | Edit profile<br>As a logged-in user I can edit my profile so that I can update my display name and my picture                                                                                                          | Yes |                                                                                            | Yes       |
-| Iteration 2 | User and Profile management | Update password<br>As a logged-in user I can update my password so that I can keep my profile secured                                                                                                                  | Yes |                                                                                            | Yes       |
-| Iteration 2 | Workflow and Navigation     | Routing<br>As a user I can navigate through pages quickly so that I can view content seamlessly without page refresh                                                                                                   | Yes |                                                                                            | Yes       |
-| Iteration 2 | Workflow and Navigation     | Logged status<br>As a a logged in user I can tell my log status so that I can sign out if I want to<br><br>                                                                                                            | Yes |                                                                                            | Yes       |
-| Iteration 3 | Projects management         | Create projects<br>As a logged In User I can create a new project so that I can start working on it                                                                                                                    | Yes |                                                                                            | Yes       |
-| Iteration 3 | Projects management         | Contribute to project<br>As a Logged in user I can contribute to a project so that I can work on it                                                                                                                    | Yes |                                                                                            | Yes       |
-| Iteration 3 | Projects management         | Project's detail<br>As a logged-in user I can see the details of a project so that I can see all the info about it                                                                                                     | Yes |                                                                                            | Yes       |
-| Iteration 3 | Projects management         | View projects<br>As a logged-in user I can see a list of all projects so that I can decide to which one contribute                                                                                                     | Yes |                                                                                            | Yes       |
-| Iteration 4 | Projects management         | Search for projects<br>As a logged-in user I can search for projects so that I can find what I'm looking for                                                                                                           | Yes |                                                                                            | Yes       |
-| Iteration 4 | Workflow and Navigation     | Infinite projects scroll<br>As a logged-in user I can scroll down so that I can see all the created projects without reloading the page                                                                                | Yes |                                                                                            | Yes       |
-| Iteration 4 | Projects management         | My projects list<br>As a logged-in user I can see the list of the projects I'm working on so that I've my job under control                                                                                            | Yes |                                                                                            | Yes       |
-| Iteration 4 | Projects management         | Edit projects<br>As a Project Owner I can edit the project so that I can change the details of the project, like the title, dates and status                                                                           | Yes |                                                                                            | Yes       |
-| Iteration 5 | Assets management           | Create assets<br>As a logged-in user I can create assets so that I can add them to projects                                                                                                                            | Yes |                                                                                            | Yes       |
-| Iteration 5 | Assets management           | Assets list in contribute<br>As a Project Contributor I can see a filtered list of all my contributions so that I know what I'm working on                                                                             | Yes |                                                                                            | Yes       |
-| Iteration 5 | Projects management         | Contributor list for project<br>As a logged-in user I can click on a project so that I can see all the contributors and contributions related to that project                                                          | Yes |                                                                                            | Yes       |
-| Iteration 6 | Assets management           | Assets list<br>As a Project Contributor I can see the list of all assets related to that project so that i have a clear view of the whole project                                                                      | Yes |                                                                                            | Yes       |
-| Iteration 6 | Workflow and Navigation     | Infinite contributions scroll<br>As a logged-in user I can scroll down so that I can see all the contributions to that project without reloading the page                                                              | Yes |                                                                                            | Yes       |
-| Iteration 6 | Assets management           | Asset check<br>As a Project manager/Project owner I can approve a contribution with a check so that the contributor knows that it was approved                                                                         | Yes | This is a restricted functionality reserved to the project owner                           | Yes       |
-| Iteration 6 | Assets management           | Delete assets<br>As a asset owner I can delete an asset so that I'm sure is not needed anymore in the project                                                                                                          | Yes |                                                                                            | Yes       |
-| Iteration 6 | Projects management         | Delete projects<br>As a project owner I can delete my projects so that they are not displayed anymore                                                                                                                  | Yes |                                                                                            | Yes       |
-| Iteration 6 | Assets management           | Update assets<br>As a asset owner I can update or delete an asset so that the asset is always updated                                                                                                                  | Yes |                                                                                            | Yes       |
-|             | Assets management           | Create comments<br>As a project contributor I can comment on contributions so that I can express my opinion                                                                                                            | No  |                                                                                            | No        |
-|             | Assets management           | Edit and Delete comments<br>As a comment owner I can edit or delete comments so that I'm free to change my mind                                                                                                        | No  |                                                                                            | No        |
-|             | User and Profile management | Less busy user<br>As a project manager I can see the less busy user so that I can assign him a task                                                                                                                    | No  |                                                                                            | No        |
-|             | Projects management         | Assign user to a project<br>As a project manager I can assign user to a project so that they can work on it                                                                                                            | No  |                                                                                            | No        |
 
 
 
@@ -258,21 +225,22 @@ On this page, the user is required to enter the username and password chosen dur
 ***
 
 ### Timeline (project list)
-
-<img src="readme_assets/dinomizer-ss/home-dinomizer.png" alt="drawing"/>
+Desktop | Mobile
+:-------------------------:|:-------------------------:
+<img src="readme_assets/dinomizer-ss/home-dinomizer.png" alt="drawing"/> | <img src="readme_assets/dinomizer-ss/home-dinomizer-mobile.png" alt="drawing"/>
 
 This page serves as the main hub of the application, listing all the projects created by every user along with their associated assets. The page is structured with two adjacent columns:
 
 Left Column: In this column, project cards are displayed, featuring essential information such as the project title, owner, due date, and current status. At the bottom, there's a control bar component. The controls within this component are dynamically rendered based on the user's status, and you can find detailed information about this in the [Project Controls](#project-controls) section. Clicking on the header section of a project card allows users to access the [project's detail view](#project-details).
 
-Right Column: In this column, cards representing the assets linked to the selected project are displayed. Since a project can have multiple assets, I chose to utilize the carousel element from React Bootstrap to present these assets. Each asset card includes a preview picture, which was uploaded during the [creation process](#asset-create-form) of the asset, and a minimal amount of information, including the title and last update. On both the left and right sides of the card, there are arrow buttons for scrolling through the carousel. Clicking on the picture or the icon next to the title provides access to the [asset's details view](#asset-details).
+Right Column: In this column, cards representing the assets linked to the selected project are displayed. Since a project can have multiple assets, I chose to utilize the carousel element from React Bootstrap to present these assets. More details about this component can be found in the [Assets Carousel](#assets-carousel) section.
 ***
 
 
 ### Project details
 Desktop | Mobile
 :-------------------------:|:-------------------------:
-<img src="readme_assets/dinomizer-ss/project-detail.png" alt="drawing"/> | <img src="readme_assets/dinomizer-ss/project-detail-mobile.png" alt="drawing" width="200"/>
+<img src="readme_assets/dinomizer-ss/project-detail.png" alt="drawing"/> | <img src="readme_assets/dinomizer-ss/project-detail-mobile.png" alt="drawing"/>
 
 The structure of this page mirrors that of the [timeline (project list)](#timeline-project-list) discussed in the previuos chapter. When accessing the project details, more comprehensive information about the project becomes visible, including content and contributors, in addition to the details already available in the list view. As on the list view, it's also possible to access the control bar at the bottom.
 In the right column, the asset carousel provides the same functionality as in the [timeline (project list)](#timeline-project-list).
@@ -280,105 +248,179 @@ In the right column, the asset carousel provides the same functionality as in th
 
 
 ### Project controls
+Status | Component
+:-------------------------:|:-------------------------:
+Joined, Owner | <img src="readme_assets/dinomizer-ss/controls-project3.png" alt="drawing" width="200"/>
+Not joined | <img src="readme_assets/dinomizer-ss/controls-project.png" alt="drawing" width="200"/>
+Joined, not Owner | <img src="readme_assets/dinomizer-ss/controls-project2.png" alt="drawing" width="200"/>
+Not joined, Owner | <img src="readme_assets/dinomizer-ss/controls-project4.png" alt="drawing" width="200"/>
 
-<img src="readme_assets/dinomizer-ss/controls-project3.png" alt="drawing" width="200"/>
+The project controls serve as the visual representation of certain CRUD (Create, Read, Update, Delete) functionalities related to the Project model. This is a dynamic component that renders different buttons based on the user's status. It's important to note that not every button is always present, as depicted in the image.
 
+- The first button is the 'Join/Unjoin' button: When clicked, it registers a new record in the participant model and displays a different icon, the 'Unjoin' icon.
+- The second button is only revealed after joining a project. Its function is to create a new asset for the project. When the button is clicked, the user is presented with the [asset creation form](#asset-create-form). Users have the freedom to create as many assets as they require.
+- The third and fourth buttons are responsible for the CRUD (Create, Read, Update, Delete) functionalities related to editing and deleting assets. When a user clicks on the pen icon, they are presented with the [Asset edit form](#asset-edit-form), where they have the freedom to make the necessary changes. Clicking on the fourth button will result in the deletion of the project. To ensure the user doesn't perform this operation accidentally, a [modal page](#modal-box) will be displayed, requesting confirmation, as this action is not reversible.
 ***
 
-<img src="readme_assets/dinomizer-ss/controls-project.png" alt="drawing" width="200"/>
-
-***
-
-<img src="readme_assets/dinomizer-ss/controls-project2.png" alt="drawing" width="200"/>
 
 ### Project create form
+Desktop | Mobile
+:-------------------------:|:-------------------------:
+<img src="readme_assets/dinomizer-ss/project-create-form.png" alt="drawing"/> | <img src="readme_assets/dinomizer-ss/project-create-form-mobile.png" alt="drawing"/>
 
-<img src="readme_assets/dinomizer-ss/project-create-form.png" alt="drawing"/>
-
+This form is accessible after clicking the 'New Project' button in the Navbar. It's where the user can input all the details related to the project, including: Project name, content, start date, expected end date, status, and cover image. All the input fields are self-explanatory, including the 'Status' dropdown, where the user can choose one of the three options: 'Planned,' 'In Progress,' or 'Completed.' In future versions of Dinomizer, these options will be used to filter and sort search results. Upon submitting the form, the user will be redirected to the [Project details](#project-details) page.
 ***
-
-<img src="readme_assets/dinomizer-ss/project-create-form-mobile.png" alt="drawing" width="200"/>
 
 ### Project edit form
+Desktop | Mobile
+:-------------------------:|:-------------------------:
+<img src="readme_assets/dinomizer-ss/project-edit-form.png" alt="drawing"/> | <img src="readme_assets/dinomizer-ss/project-edit-form-mobile.png" alt="drawing"/>
 
-<img src="readme_assets/dinomizer-ss/project-edit-form.png" alt="drawing"/>
-
+This form is accessible after clicking the 'Pencil' edit button in the project's control bar. Here, the user can update the data that was initially entered during the project creation process. Upon submitting the form, the user will be redirected to the [Project details](#project-details) page.
 ***
 
-<img src="readme_assets/dinomizer-ss/project-edit-form-mobile.png" alt="drawing" width="200"/>
+
 
 ### Assets carousel
+Checked asset
 
-<img src="readme_assets/dinomizer-ss/asset-carousel.png" alt="drawing"/>
+<img src="readme_assets/dinomizer-ss/asset-carousel.png" alt="drawing" width="400"/>
 
+Unchecked asset
+
+<img src="readme_assets/dinomizer-ss/asset-carousel-nocheck.png" alt="drawing" width="400"/>
+
+
+The asset carousel serves as a concise visual representation of the assets. Within this component, all the assets associated with a specific project are collected. Each asset card includes a preview picture, which was uploaded during the creation process of the asset, as well as minimal information such as the title and the date of the last update. On both the left and right sides of each card, there are arrow buttons for scrolling through the carousel. A special 'check' flag appears on top of the title if the project manager (project owner) has marked this asset as 'Checked'. You can find more details on this in the description of the ['Check' option in the Dropdown menu section](#asset-dropdown-menu). Clicking on the picture or the icon next to the title allows access to the asset's details view.
 ***
-
-<img src="readme_assets/dinomizer-ss/asset-carousel-nocheck.png" alt="drawing"/>
-
 
 
 ### Asset details
+Desktop | Mobile
+:-------------------------:|:-------------------------:
+<img src="readme_assets/dinomizer-ss/asset-detail.png" alt="drawing"/> | <img src="readme_assets/dinomizer-ss/asset-detail-mobile.png" alt="drawing"/>
 
-<img src="readme_assets/dinomizer-ss/asset-detail.png" alt="drawing"/>
-
+On this page, the user can view all the details of the asset. In addition to the inputs provided by the user during the creation process, there are also additional informations such as the 'related project,' which is a field provided by the frontend logic, and the asset's owner. Furthermore, a [dropdown menu](#asset-dropdown-menu) that overlays the cover image is present.
 ***
 
-<img src="readme_assets/dinomizer-ss/asset-detail-mobile.png" alt="drawing" width="200"/>
 
 ### Asset dropdown menu
-
 <img src="readme_assets/dinomizer-ss/dropdown-menu.png" alt="drawing" width="200"/>
 
+The asset dropdown menu is a dynamic component that renders its options based on various conditions. Not all options are presented to the user; instead, they are conditionally rendered based on the user's state and the content of the asset. If the user is the owner of the asset, they will see the 'Edit' and 'Delete' options. If the user is also the project owner of the project to which the asset is related, the 'Check' option will also be visible. The 'Download' option is presented only if a real asset is associated with the item (more details on this are available in the [asset create form](#asset-create-form)).
+
+
 ### Asset create form
+Desktop | Mobile
+:-------------------------:|:-------------------------:
+<img src="readme_assets/dinomizer-ss/asset-create-form.png" alt="drawing"/> | <img src="readme_assets/dinomizer-ss/asset-create-form-mobile.png" alt="drawing"/>
 
-<img src="readme_assets/dinomizer-ss/asset-create-form.png" alt="drawing"/>
-
+This form is accessible after clicking the 'Create Asset' button in the project's control bar. Here, the user can input all the details related to the asset, including: Asset name, Category, Description, Upload Asset, and Cover Image. The 'Category' input is a dropdown menu with the following options for the user to choose from: Graphic, Video, Audio, Copywriting, and Other. After submission, the user will be redirected to the Asset detail page.
+It's worth noting that the 'Upload Asset' field is not required, and this deliberate choice allows the asset element to be very flexible and used, for example, as a checklist or memorandum.
 ***
 
-<img src="readme_assets/dinomizer-ss/asset-create-form-mobile.png" alt="drawing" width="200"/>
 
 ### Asset edit form
+Desktop | Mobile
+:-------------------------:|:-------------------------:
+<img src="readme_assets/dinomizer-ss/asset-edit-form.png" alt="drawing"/> | <img src="readme_assets/dinomizer-ss/asset-edit-form-mobile.png" alt="drawing"/>
 
-<img src="readme_assets/dinomizer-ss/asset-edit-form.png" alt="drawing"/>
-
+This form is accessible after clicking the 'Edit' option in the [dropdown menu](#asset-dropdown-menu). This option is visible only if the user is the owner of the asset. Within this form, users can update the data that was initially entered during the [asset creation process](#asset-create-form). Upon submitting the form, the user will be redirected to the [Asset detail page](#asset-details).
 ***
 
-<img src="readme_assets/dinomizer-ss/asset-edit-form-mobile.png" alt="drawing" width="200"/>
 
 ### Profile detail page
+Desktop | Mobile
+:-------------------------:|:-------------------------:
+<img src="readme_assets/dinomizer-ss/profile-page.png" alt="drawing"/> | <img src="readme_assets/dinomizer-ss/profile-page-mobile.png" alt="drawing"/>
 
-<img src="readme_assets/dinomizer-ss/profile-page.png" alt="drawing"/>
-
+The profile page serves as the location where all available details for a profile are visible. These details include the profile image, real name, bio, registration date, last profile update, and, of course, the username chosen during the user registration. The username is displayed in the page title. If the user is the owner of the profile, the page will also render the 'Edit' and 'Sign Out' buttons.
 ***
 
-<img src="readme_assets/dinomizer-ss/profile-page-mobile.png" alt="drawing" width="200"/>
+### Profile edit form
+Desktop | Mobile
+:-------------------------:|:-------------------------:
+<img src="readme_assets/dinomizer-ss/profile-edit-form.png" alt="drawing"/> | <img src="readme_assets/dinomizer-ss/profile-edit-form-mobile.png" alt="drawing"/>
+
+A user has the ability to edit the details of their profile, which includes the option to change their password along the other fields like Image, Real name, and Bio.
+***
+
 
 ### Search bar
-
 <img src="readme_assets/dinomizer-ss/searchbar-projects.png" alt="drawing"/>
 
-***
+Through the use of the search bar, a user can search for projects. The search operation is performed by examining the title, content, and owner.
 
 <img src="readme_assets/dinomizer-ss/searchbar-assets.png" alt="drawing"/>
 
-### Modal box
+The search bar for Assets is available on the Contribute page, where all the assets created by a user are listed. By using the search bar, a user can search for assets, and the search operation involves examining the asset name, category, and owner.
 
-<img src="readme_assets/dinomizer-ss/modal-delete.png" alt="drawing"/>
+### Modal box
+Desktop | Mobile
+:-------------------------:|:-------------------------:
+<img src="readme_assets/dinomizer-ss/modal-delete.png" alt="drawing"/> | <img src="readme_assets/dinomizer-ss/modal-delete-mobile.png" alt="drawing"/>
+
+When a user attempts to delete a project or an asset, the item is not immediately removed. Deletion is considered irreversible, so a modal page pops up to confirm the operation.
+***
 
 ### Error messages
-
 <img src="readme_assets/dinomizer-ss/error-messages.png" alt="drawing"/>
+
+All input fields in the forms are processed through a control system. In the event of errors occurring during submission, warning messages are displayed under the fields affected by the error.
 
 
 ## CRUD functionality
+Dinomizer delivers robust functionality encompassing the creation, retrieval, updating, and deletion of various elements. This capability is made accessible through a user interface developed using React JS in combination with the Django Rest Framework API. The web application empowers users to create and manage profiles, projects, assets, and checks, presenting these elements in both list and detailed views. Users possessing the necessary permissions, including ownership rights, can utilize dedicated forms to make updates and deletions to these elements.
 
 ## Reuse of components
+Some of the components of Dinomizer where coded with the intention of writing less code and those includes:
+
+- Avatar Component:
+
+  The Avatar component is utilized to display a user's profile picture across various pages within the site.
+  It accepts two props: src for the image source and height for the image's height.
+
+- Back Button Component:
+
+  The Back Button component utilizes the useHistory hook to enable users to navigate back to the previous page they were on.
+
+- Placeholder Component:
+
+  The Placeholder component serves multiple purposes, such as displaying loading spinners and cover images for Project and Asset creation forms.
+  It accepts three props: src for the image source, spinner as a switch for conditionally rendering the loading spinner, and msg to display a message, as seen in the NotFound component.
+
+- DeleteModal Component (Again):
+
+  The DeleteModal component handles the deletion operation after receiving user confirmation.
+  It's used for deleting projects and assets and takes several props: `type` specifies the element type in the confirmation message, `name` represents the name of the element, `change` toggles the showModal state, and `deleteitem` sends the appropriate Axios request to delete the element.
+
+- Project Component:
+
+  The Project component is employed whenever a project needs to be displayed, whether on project lists or in project details.
+  It features conditionally rendered elements based on its usage (project list or project detail) and leverages various props to achieve this. For instance, the projectPage prop acts as a flag to indicate that the component should render specific parts, and it does so based on the value of this prop.
+
+- Asset Component:
+
+  The Asset component follows a similar logic as the Project component, with the ability to conditionally render elements based on its usage. It takes in props to determine how it should behave and what to display, whether in the list view or asset detail view or in the AssetCarousel.
+
 
 ## Custom hooks
+The two custom hooks present on this project are useRedirect and useClickOutsideToggle and are borrowed from the walkthrough project of Code Institute called Moments.
+- useRedirect Custom Hook:
+
+  The useRedirect custom hook serves a crucial role in the project by checking whether a user is still logged in. If not, it redirects the user to the logged-out page.
+  It is also employed to redirect logged-in users who attempt to access sections of the site that are unnecessary for someone already logged in, such as the sign-in page. For instance, if a user accidentally enters the direct URL for the sign-in page, they are redirected to the home page, which is the timeline page.
+
+- useClickOutsideToggle Custom Hook:
+
+  The useClickOutsideToggle custom hook is utilized in the collapsed navbar(mobile) and plays a significant role in providing a smoother user experience. It automatically collapses the navbar menu when a user clicks on an option or anywhere outside of the navbar. This eliminates the need for the user to click the burger menu again, contributing to a more user-friendly experience.
+
 
 ## Context
+Context is a powerful feature provided by React JS. In this project, the CurrentUserContext is borrowed from the Code Institute's walkthrough project called Moments. It plays a crucial role in various parts of the application, allowing checks on user permissions to perform various tasks. For example, it ensures that users have the necessary permissions to change their profile password.
 
 ## Testing
+Testing was conducted throughout the development of the web application and followed the chronological order of the user stories outlined in the Iterations, as documented in the Agile methodology section. Details of both manual and automated tests conducted on Dinomizer are provided in this document. Alternatively, the test results can be accessed in spreadsheet format at this link.
 
 ## Deployment
 

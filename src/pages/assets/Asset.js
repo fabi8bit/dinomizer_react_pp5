@@ -40,7 +40,7 @@ const Asset = (props) => {
   } = props;
 
   const [project, setProject] = useState({});
-  const [downloadEmpty, setDownloadEmpty] = useState(true);
+  const [fileExists, setFileExists] = useState();
 
   const history = useHistory();
 
@@ -55,17 +55,20 @@ const Asset = (props) => {
     };
 
     const defineDownload = () => {
-      if (!assetfile) {
-        setDownloadEmpty(true);
+      if (assetfile == null) {
+        setFileExists(false);
       } else {
-        setDownloadEmpty(false);
+        setFileExists(true);
       }
     };
+    console.log(`this is assetfile value ${assetfile}`)
+    console.log('type of assetfile', typeof assetfile)
+    console.log(`this is the fileExists value ${fileExists}`)
 
     getProject();
     defineDownload();
 
-  }, [project_id, downloadEmpty, assetfile]);
+  }, [project_id, fileExists, assetfile]);
 
   const handleCheck = async () => {
     try {
@@ -179,14 +182,17 @@ const Asset = (props) => {
                     title=""
                     variant="primary"
                   >
-                    {is_owner ? (
+                    {is_owner && (
                       <>
                         <Dropdown.Item
                           onClick={() => history.push(`/assets/${id}/edit`)}
                         >
                           Edit
                         </Dropdown.Item>
-                        {!downloadEmpty && (
+                       
+                      </>
+                    )}
+                     {fileExists && (
                           <Dropdown.Item
                             className={appStyles.Links2}
                             href={`https://res.cloudinary.com/dhsjcm3v3/${assetfile}`}
@@ -197,16 +203,6 @@ const Asset = (props) => {
                             Download
                           </Dropdown.Item>
                         )}
-                      </>
-                    ) : (
-                      <Dropdown.Item
-                        className={appStyles.Links2}
-                        href={`https://res.cloudinary.com/dhsjcm3v3/${assetfile}`}
-                      >
-                        <FileDownloadIcon />
-                        Download
-                      </Dropdown.Item>
-                    )}
                     {project_owner && (
                       <>
                         {check_id ? (
@@ -304,32 +300,27 @@ const Asset = (props) => {
                     title=""
                     variant="primary"
                   >
-                    {is_owner ? (
+                    {is_owner && (
                       <>
                         <Dropdown.Item
                           onClick={() => history.push(`/assets/${id}/edit`)}
                         >
                           Edit
                         </Dropdown.Item>
-                        <Dropdown.Item
-                          href={`https://res.cloudinary.com/dhsjcm3v3/${assetfile}`}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <FileDownloadIcon />
-                          Download
-                        </Dropdown.Item>
+                       
                       </>
-                    ) : (
-                      <Dropdown.Item
-                        href={`https://res.cloudinary.com/dhsjcm3v3/${assetfile}`}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        <FileDownloadIcon />
-                        Download
-                      </Dropdown.Item>
                     )}
+                     {fileExists && (
+                          <Dropdown.Item
+                            className={appStyles.Links2}
+                            href={`https://res.cloudinary.com/dhsjcm3v3/${assetfile}`}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <FileDownloadIcon />
+                            Download
+                          </Dropdown.Item>
+                        )}
                     {project_owner && (
                       <>
                         {check_id ? (

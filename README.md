@@ -166,7 +166,7 @@ As soon as the user stories were successfully completed, I marked them as 'close
 
 <img src="readme_assets/dinomizer-ss/dinomizer-logo-study.png" alt="drawing"/>
 
-The name 'Dinomizer' was proposed by my colleague Alessandro Corinti at [Pomodoro Communication Agency](https://www.pomodoroproduzioni.it/). It's a sort of acronym, standing for 'DIgital Nomads organIZER.' Naturally, the name also inspired the idea of a dinosaur, which served as the basis for the logo design. I crafted the logo using Adobe Illustrator and selected the color palette using Adobe Color.
+The name 'Dinomizer' was proposed by my colleague Alessandro Corinti at [Pomodoro Communication Agency](https://www.pomodoroproduzioni.it/). It's a sort of acronym, standing for 'DIgital Nomads organIZER.' Naturally, the name also inspired the idea of a dinosaur, which served as the basis for the logo design. I crafted the logo using [Adobe Illustrator](https://www.adobe.com/products/illustrator.html) and selected the color palette using [Adobe Color](https://color.adobe.com/).
 I opted for high-contrast colors to enhance the overall readability of the entire website.
 
 ![Alt text](readme_assets/logos/dinomizer-color-pallette.png)

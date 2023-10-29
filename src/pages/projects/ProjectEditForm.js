@@ -278,6 +278,7 @@ function ProjectEditForm() {
                       <Image
                         className={styles.FillerImage}
                         src={image}
+                        alt={project_name}
                         fluid
                       />
                     </figure>

@@ -217,6 +217,7 @@ function AssetEditForm() {
                       <Image
                         className={styles.FillerImage}
                         src={image}
+                        alt={asset_name}
                         fluid
                       />
                     </figure>

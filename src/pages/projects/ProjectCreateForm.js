@@ -183,15 +183,15 @@ function ProjectCreateForm() {
           <h5>Status</h5>
         </Form.Label>
         <Form.Control
-          id="matchLevel"
+          id="status"
           as="select"
           name="status"
           value={status}
           onChange={handleChange}
         >
-          <option>Planned</option>
-          <option>InProgress</option>
-          <option>Completed</option>
+          <option id="1">Planned</option>
+          <option id="2">InProgress</option>
+          <option id="3">Completed</option>
         </Form.Control>
       </Form.Group>
       {errors?.status?.map((message, idx) => (

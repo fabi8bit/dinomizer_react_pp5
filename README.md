@@ -65,10 +65,12 @@ Here is the live version of the application: [Dinomizer](https://dinomizer-6ec16
   * [Context](#context)
   * [Testing](#testing)
   * [Validator Testing](#validator-testing)
+  * [Bugs and development obstacles](#bugs-and-development-obstacles)
   * [Deployment](#deployment)
   * [Future improvements](#future-improvements)
   * [Framework and libraries](#framework-and-libraries)
   * [Credits](#credits)
+  * [Thanks](#thanks)
 
 
 ## The Idea
@@ -459,10 +461,48 @@ Contribute | <img src="readme_assets/wave-validator/wave-contribute.png" alt="dr
 Asset Detail | <img src="readme_assets/wave-validator/wave-assetdetail.png" alt="drawing" width="300"/>
 Logout page | <img src="readme_assets/wave-validator/wave-logoutpage.png" alt="drawing" width="300"/>
 
+### Lighthouse
+
+The chart below summarizes the tests conducted using Google Chrome's Lighthouse tool. It's worth noting that some of the addressed issues, such as labels not being associated with forms and non-unique id attributes on active, focusable elements, still remain unresolved.
+
+Page | Result Desktop | Result Mobile
+:------------------:|:-------------------------:|:-------------------------:
+Timeline | ![timelinedesk](readme_assets/lighthouse-tests/lighthouse-timeline-desk.png) | ![timelinemobile](readme_assets/lighthouse-tests/lighthouse-timeline-mobile.png)
+Projects | ![projectsdesk](readme_assets/lighthouse-tests/lighthouse-projects-desk.png) | ![projectmobile](readme_assets/lighthouse-tests/lighthouse-projects-mobile.png)
+Project Edit Form | ![projecteditform](readme_assets/lighthouse-tests/lighthouse-projecteditform-desk.png) |  N/A
+Project detail | ![projectdetail](readme_assets/lighthouse-tests/lighthouse-projectdetail-desk.png) | ![projectdetailmobile](readme_assets/lighthouse-tests/lighthouse-projectdetail-mobile.png)
+Profile | ![profile](readme_assets/lighthouse-tests/lighthouse-profile-desk.png) | ![profilemobile](readme_assets/lighthouse-tests/lighthouse-profile-mobile.png)
+Create Project Form | ![createprojectformdesk](readme_assets/lighthouse-tests/lighthouse-createprojectform-desk.png) | ![createprojectformmobile](readme_assets/lighthouse-tests/lighthouse-createprojectform-mobile.png)
+Contribute | ![contributedesk](readme_assets/lighthouse-tests/lighthouse-contribute-desk.png) | ![contributemobile](readme_assets/lighthouse-tests/lighthouse-contribute-mobile.png)
+Asset detail | ![assetdetail](readme_assets/lighthouse-tests/lighthouse-assetdetail-desk.png) | ![assetdetailmobile](readme_assets/lighthouse-tests/lighthouse-assetdetail-mobile.png)
 
 
+### Bugs and development obstacles
 
+The application appears to be free of significant or obvious bugs, and everything functions as expected. However, during the development process, there were instances where I encountered unusual behavior that I was able to address and resolve for the final version of Dinomizer.
 
+After creating the Asset form, I realized that I had made a mistake in defining the fields on the backend side. One of the features of the application is the ability to upload various types of media files, such as images, videos, and .txt files. However, at that point, my code could only upload images. Thanks to the support I received from Code Institute, I was able to resolve this issue. Sean provided valuable assistance for over an hour, helping me identify and fix the problem. He also discovered issues with my useState implementation in the frontend. Ultimately, we found the solution: the 'type' field in the Asset model needed to be changed to a Cloudinary field. This resolved the issue, and users can now upload images, videos, and .txt files as intended.
+
+During the initial planning of the application, I had decided to skip implementing the search feature for projects. However, during the coding of the project page, I realized the need to include a search function for projects to enhance the overall user experience. As a result, I had to go back and implement this feature in the backend project. You can find the specific commit related to this update here: [Commit d5f3dae](https://github.com/fabi8bit/dinomizer_drf_pp5/commit/d5f3dae0e09241c17670ea45e4f573d8e00b6237).
+
+During the development of the Asset form, I encountered the need to include additional fields such as profile_id, profile_image, and project_owner for assets. Similarly, I also found the need to include participants_id and participant_image for the participants' endpoints. To address this, I revisited the backend project and included these fields in the API. This approach was more efficient and convenient than making multiple requests to the server from the frontend to retrieve this information.
+
+Throughout the development process, whenever I needed to make changes to the Django Rest Framework (DRF) project, I ensured that the ENV variable in the env.py file was activated. This allowed me to activate the Django view for checking the changes I made. Once I verified that the code was functioning as expected, I commented out the ENV variable, saved the changes, added them to Git, committed, pushed to GitHub, and redeployed to Heroku. This workflow helped me maintain a smooth development process.
+
+The process of creating assets is managed by the AssetCreateForm.js component. Each asset must be associated with a project. On the backend, the project_id field is set to null: False, meaning it cannot be empty. However, since an asset can only be linked to a single project, I passed the project's ID to the AssetCreateForm.js component via the location.state.
+To achieve this, I used the useHistory hook and included the project ID as a property in the state. In the Project.js component, the handleOpenCreateAsset function was responsible for this. By using the useHistory hook, I could add the project ID to the state and pass it to the AssetCreateForm.js component. I found [this post](https://dev.to/esedev/how-to-pass-and-access-data-from-one-route-to-another-with-uselocation-usenavigate-usehistory-hooks-1g5m#:~:text=Fortunately%2C%20React%20Router%20provides%20several,from%20the%20current%20location%20object) helpful in implementing this functionality.
+
+If a non-logged-in user attempts to access the 'createassetsform' directly from the URL bar, an error is thrown. This occurs because no 'project_id' is passed to the form. To fix this issue, I implemented a function that handles this scenario by redirecting back (using 'history.goBack()') in cases where 'location.state.id' is not defined.
+
+Submitting the asset edit form, threw a 503 Error from the server. After conducting research and seeking assistance from Code Institute (thank you Martin), I received valuable advice to run the server locally. Several changes were made to address this issue:
+
+In the frontend, under api/axiosDefaults.js, I adjusted the axios.defaults.baseURL settings, pointing to GitPod running the DRF.
+
+On the backend, I made sure that the DEV variable was commented out in the env.py file.
+
+By following these steps, the real issue was revealed, and an error message was printed out in the backend console. The problem was traced to a missing trailing slash at the end of the PUT method in the 'handlesubmit' function. This bug was addressed and documented in [commit fca0586](https://github.com/fabi8bit/dinomizer_react_pp5/commit/fca058666ca5c5b83197185a44fc08105a889bb3).
+
+When rendering the DOM, on the consolle I had the following warning: validateDomNesting(...), that was resolved thanks to [this post](https://stackoverflow.com/questions/55625431/warning-validatedomnesting-a-cannot-appear-as-a-descendant-of-a)
 
 
 ## Deployment
@@ -508,23 +548,6 @@ Once the deployment is complete, you'll see the "Open App" button. Clicking on i
 
 ## Future improvements
 
-
-
-## Framework and libraries
-
-## Credits
-
-
-
-
-
-
-
-
-
-
-
-## Future improvements
 - create an Organization that contains projects
 - set a local storage to store original files (large size)
 - create authomatic lowres file to display inside the app
@@ -533,5 +556,34 @@ Once the deployment is complete, you'll see the "Open App" button. Clicking on i
 - side navbar for a more appealing user experience
 
 
-side navbar
-https://www.youtube.com/watch?v=IathdVB65Lw&t=217s
+## Framework and libraries
+
+- React.js
+- [react-router-dom](https://www.npmjs.com/package/react-router-dom)
+- [Axios](https://www.npmjs.com/package/axios)
+- [jwt-decode](https://www.npmjs.com/package/jwt-decode)
+- [MUI Material Icons](https://mui.com/material-ui/material-icons/)
+- [React Bootstrap](https://react-bootstrap-v4.netlify.app/components/)
+
+
+## Credits
+
+During the development of Dinomizer, my primary point of reference was the walkthrough project "Moments" by Code Institute, which proved to be an invaluable resource covering most of the requirements I encountered. However, I also relied on other posts and tutorials, which I have listed below:
+
+[useHistory hook](https://dev.to/esedev/how-to-pass-and-access-data-from-one-route-to-another-with-uselocation-usenavigate-usehistory-hooks-1g5m#:~:text=Fortunately%2C%20React%20Router%20provides%20several,from%20the%20current%20location%20object)
+
+[side navbar](https://www.youtube.com/watch?v=IathdVB65Lw&t=217s)
+
+[React Router](https://www.educative.io/answers/what-are-the-exact-path-and-path-props-in-react-router)
+
+[General infos on CSS - W3School](https://www.w3schools.com/)
+
+[CSS alignment](https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_flex-justify-center-responsive#:~:text=Justify%20content%20center-,Use%20the%20.,window%20to%20see%20the%20effect.)
+
+
+
+
+
+
+## Thanks
+I want to express my sincere gratitude to my mentor Jubril for his invaluable support throughout the year. I also extend my heartfelt thanks to Andy Guttridge, who has been a great source of inspiration. Thank you both so much!

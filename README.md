@@ -6,7 +6,9 @@ Dinomizer is a web application designed to assist Creative Agencies with teams d
 
 ![dinomizer-responsive](readme_assets/dinomizer-responsive.png)
 
-Dinomizer is built using Django Rest Framework for the backend and React JS for the frontend. This project was created as my fifth portfolio project for my Diploma in Web Application Development at Code Institute.
+Dinomizer is built using Django Rest Framework for the backend and React JS for the frontend. Thanks to the use of ReactJS library it is possible to handle client-side routing, create CRUD functionality for users from an API, make async await network requests for form submission, and use of context.
+
+This project was created as my fifth portfolio project for my Diploma in Web Application Development at Code Institute.
 
 Here is the live version of the application: [Dinomizer](https://dinomizer-6ec16116a4cb.herokuapp.com/)
 
@@ -427,7 +429,48 @@ Only one automated test was conducted, and it was on the NavBar:
 
 ## Deployment
 
+Take the following steps to deploy to Heroku:
+
+- Fork or clone this repository on GitHub.
+
+- If you've created your own version of the [Dinomizer API](https://github.com/fabi8bit/dinomizer_drf_pp5/), you'll need to set the base URL. Follow these steps:
+
+  - Navigate to src/api/axiosDefaults.js.
+
+  - Look for the following line of code:
+
+  - `axios.defaults.baseURL = "********************";`
+
+  - Replace "********************" with the base URL of your own Dinomizer API.
+
+  - Pull the updates to your local development environment and, if needed, push them back to GitHub. 
+
+- If you intend to use the original [Dinomizer API](https://github.com/fabi8bit/dinomizer_drf_pp5/), there's no need to modify this value, as it's already set for you.
+
+- Log in to your Heroku account.
+
+- Select 'Create new app' from the 'New' menu located at the top right.
+
+- Provide a name for the app and select the appropriate region.
+
+- Click 'Create app'.
+
+- Head to the 'Deploy' tab at the top of the page.
+
+- Choose 'GitHub' as the deployment method to confirm that you want to deploy using GitHub. You may need to enter your GitHub password.
+
+- In the 'Connect to GitHub' section, use the search box to find your repository.
+
+- Select 'Connect' once you've located it.
+
+- In the 'Manual Deploy' section, choose the 'main' branch to deploy and select 'Deploy Branch'.
+
+Once the deployment is complete, you'll see the "Open App" button. Clicking on it will take you to the live published site.
+
+
 ## Future improvements
+
+
 
 ## Framework and libraries
 

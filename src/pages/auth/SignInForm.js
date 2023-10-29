@@ -104,6 +104,7 @@ const SignInForm = () => {
           <Image
           className={styles.FillerImage}
             src={logo}
+            alt="logo dinomizer"
           />
         </Container>
       </Col>

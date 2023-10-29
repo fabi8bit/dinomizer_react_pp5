@@ -61,13 +61,9 @@ const Asset = (props) => {
         setFileExists(true);
       }
     };
-    console.log(`this is assetfile value ${assetfile}`)
-    console.log('type of assetfile', typeof assetfile)
-    console.log(`this is the fileExists value ${fileExists}`)
 
     getProject();
     defineDownload();
-
   }, [project_id, fileExists, assetfile]);
 
   const handleCheck = async () => {
@@ -150,11 +146,9 @@ const Asset = (props) => {
                 )}
                 <Card.Title className={styles.ProjectAssetTit}>
                   <Link to={`/assets/${id}`}>
-                    <FileOpenIcon
-                      className={`${styles.ProjectAssetTit} ${appStyles.Links}`}
-                    />
-                  </Link>{" "}
-                  | {asset_name}
+                    <FileOpenIcon className={`${styles.ProjectAssetTit}`} /> |{" "}
+                    {asset_name}
+                  </Link>
                 </Card.Title>
                 <hr />
                 <Card.Subtitle>Last update:</Card.Subtitle>
@@ -179,7 +173,7 @@ const Asset = (props) => {
 
                 <Card.ImgOverlay>
                   <DropdownButton
-                    title=""
+                    title="Options"
                     variant="primary"
                   >
                     {is_owner && (
@@ -189,20 +183,19 @@ const Asset = (props) => {
                         >
                           Edit
                         </Dropdown.Item>
-                       
                       </>
                     )}
-                     {fileExists && (
-                          <Dropdown.Item
-                            className={appStyles.Links2}
-                            href={`https://res.cloudinary.com/dhsjcm3v3/${assetfile}`}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            <FileDownloadIcon />
-                            Download
-                          </Dropdown.Item>
-                        )}
+                    {fileExists && (
+                      <Dropdown.Item
+                        className={appStyles.Links2}
+                        href={`https://res.cloudinary.com/dhsjcm3v3/${assetfile}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <FileDownloadIcon />
+                        Download
+                      </Dropdown.Item>
+                    )}
                     {project_owner && (
                       <>
                         {check_id ? (
@@ -235,8 +228,8 @@ const Asset = (props) => {
                   )}
 
                   <Card.Title className={`${styles.ProjectAssetTit}`}>
-                    {asset_name} |{" "}
                     <Link to={`/assets/${id}`}>
+                      {asset_name} |{" "}
                       <FileOpenIcon
                         className={`${styles.ProjectAssetTit} ${appStyles.Links}`}
                       />
@@ -258,8 +251,8 @@ const Asset = (props) => {
                   <hr />
                   <Card.Subtitle>Related to project:</Card.Subtitle>
                   <Card.Text>
-                    <strong>{project.project_name}</strong> |{" "}
                     <Link to={`/projects/${project_id}`}>
+                      <strong>{project.project_name}</strong> |
                       <FileOpenIcon
                         className={`${styles.ProjectAssetTit} ${appStyles.Links}`}
                       />
@@ -297,7 +290,7 @@ const Asset = (props) => {
                 />
                 <Card.ImgOverlay>
                   <DropdownButton
-                    title=""
+                    title="Options"
                     variant="primary"
                   >
                     {is_owner && (
@@ -307,20 +300,19 @@ const Asset = (props) => {
                         >
                           Edit
                         </Dropdown.Item>
-                       
                       </>
                     )}
-                     {fileExists && (
-                          <Dropdown.Item
-                            className={appStyles.Links2}
-                            href={`https://res.cloudinary.com/dhsjcm3v3/${assetfile}`}
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            <FileDownloadIcon />
-                            Download
-                          </Dropdown.Item>
-                        )}
+                    {fileExists && (
+                      <Dropdown.Item
+                        className={appStyles.Links2}
+                        href={`https://res.cloudinary.com/dhsjcm3v3/${assetfile}`}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        <FileDownloadIcon />
+                        Download
+                      </Dropdown.Item>
+                    )}
                     {project_owner && (
                       <>
                         {check_id ? (
@@ -371,8 +363,8 @@ const Asset = (props) => {
                   <hr />
                   <Card.Subtitle>Related to project:</Card.Subtitle>
                   <Card.Text>
-                    <strong>{project.project_name}</strong> |{" "}
                     <Link to={`/projects/${project_id}`}>
+                      <strong>{project.project_name}</strong> | 
                       <FileOpenIcon
                         className={`${styles.ProjectAssetTit} ${appStyles.Links}`}
                       />

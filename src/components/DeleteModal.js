@@ -11,16 +11,8 @@ function DeleteModal({ id, type, name, change, deleteitem }) {
     setShow(true);
   }, [id, type, name]);
 
-  //   useEffect(() => {
-  //     setShow(true);
-  //   }, []);
-
   return (
     <>
-      {/* <Button variant="primary" onClick={handleShow}>
-          Launch demo modal
-        </Button> */}
-
       <Modal
         show={show}
         onHide={handleClose}

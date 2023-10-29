@@ -33,26 +33,6 @@ function ProjectsPage({ message, myProjects }) {
     fetchProjects();
   }, [pathname, query]);
 
-  // useEffect(() => {
-  //   const fetchProjects = async () => {
-  //     try {
-  //       const [{ data: projects }, {data: assets}] = await Promise.all([
-  //         axiosReq.get(`/projects/?search=${query}`),
-  //         // axiosReq.get(`/assets/?search=${query}`)
-  //       ]);
-  //       setProjects({data: [projects]});
-  //       // setAssets({results: [assets]});
-  //       setHasLoaded(true);
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-
-  //   setHasLoaded(false);
-  //   fetchProjects();
-    
-  // }, [pathname, query]);
-
   return (
     <>
     
@@ -63,11 +43,13 @@ function ProjectsPage({ message, myProjects }) {
                 className={styles.SearchBar}
                 onSubmit={(event) => event.preventDefault()}
               >
+                <Form.Label className="d-none">Searchbar</Form.Label>
                 <FormControl
                   value={query}
                   onChange={(event) => setQuery(event.target.value)}
                   type="text"
                   placeholder="Search projects"
+                  name="Searchbar"
                 />
               </Form>
             </Col>

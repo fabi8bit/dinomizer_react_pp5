@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axios.Defaults";
-// import { useParams } from "react-router-dom/cjs/react-router-dom";
 import { Card, ListGroup } from "react-bootstrap";
-// import Avatar from "../../components/Avatar";
 import Contributor from "./Contributor";
 import appStyles from "../../App.module.css";
 

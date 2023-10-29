@@ -14,8 +14,6 @@ import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../context/CurrentUserContext";
-
-// import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
 import styles from "../../styles/Profile.module.css";
 

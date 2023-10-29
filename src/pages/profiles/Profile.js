@@ -39,6 +39,7 @@ const Profile = (props) => {
                 src={image}
                 height="280"
                 width="280"
+                alt={owner}
               />
             </Row>
             {is_owner && (

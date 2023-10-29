@@ -138,6 +138,7 @@ const SignUpForm = () => {
           <Image
             className={styles.FillerImage}
             src={logo}
+            alt="logo dinomizer"
           />
         </Container>
       </Col>

@@ -26,11 +26,6 @@ const AssetCreateForm = () => {
 
   const [id, setId] = useState();
   const data = location.state.thisId;
-  
- 
-  // useRedirect("loggedOut");
-
-  // const id = location.state.id;
 
   const [assetData, setAssetData] = useState({
     asset_name: "",
@@ -115,7 +110,6 @@ const AssetCreateForm = () => {
     formData.append("category", category);
     formData.append("description", description);
     formData.append("image", imageInput.current.files[0]);
-    // formData.append("assetfile", assetfileinput.current.files[0]);
     if (assetfileinput?.current?.files[0]) {
       formData.append("assetfile", assetfileinput.current.files[0]);
     }

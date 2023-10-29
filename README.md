@@ -445,6 +445,23 @@ Only one automated test was conducted, and it was on the NavBar:
 | [https://dinomizer-6ec16116a4cb.herokuapp.com/profiles/6/edit](https://dinomizer-6ec16116a4cb.herokuapp.com/profiles/6/edit)                   | .Button_Button__27i9m<br>only 0 can be a unit. You must put a unit after your number : 5 | Yes | [fb59582](https://github.com/fabi8bit/dinomizer_react_pp5/commit/fb595824092d968b62e9e3f8138d4d94e714c190) | No Errors Found |
 | [https://dinomizer-6ec16116a4cb.herokuapp.com/profiles/6/edit/password](https://dinomizer-6ec16116a4cb.herokuapp.com/profiles/6/edit/password) | .Button_Button__27i9m<br>only 0 can be a unit. You must put a unit after your number : 5 | Yes | [fb59582](https://github.com/fabi8bit/dinomizer_react_pp5/commit/fb595824092d968b62e9e3f8138d4d94e714c190) | No Errors Found |
 
+### WAVE web accessability testing
+
+The website underwent WAVE web accessibility testing, and the results are documented in the following chart. Some of the issues identified were not addressed within the given time constraints. 
+
+Page | Result | Errors
+:------------------:|:-------------------------:|:-------------------------:
+Sign In | <img src="readme_assets/wave-validator/wave-signin.png" alt="drawing" width="300"/>
+Sign Up | <img src="readme_assets/wave-validator/wave-signup.png" alt="drawing" width="300"/>
+Timeline | <img src="readme_assets/wave-validator/wave-timeline.png" alt="drawing" width="300"/> | Missing form label detected on search bar
+Projects | <img src="readme_assets/wave-validator/wave-projects.png" alt="drawing" width="300"/> | Missing form label detected on search bar
+Contribute | <img src="readme_assets/wave-validator/wave-contribute.png" alt="drawing" width="300"/> | Missing form label detected on search bar
+Asset Detail | <img src="readme_assets/wave-validator/wave-assetdetail.png" alt="drawing" width="300"/>
+Logout page | <img src="readme_assets/wave-validator/wave-logoutpage.png" alt="drawing" width="300"/>
+
+
+
+
 
 
 

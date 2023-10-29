@@ -1,26 +1,16 @@
 import React, { useEffect, useState } from "react";
-
-// import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axios.Defaults";
-// import { useCurrentUser } from "../../context/CurrentUserContext";
-// import { Col, Row } from "react-bootstrap";
 import Project from "./Project";
 import { useRedirect } from "../../hooks/useRedirect";
-
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
 import { BackButton } from "../../components/BackButton";
-// import styles from "../../styles/ProjectAsset.module.css";
-// import Asset from "../assets/Asset";
 
 const ProjectPage = () => {
   useRedirect("loggedOut")
   const history = useHistory();
-  // const currentUser = useCurrentUser();
   const { id } = useParams();
   const [project, setProject] = useState({ results: [] });
-  // const [asset, setAsset] = useState({ results: [] });
-  // const [participants, setParticipants] = useState({ results: [] });
 
   useEffect(() => {
     const handleMount = async () => {

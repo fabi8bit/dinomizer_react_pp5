@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -117,7 +116,6 @@ function ProjectEditForm() {
 
     formData.append("project_name", project_name);
     formData.append("content", content);
-    // formData.append("image", imageInput.current.files[0]);
     formData.append("start_date", startDate);
     formData.append("expected_end_date", endDate);
     formData.append("status", status);

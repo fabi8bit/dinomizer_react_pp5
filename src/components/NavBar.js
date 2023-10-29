@@ -27,7 +27,7 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
-        <LoginIcon className={styles.Icon} />
+        <LoginIcon aria-label="Login icon" className={styles.Icon} />
         Sign in
       </NavLink>
       <NavLink
@@ -36,7 +36,7 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
-        <PersonAddIcon className={styles.Icon} />
+        <PersonAddIcon aria-label="Signup"className={styles.Icon} />
         Sign up
       </NavLink>
     </>
@@ -117,7 +117,7 @@ const NavBar = () => {
           >
           <img
             src={logo}
-            alt="logo"
+            alt="logo banner dinomizer"
             height="45"
           />
           </Link>

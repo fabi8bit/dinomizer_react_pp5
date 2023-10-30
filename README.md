@@ -441,6 +441,9 @@ All JavaScript files underwent validation using the ESLint JavaScript validator,
 
 It's worth mentioning that the installation of ESLint presented several challenges, which were eventually overcome. You can find a detailed report on these challenges [here](#the-greatest-bug-ive-ever-come-accross).
 
+### Prettier
+During the development process, Prettier helped me maintain proper code formatting.
+
 ### W3C CSS validator
 
 | Page checked                                                                                                                                   | Error found                                                                              | Fix | Commit                                                                                                     | Final result    |

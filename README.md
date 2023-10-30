@@ -66,6 +66,7 @@ Here is the live version of the application: [Dinomizer](https://dinomizer-6ec16
   * [Testing](#testing)
   * [Validator Testing](#validator-testing)
   * [Bugs and development obstacles](#bugs-and-development-obstacles)
+  * [The greatest Bug, I've ever come accross](#the-greatest-bug-ive-ever-come-accross)
   * [Deployment](#deployment)
   * [Future improvements](#future-improvements)
   * [Framework and libraries](#framework-and-libraries)
@@ -480,29 +481,74 @@ Asset detail | ![assetdetail](readme_assets/lighthouse-tests/lighthouse-assetdet
 ### Bugs and development obstacles
 
 The application appears to be free of significant or obvious bugs, and everything functions as expected. However, during the development process, there were instances where I encountered unusual behavior that I was able to address and resolve for the final version of Dinomizer.
+***
 
 After creating the Asset form, I realized that I had made a mistake in defining the fields on the backend side. One of the features of the application is the ability to upload various types of media files, such as images, videos, and .txt files. However, at that point, my code could only upload images. Thanks to the support I received from Code Institute, I was able to resolve this issue. Sean provided valuable assistance for over an hour, helping me identify and fix the problem. He also discovered issues with my useState implementation in the frontend. Ultimately, we found the solution: the 'type' field in the Asset model needed to be changed to a Cloudinary field. This resolved the issue, and users can now upload images, videos, and .txt files as intended.
+***
 
 During the initial planning of the application, I had decided to skip implementing the search feature for projects. However, during the coding of the project page, I realized the need to include a search function for projects to enhance the overall user experience. As a result, I had to go back and implement this feature in the backend project. You can find the specific commit related to this update here: [Commit d5f3dae](https://github.com/fabi8bit/dinomizer_drf_pp5/commit/d5f3dae0e09241c17670ea45e4f573d8e00b6237).
+***
 
 During the development of the Asset form, I encountered the need to include additional fields such as profile_id, profile_image, and project_owner for assets. Similarly, I also found the need to include participants_id and participant_image for the participants' endpoints. To address this, I revisited the backend project and included these fields in the API. This approach was more efficient and convenient than making multiple requests to the server from the frontend to retrieve this information.
+***
 
 Throughout the development process, whenever I needed to make changes to the Django Rest Framework (DRF) project, I ensured that the ENV variable in the env.py file was activated. This allowed me to activate the Django view for checking the changes I made. Once I verified that the code was functioning as expected, I commented out the ENV variable, saved the changes, added them to Git, committed, pushed to GitHub, and redeployed to Heroku. This workflow helped me maintain a smooth development process.
+***
 
 The process of creating assets is managed by the AssetCreateForm.js component. Each asset must be associated with a project. On the backend, the project_id field is set to null: False, meaning it cannot be empty. However, since an asset can only be linked to a single project, I passed the project's ID to the AssetCreateForm.js component via the location.state.
 To achieve this, I used the useHistory hook and included the project ID as a property in the state. In the Project.js component, the handleOpenCreateAsset function was responsible for this. By using the useHistory hook, I could add the project ID to the state and pass it to the AssetCreateForm.js component. I found [this post](https://dev.to/esedev/how-to-pass-and-access-data-from-one-route-to-another-with-uselocation-usenavigate-usehistory-hooks-1g5m#:~:text=Fortunately%2C%20React%20Router%20provides%20several,from%20the%20current%20location%20object) helpful in implementing this functionality.
+***
 
 If a non-logged-in user attempts to access the 'createassetsform' directly from the URL bar, an error is thrown. This occurs because no 'project_id' is passed to the form. To fix this issue, I implemented a function that handles this scenario by redirecting back (using 'history.goBack()') in cases where 'location.state.id' is not defined.
+***
 
 Submitting the asset edit form, threw a 503 Error from the server. After conducting research and seeking assistance from Code Institute (thank you Martin), I received valuable advice to run the server locally. Several changes were made to address this issue:
-
-In the frontend, under api/axiosDefaults.js, I adjusted the axios.defaults.baseURL settings, pointing to GitPod running the DRF.
-
-On the backend, I made sure that the DEV variable was commented out in the env.py file.
+- In the frontend, under api/axiosDefaults.js, I adjusted the axios.defaults.baseURL settings, pointing to GitPod running the DRF.
+- On the backend, I made sure that the DEV variable was commented out in the env.py file.
 
 By following these steps, the real issue was revealed, and an error message was printed out in the backend console. The problem was traced to a missing trailing slash at the end of the PUT method in the 'handlesubmit' function. This bug was addressed and documented in [commit fca0586](https://github.com/fabi8bit/dinomizer_react_pp5/commit/fca058666ca5c5b83197185a44fc08105a889bb3).
+***
 
 When rendering the DOM, on the consolle I had the following warning: validateDomNesting(...), that was resolved thanks to [this post](https://stackoverflow.com/questions/55625431/warning-validatedomnesting-a-cannot-appear-as-a-descendant-of-a)
+***
+
+Trying to access someone else's profile password edit form directly from the URL doesn't result in being redirected to the timeline page. The user is not permitted to access someone else's password form, but even after adding the useRedirect hook, the issue persists.
+***
+
+When a user who hasn't joined any projects clicks on the "Project" button, should be presented with a blank page. However, in this particular scenario, there's an issue with the loading spinner that doesn't disappear as expected. This results in the user interface being only partially satisfying in terms of user experience.
+***
+
+In the AssetEditForm, not updating the image field resulted in a Bad Request from the server. After debugging both the Backend and Frontend, the issue was successfully resolved.
+***
+
+Deletion os a project is executed successfully. However, after the deletion process, a "history.goBack()" function is triggered, and sometimes the user is redirected to a non-existent page. Despite making multiple attempts to resolve this issue, it remains unresolved due to time constraints.
+
+
+
+## The greatest Bug, I've ever come accross
+
+I used eslint to check JavaScript files. I had some issues when installing the latest version of eslint. So I decided not to save changes and not push to GitHub. I opened a new gitpod workspace based on the last GitHub commitment. I then manually installed the 7.11.0 version of eslint on gitpod with the following command: `npm install eslint@7.11.0 --save-dev`. This information was taken from [this post](https://www.npmjs.com/package/eslint/v/7.11.0).
+
+I then executed the command `touch .eslintrc.js` to create the eslintrc.js configuration file. In this file, I pasted the configuration copied from the [Andy Guthridge repository](https://github.com/andy-guttridge/tribehub_react/blob/main/.eslintrc.js). At this point, eslint was still causing issues and not allowing the application to run. Only after finding the discussion at [this link](https://discuss.codecademy.com/t/parsing-error-importdeclaration-should-appear-when-the-mode-is-es6-and-in-the-module-context/667899), and executing the command `npm audit fix` I was able to run the application. Eslint then detected various code errors:
+
+![eslinterrors](readme_assets/eslint/eslint_errors.png)
+
+ The error "react must be in scope when using jsx" was fixed simply by importing react into the files where it was missing, using the following code: `import React from "react";` the solution to this problem was taken from the post at [this link](https://kinsta.com/knowledgebase/react-must-be-in-scope-when-using-jsx/).
+After fixing all errors detected by eslint, the application was successfully filled out. The changes were then added, committed, and pushed to github. But during the heroku deployment process, heroku detected an error:
+
+
+       
+      <p>-----> Installing dependencies<br/>
+      Installing node modules<br/>
+      npm ERR! code EUSAGE<br/>
+      npm ERR!<br/>
+      npm ERR! `npm ci` can only install packages when your package.json and package-lock.json or npm-shrinkwrap.json are in sync. Please update your lock file with `npm install` before continuing.<br/>
+      npm ERR!<br/>
+      npm ERR! Invalid: lock file's typescript@5.2.2 does not satisfy typescript@4.9.5<br/>
+      -----> Build failed</p>
+
+
+I researched the type of error in the Slack Code Institute community, and I found the solution by typing the command `npm install fix --force`. This solved the issue, and the application was successfully deployed on Heroku.
 
 
 ## Deployment
@@ -579,6 +625,8 @@ During the development of Dinomizer, my primary point of reference was the walkt
 [General infos on CSS - W3School](https://www.w3schools.com/)
 
 [CSS alignment](https://www.w3schools.com/bootstrap4/tryit.asp?filename=trybs_flex-justify-center-responsive#:~:text=Justify%20content%20center-,Use%20the%20.,window%20to%20see%20the%20effect.)
+
+Installing previous version of eslint - [this post](https://www.npmjs.com/package/eslint/v/7.11.0).
 
 
 

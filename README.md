@@ -654,4 +654,4 @@ Installing previous version of eslint - [this post](https://www.npmjs.com/packag
 
 
 ## Thanks
-I want to express my sincere gratitude to my mentor Jubril for his invaluable support throughout the year. I also extend my heartfelt thanks to Andy Guttridge, who has been a great source of inspiration. Thank you both so much!
+I want to express my sincere gratitude to my mentor [Jubril](https://www.linkedin.com/in/jubrillionaire/) for his invaluable support throughout the year. I also extend my heartfelt thanks to [Andy Guttridge](https://github.com/andy-guttridge), who has been a great source of inspiration. Thank you both so much!

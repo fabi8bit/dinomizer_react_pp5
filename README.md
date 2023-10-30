@@ -606,9 +606,18 @@ Once the deployment is complete, you'll see the "Open App" button. Clicking on i
 
 - React.js
 - [react-router-dom](https://www.npmjs.com/package/react-router-dom)
+  
+  this library enables 'client side routing' for React web applications, and is vastly used in Dinomizer to implement basic routing and not only. The useLocation hook from React-Router-DOM is used in the project component to pass the variable `state` to the Asset create form which is crucial for the Asset creation.
+
 - [Axios](https://www.npmjs.com/package/axios)
-- [jwt-decode](https://www.npmjs.com/package/jwt-decode)
+
+  Axios was chosen due to its capacity to simplify the HTTP request procedure to the REST API, reducing the requirement for manual HTTP header configuration and enhancing convenience. Moreover, axios supports 'interceptors,' which are essential for requesting a refresh token in the event of an HTTP 401 error. This feature greatly improves the user experience by extending an authenticated user's session duration to 24 hours, eliminating the need for them to log in again after only five minutes.
+  
 - [MUI Material Icons](https://mui.com/material-ui/material-icons/)
+
+  MUI provides an extensive collection of free UI tools to expedite the development of new features. I used the Material Icons.
+  There's not a paticular reason  behind this choice. I heard about it and I liked it.
+
 - [React Bootstrap](https://react-bootstrap-v4.netlify.app/components/)
 
 

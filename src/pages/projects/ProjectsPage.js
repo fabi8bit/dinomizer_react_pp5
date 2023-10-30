@@ -9,9 +9,8 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utility/utility";
 import { useRedirect } from "../../hooks/useRedirect";
 
-
 function ProjectsPage({ message, myProjects }) {
-  useRedirect("loggedOut")
+  useRedirect("loggedOut");
   const [projects, setProjects] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
@@ -27,7 +26,6 @@ function ProjectsPage({ message, myProjects }) {
         console.log(err);
       }
     };
-    
 
     setHasLoaded(false);
     fetchProjects();
@@ -35,81 +33,69 @@ function ProjectsPage({ message, myProjects }) {
 
   return (
     <>
-    
-        <Container>
-          <Row>
-            <Col>
-              <Form
-                className={styles.SearchBar}
-                onSubmit={(event) => event.preventDefault()}
-              >
-                <Form.Label className="d-none">Searchbar</Form.Label>
-                <FormControl
-                  value={query}
-                  onChange={(event) => setQuery(event.target.value)}
-                  type="text"
-                  placeholder="Search projects"
-                  name="Searchbar"
-                />
-              </Form>
-            </Col>
-          </Row>
-        </Container>
-        {hasLoaded ? (
-          <>
-            {projects.results.length ? (
-             
-              <InfiniteScroll
-                children={
-                  myProjects ? (
-                    projects.results
-                      .filter((project) => project.participant_id)
-                      .map((project) => (
-                        <Project
-                          key={project.id}
-                          {...project}
-                          setProjects={setProjects}
-                          fromProjects
-                        />
-                      ))
-                  ) : (
-                    projects.results.map((project) => (
+      <Container>
+        <Row>
+          <Col>
+            <Form
+              className={styles.SearchBar}
+              onSubmit={(event) => event.preventDefault()}
+            >
+              <Form.Label className="d-none">Searchbar</Form.Label>
+              <FormControl
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                type="text"
+                placeholder="Search projects"
+                name="Searchbar"
+              />
+            </Form>
+          </Col>
+        </Row>
+      </Container>
+      {hasLoaded ? (
+        <>
+          {projects.results.length ? (
+            <InfiniteScroll
+              dataLength={projects.results.length}
+              loader={<Placeholder spinner />}
+              hasMore={!!projects.next}
+              next={() => fetchMoreData(projects, setProjects)}
+            >
+              {myProjects
+                ? projects.results
+                    .filter((project) => project.participant_id)
+                    .map((project) => (
                       <Project
                         key={project.id}
                         {...project}
                         setProjects={setProjects}
-                        fromTimeline
+                        fromProjects
                       />
                     ))
-                  )
-                }
-                dataLength={projects.results.length}
-                loader={<Placeholder spinner/>}
-                hasMore={!!projects.next}
-                next={() => fetchMoreData(projects,setProjects)}
+                : projects.results.map((project) => (
+                    <Project
+                      key={project.id}
+                      {...project}
+                      setProjects={setProjects}
+                      fromTimeline
+                    />
+                  ))}
+            </InfiniteScroll>
+          ) : (
+            <Container>
+              <Placeholder
+                src={""}
+                message={message}
               />
-              
-            ) : (
-
-              <Container>
-                <Placeholder
-                  src={""}
-                  message={message}
-                />
-              </Container>
-            )}
-          </>
-
-        ) : (
-
-          <Container>
-            <Placeholder spinner />
-          </Container>
-        )}
-      
-    
+            </Container>
+          )}
+        </>
+      ) : (
+        <Container>
+          <Placeholder spinner />
+        </Container>
+      )}
     </>
-
   );
 }
 

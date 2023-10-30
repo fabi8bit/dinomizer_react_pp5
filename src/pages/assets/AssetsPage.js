@@ -9,7 +9,7 @@ import { fetchMoreData } from "../../utility/utility";
 import Asset from "./Asset";
 import { useRedirect } from "../../hooks/useRedirect";
 
-function AssetsPage({ myContribute }) {
+function AssetsPage() {
   useRedirect("loggedOut")
   const [assets, setAssets] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
@@ -57,8 +57,12 @@ function AssetsPage({ myContribute }) {
         <>
           {assets.results.length ? (
             <InfiniteScroll
-              children={
-                is_contributor ? (
+            dataLength={assets.results.length}
+              loader={<Placeholder spinner />}
+              hasMore={!!assets.next}
+              next={() => fetchMoreData(assets, setAssets)}
+              >
+                {is_contributor ? (
                   assets.results
                     .filter((asset) => asset.is_owner)
                     .map((asset) => (
@@ -73,11 +77,8 @@ function AssetsPage({ myContribute }) {
                   <p>You are not contributing to any project</p>
                 )
               }
-              dataLength={assets.results.length}
-              loader={<Placeholder spinner />}
-              hasMore={!!assets.next}
-              next={() => fetchMoreData(assets, setAssets)}
-            />
+              
+              </InfiniteScroll>
           ) : (
             <Container>
               <Placeholder

@@ -151,7 +151,7 @@ const ProfileEditForm = () => {
     <Container>
     <Form onSubmit={handleSubmit}>
       <Row>
-        <h1>Edit {currentUser?.username}'s profile</h1>
+        <h1>Edit {currentUser?.username}`&apos;` profile</h1>
       </Row>
       <Row>
         <Col>

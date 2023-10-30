@@ -25,7 +25,7 @@ function DeleteModal({ id, type, name, change, deleteitem }) {
         <Modal.Footer>
           <Button
             variant="secondary"
-            onClick={(event) => {
+            onClick={() => {
               handleClose();
               change();
             }}
@@ -34,7 +34,7 @@ function DeleteModal({ id, type, name, change, deleteitem }) {
           </Button>
           <Button
             variant="primary"
-            onClick={(event) => {
+            onClick={() => {
               handleClose();
               deleteitem();
             }}

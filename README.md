@@ -433,6 +433,14 @@ Only one automated test was conducted, and it was on the NavBar:
 
 ## Validator Testing
 
+### ESLint JavaScript validator
+
+All JavaScript files underwent validation using the ESLint JavaScript validator, during which the following issues were identified and subsequently resolved:
+
+![eslinterrors](readme_assets/eslint/eslint_errors.png)
+
+It's worth mentioning that the installation of ESLint presented several challenges, which were eventually overcome. You can find a detailed report on these challenges [here](#the-greatest-bug-ive-ever-come-accross).
+
 ### W3C CSS validator
 
 | Page checked                                                                                                                                   | Error found                                                                              | Fix | Commit                                                                                                     | Final result    |
